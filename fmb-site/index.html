@@ -40,6 +40,11 @@
       --prog-row-light-bg: rgba(255,255,255,0.93);
       --prog-row-light-text: #0d2a4e;
       --prog-row-light-time-bg: rgba(13,59,110,0.07);
+
+      --partners-bg: rgba(255,255,255,0.02);
+      --partner-badge-bg: rgba(255,255,255,0.05);
+      --partner-badge-border: rgba(255,255,255,0.1);
+      --partner-badge-text: rgba(255,255,255,0.7);
     }
 
     body.light-mode {
@@ -62,9 +67,18 @@
       --prog-row-light-bg: #ffffff;
       --prog-row-light-text: #0d2a4e;
       --prog-row-light-time-bg: rgba(13,59,110,0.05);
+
+      --partners-bg: #f1f5f9;
+      --partner-badge-bg: #ffffff;
+      --partner-badge-border: rgba(13,59,110,0.12);
+      --partner-badge-text: #0d2a4e;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg-color);
+      transition: background 0.3s ease;
+    }
 
     body {
       font-family: 'Montserrat', sans-serif;
@@ -704,9 +718,10 @@
     /* ========== PARTNERS STRIP ========== */
     #partners {
       padding: 60px 24px;
-      background: rgba(255,255,255,0.02);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--partners-bg);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
     .partners-inner {
       max-width: 1000px; margin: 0 auto;
@@ -714,15 +729,22 @@
       flex-wrap: wrap; gap: 16px;
     }
     .partner-badge {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--partner-badge-bg);
+      border: 1px solid var(--partner-badge-border);
       border-radius: 12px; padding: 12px 24px;
       font-size: 0.8rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      transition: background 0.3s, color 0.3s;
+      color: var(--partner-badge-text);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
     }
-    .partner-badge:hover { background: rgba(12,191,191,0.12); color: var(--teal); }
+    .partner-badge:hover {
+      background: rgba(12,191,191,0.12);
+      color: var(--teal);
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
 
     /* ========== FOOTER ========== */
     footer {
@@ -1022,10 +1044,10 @@
 
     <div class="reveal">
       <p class="theme-text">
-        Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style="color:#fff">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.
+        Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style="color:var(--text-color)">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.
       </p>
       <p class="theme-text">
-        Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style="color:#fff">«&nbsp;déplastification&nbsp;»</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.
+        Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style="color:var(--text-color)">«&nbsp;déplastification&nbsp;»</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.
       </p>
     </div>
 
@@ -1070,13 +1092,15 @@
 <!-- ======= PARTNERS ======= -->
 <section id="partners">
   <div class="partners-inner">
-    <div class="partner-badge reveal">La Saison Bleue</div>
-    <div class="partner-badge reveal" style="transition-delay:0.05s">SHARE4MED</div>
-    <div class="partner-badge reveal" style="transition-delay:0.1s">Interreg NEXT MED</div>
-    <div class="partner-badge reveal" style="transition-delay:0.15s">CirceMed</div>
-    <div class="partner-badge reveal" style="transition-delay:0.2s">République Française</div>
-    <div class="partner-badge reveal" style="transition-delay:0.25s">AVEM</div>
-    <div class="partner-badge reveal" style="transition-delay:0.3s">Gouvernorat de Bizerte</div>
+    <a href="https://lasaisonbleue.com" target="_blank" class="partner-badge reveal">La Saison Bleue</a>
+    <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" class="partner-badge reveal" style="transition-delay:0.05s">SHARE4MED</a>
+    <a href="https://www.interregnextmed.eu" target="_blank" class="partner-badge reveal" style="transition-delay:0.1s">Interreg NEXT MED</a>
+    <a href="https://www.circemed.org" target="_blank" class="partner-badge reveal" style="transition-delay:0.15s">CirceMed</a>
+    <a href="https://www.info.gouv.fr" target="_blank" class="partner-badge reveal" style="transition-delay:0.2s">République Française</a>
+    <a href="https://www.ademe.fr" target="_blank" class="partner-badge reveal" style="transition-delay:0.22s">ADEME</a>
+    <a href="https://www.agriculture.tn" target="_blank" class="partner-badge reveal" style="transition-delay:0.24s">Ministre de l'Agriculture</a>
+    <span class="partner-badge reveal" style="transition-delay:0.26s">AVEM</span>
+    <span class="partner-badge reveal" style="transition-delay:0.28s">Gouvernorat de Bizerte</span>
   </div>
 </section>
 
@@ -1090,12 +1114,12 @@
   <br/><br/>
   <p>
     9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie<br/>
-    <strong style="color:rgba(255,255,255,0.6)">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
+    <strong style="color:var(--text-color); opacity:0.85;">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
     Produit par <strong>La Saison Bleue</strong><br/>
     Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ
   </p>
   <br/>
-  <p style="margin-top:24px; font-size:0.7rem; color:rgba(255,255,255,0.18);">
+  <p style="margin-top:24px; font-size:0.7rem; color:var(--text-muted); opacity:0.65;">
     © 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés.
   </p>
 </footer>
