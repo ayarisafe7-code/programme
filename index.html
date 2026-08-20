@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forum Mondial de la Mer – Bizerte 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep:   #0a1628;
+      --blue-mid:    #0d3b6e;
+      --blue-light:  #1a7abf;
+      --blue-bright: #26a8e0;
+      --teal:        #0cbfbf;
+      --gold:        #c8a84b;
+      --white:       #f0f8ff;
+      --text-light:  rgba(240,248,255,0.88);
+
+      /* Dark Mode variables (default) */
+      --bg-color: #0a1628;
+      --text-color: #f0f8ff;
+      --text-muted: rgba(240,248,255,0.7);
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --nav-bg: rgba(10,22,40,0.92);
+      --section-bg-gradient-about: linear-gradient(180deg, #0a1628 0%, #071120 100%);
+      --section-bg-gradient-programme: linear-gradient(180deg, #071120 0%, #0a1628 100%);
+      --section-bg-gradient-theme: linear-gradient(135deg, #041428 0%, #0a2540 50%, #041428 100%);
+      --section-bg-gallery: #060e1a;
+      --footer-bg: #030a12;
+      
+      --prog-row-dark-bg: var(--blue-mid);
+      --prog-row-dark-text: #fff;
+      --prog-row-dark-time-bg: rgba(0,0,0,0.2);
+      --prog-row-light-bg: rgba(255,255,255,0.93);
+      --prog-row-light-text: #0d2a4e;
+      --prog-row-light-time-bg: rgba(13,59,110,0.07);
+    }
+
+    body.light-mode {
+      /* Light Mode variables */
+      --bg-color: #f8fafc;
+      --text-color: #0f172a;
+      --text-muted: #475569;
+      --card-bg: #ffffff;
+      --card-border: rgba(13,59,110,0.12);
+      --nav-bg: rgba(248,250,252,0.95);
+      --section-bg-gradient-about: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      --section-bg-gradient-programme: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+      --section-bg-gradient-theme: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #f1f5f9 100%);
+      --section-bg-gallery: #ffffff;
+      --footer-bg: #e2e8f0;
+      
+      --prog-row-dark-bg: var(--blue-mid);
+      --prog-row-dark-text: #fff;
+      --prog-row-dark-time-bg: rgba(0,0,0,0.25);
+      --prog-row-light-bg: #ffffff;
+      --prog-row-light-text: #0d2a4e;
+      --prog-row-light-time-bg: rgba(13,59,110,0.05);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ========== SCROLL PROGRESS BAR ========== */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      width: 0%; z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ========== NAVBAR ========== */
+    nav {
+      position: fixed; top: 3px; left: 0; right: 0;
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,40,0.0);
+      backdrop-filter: blur(0px);
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      padding: 10px 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    nav .logo-nav img { height: 52px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); transition: height 0.3s; }
+    nav ul { list-style: none; display: flex; gap: 36px; align-items: center; }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 24px;
+        flex-direction: column;
+        gap: 12px;
+      }
+      nav.scrolled {
+        padding: 8px 24px;
+      }
+      nav ul {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .prog-row {
+        flex-direction: column;
+      }
+      .prog-time {
+        min-width: 100% !important;
+        text-align: left;
+        justify-content: flex-start;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+        padding: 10px 16px;
+      }
+      .prog-row--light .prog-time {
+        border-bottom: 1px solid rgba(13,59,110,0.1) !important;
+      }
+      .prog-content {
+        padding: 12px 16px;
+      }
+      
+      .hero-dates {
+        flex-direction: column;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 12px 24px;
+      }
+      .hero-dates .sep { display: none; }
+      nav .logo-nav img {
+        height: 38px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-item:first-child {
+        grid-column: span 1 !important;
+      }
+    }
+    nav ul li a {
+      color: var(--text-color); text-decoration: none;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative; padding-bottom: 4px;
+      transition: color 0.3s;
+    }
+    nav ul li a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--teal);
+      transition: width 0.3s;
+    }
+    nav ul li a:hover { color: var(--teal); }
+    nav ul li a:hover::after { width: 100%; }
+
+    /* ========== HERO ========== */
+    #hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    #hero-bg {
+      position: absolute; inset: -60px;
+      background: url('images/wave-bg.png') center bottom / cover no-repeat;
+      will-change: transform;
+    }
+
+    #hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(4,13,26,0.72) 0%,
+        rgba(4,13,26,0.42) 40%,
+        rgba(4,13,26,0.18) 65%,
+        rgba(4,13,26,0.75) 85%,
+        rgba(4,13,26,1)    100%
+      );
+    }
+
+    .wave-lines {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 220px; overflow: hidden; pointer-events: none;
+    }
+    .wave-svg {
+      position: absolute; bottom: 0; left: 0;
+      width: 200%; height: 100%;
+    }
+    .wave-svg--1 { animation: wavemove 12s linear infinite; opacity: 1; }
+    .wave-svg--2 { animation: wavemove  8s linear infinite; opacity: 1; }
+    .wave-svg--3 { animation: wavemove  6s linear infinite reverse; opacity: 1; }
+    .wave-svg--4 { animation: wavemove 10s linear infinite; opacity: 1; }
+    @keyframes wavemove {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .bubbles { position: absolute; inset: 0; pointer-events: none; }
+    .bubble {
+      position: absolute; bottom: -40px;
+      border-radius: 50%;
+      background: rgba(38,168,224,0.18);
+      border: 1px solid rgba(38,168,224,0.35);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(1);   opacity: 0.7; }
+      80%  { opacity: 0.4; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 24px;
+      animation: heroFade 1.4s ease-out forwards;
+    }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-logo { height: 130px; margin-bottom: 24px;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.6));
+    }
+
+    .hero-edition {
+      font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--teal); font-weight: 700; margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--prog-row-dark-text);
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--blue-bright);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: var(--text-muted); font-weight: 300;
+      letter-spacing: 0.04em; margin-bottom: 40px;
+    }
+
+    .hero-dates {
+      display: inline-flex; align-items: center; gap: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 60px; padding: 14px 36px;
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--prog-row-dark-text);
+    }
+    .hero-dates .sep { color: var(--teal); font-size: 1.3rem; }
+
+    .scroll-indicator {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      animation: bounce 2.2s ease infinite;
+      text-decoration: none; cursor: pointer;
+    }
+    .scroll-indicator span {
+      font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+    }
+    .scroll-indicator .arrow {
+      width: 22px; height: 22px;
+      border-right: 2px solid rgba(255,255,255,0.4);
+      border-bottom: 2px solid rgba(255,255,255,0.4);
+      transform: rotate(45deg);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(10px); }
+    }
+
+    section {
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-wave-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Make sure content renders above the wavy canvas background */
+    .about-grid, .programme-inner, .theme-inner, .gallery-header, .gallery-grid, .partners-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--teal); font-weight: 700; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .section-title span { color: var(--blue-bright); }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--blue-bright));
+      border-radius: 2px; margin-bottom: 36px;
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+                  transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+                  transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+                  transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ========== ABOUT SECTION ========== */
+    #about {
+      background: var(--section-bg-gradient-about);
+      position: relative; overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,122,191,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .about-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    @media(max-width:820px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    .about-text p {
+      color: var(--text-muted); line-height: 1.85;
+      font-size: 0.97rem; margin-bottom: 18px;
+    }
+    .about-text p strong { color: var(--blue-bright); }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 40px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 24px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .stat-card .num {
+      font-size: 2.6rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--teal), var(--blue-bright));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .about-image-wrap { position: relative; }
+    .about-image-wrap img {
+      width: 100%; border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      display: block;
+    }
+    .about-image-wrap::before {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 24px;
+      border: 2px solid rgba(38,168,224,0.25);
+      pointer-events: none;
+    }
+
+    /* ========== PLASTIC COUNTER ========== */
+    .plastic-counter {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 40px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .plastic-counter .counter-num {
+      font-size: 3.2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), #f0c050);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .plastic-counter .counter-label {
+      font-size: 0.8rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-top: 6px;
+    }
+    .plastic-counter .counter-desc {
+      margin-top: 16px; font-size: 0.9rem; color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========== PROGRAMME SECTION ========== */
+    #programme {
+      position: relative;
+      background: var(--section-bg-gradient-programme);
+      overflow: hidden;
+    }
+    #programme::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(12,191,191,0.05) 0%, transparent 70%);
+    }
+
+    .programme-inner {
+      max-width: 900px; margin: 0 auto;
+      position: relative;
+    }
+
+    .date-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+      border-radius: 60px; padding: 10px 28px;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.06em;
+      box-shadow: 0 8px 30px rgba(13,59,110,0.5);
+    }
+    .date-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 12px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--blue-bright), transparent);
+    }
+
+    .timeline-item {
+      position: relative; margin-bottom: 56px;
+      opacity: 0; transform: translateX(-30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+    .timeline-dot {
+      position: absolute; left: -34px; top: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--blue-bright));
+      box-shadow: 0 0 0 4px rgba(12,191,191,0.2), 0 0 20px rgba(12,191,191,0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .timeline-dot::after {
+      content: '';
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #fff;
+    }
+
+    .timeline-time {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .timeline-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .timeline-card:hover {
+      transform: translateX(8px);
+      background: rgba(255,255,255,0.07);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .timeline-card h3 {
+      font-size: 1.3rem; font-weight: 700; margin-bottom: 14px; color: var(--prog-row-dark-text);
+    }
+    .timeline-card p {
+      color: var(--text-muted); font-size: 0.93rem; line-height: 1.7;
+    }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag {
+      background: rgba(12,191,191,0.12);
+      border: 1px solid rgba(12,191,191,0.3);
+      border-radius: 30px; padding: 5px 14px;
+      font-size: 0.75rem; color: var(--teal);
+      font-weight: 600; letter-spacing: 0.05em;
+    }
+
+    /* ========== PROGRAMME CARDS (new format) ========== */
+    .prog-section-title {
+      font-size: clamp(2.4rem,6vw,4rem); font-weight: 900;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      text-align: center; color: var(--prog-row-dark-text);
+      margin-bottom: 6px;
+    }
+    .prog-day-label {
+      font-size: 0.88rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-weight: 600; text-align: center;
+      color: var(--text-muted); margin-bottom: 36px;
+    }
+    .prog-table {
+      display: flex; flex-direction: column; gap: 8px;
+      max-width: 820px; margin: 0 auto 64px;
+    }
+    .prog-row {
+      display: flex; align-items: stretch;
+      border-radius: 14px; overflow: hidden;
+      min-height: 62px;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .prog-row.visible { opacity: 1; transform: translateY(0); }
+
+    /* Dark navy row */
+    .prog-row--dark { background: var(--prog-row-dark-bg); }
+    .prog-row--dark .prog-time {
+      background: var(--prog-row-dark-time-bg); color: var(--prog-row-dark-text);
+      border-right: 2px solid rgba(255,255,255,0.12);
+    }
+    .prog-row--dark .prog-label { color: var(--prog-row-dark-text); }
+    .prog-row--dark .prog-sub { color: rgba(255,255,255,0.6); }
+
+    /* Light white row */
+    .prog-row--light { background: var(--prog-row-light-bg); border: 1px solid var(--card-border); }
+    .prog-row--light .prog-time {
+      background: var(--prog-row-light-time-bg); color: var(--blue-mid);
+      border-right: 2px solid rgba(13,59,110,0.1);
+    }
+    .prog-row--light .prog-label { color: #0d2a4e; }
+    .prog-row--light .prog-sub { color: rgba(13,42,78,0.55); }
+
+    /* Gold/restricted row */
+    .prog-row--gold { background: rgba(200,168,75,0.15); border: 1px solid rgba(200,168,75,0.3); }
+    .prog-row--gold .prog-time {
+      background: rgba(200,168,75,0.2); color: var(--gold);
+      border-right: 2px solid rgba(200,168,75,0.2);
+    }
+    .prog-row--gold .prog-label { color: var(--gold); }
+    .prog-row--gold .prog-sub { color: rgba(200,168,75,0.65); }
+
+    .prog-time {
+      min-width: 148px; padding: 14px 18px;
+      font-size: 0.82rem; font-weight: 800;
+      text-align: center; letter-spacing: 0.06em;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .prog-content {
+      padding: 14px 24px; flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .prog-label {
+      font-size: 0.95rem; font-weight: 700; line-height: 1.35;
+    }
+    .prog-sub {
+      font-size: 0.77rem; font-style: italic; margin-top: 4px; line-height: 1.4;
+    }
+    .prog-day-sep {
+      display: flex; align-items: center; gap: 16px;
+      margin: 48px 0 40px; max-width: 820px; margin-left: auto; margin-right: auto;
+    }
+    .prog-day-sep .sep-line {
+      flex:1; height:1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+    }
+    .prog-day-sep .sep-text {
+      font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:rgba(255,255,255,0.3);
+    }
+
+    /* ========== THÈME SECTION ========== */
+    #theme {
+      background: var(--section-bg-gradient-theme);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #theme::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(26,122,191,0.08) 0%, transparent 65%);
+    }
+
+    .theme-inner { max-width: 860px; margin: 0 auto; position: relative; }
+
+    .theme-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-style: italic; line-height: 1.3;
+      color: var(--prog-row-dark-text); margin: 32px 0;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .theme-quote strong {
+      font-style: normal; color: var(--blue-bright);
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+    }
+
+    .theme-text {
+      color: var(--text-muted); font-size: 0.97rem;
+      line-height: 1.85; max-width: 720px; margin: 0 auto 20px;
+    }
+
+    .theme-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+      margin-top: 40px;
+    }
+    .pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 40px; padding: 12px 26px;
+      font-size: 0.83rem; font-weight: 600;
+      letter-spacing: 0.05em; color: var(--white);
+      cursor: default;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .pill:hover {
+      background: rgba(12,191,191,0.15);
+      border-color: var(--teal);
+      transform: translateY(-4px);
+    }
+    .pill .icon { margin-right: 8px; }
+
+    /* ========== GALLERY ========== */
+    #gallery { background: var(--section-bg-gallery); position: relative; }
+    .gallery-header { text-align: center; max-width: 700px; margin: 0 auto 56px; }
+
+    .gallery-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media(max-width:700px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+    .gallery-item {
+      overflow: hidden; border-radius: 16px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:first-child { grid-column: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.6) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* ========== PARTNERS STRIP ========== */
+    #partners {
+      padding: 60px 24px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .partners-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .partner-badge {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      transition: background 0.3s, color 0.3s;
+    }
+    .partner-badge:hover { background: rgba(12,191,191,0.12); color: var(--teal); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center; padding: 60px 24px 40px;
+      background: var(--footer-bg);
+      position: relative; overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), var(--blue-bright), transparent);
+    }
+    footer img { height: 70px; margin-bottom: 24px; opacity: 0.9; }
+    footer p { color: var(--text-muted); font-size: 0.8rem; line-height: 1.8; }
+    footer p a { color: var(--blue-bright); text-decoration: none; }
+    footer .footer-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--teal); font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; margin: 16px 0;
+      transition: color 0.3s;
+    }
+    footer .footer-link:hover { color: var(--prog-row-dark-text); }
+
+    /* Plastic floating icons */
+    .plastic-float {
+      position: fixed; font-size: 1.8rem;
+      opacity: 0; animation: drift linear infinite;
+      pointer-events: none; user-select: none; z-index: 0;
+    }
+    @keyframes drift {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      5%   { opacity: 0.06; }
+      90%  { opacity: 0.04; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- Floating Plastic Icons -->
+<div id="plastic-floats" aria-hidden="true"></div>
+
+<!-- ======= NAVBAR ======= -->
+<nav id="navbar">
+  <div class="logo-nav">
+    <img src="images/logo.png" alt="Forum Mondial de la Mer Bizerte"/>
+  </div>
+  <ul>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#theme">Thème</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li>
+      <button id="theme-toggle" aria-label="Changer le thème" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; cursor: pointer; color: var(--text-color); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0; transition: background 0.3s, border-color 0.3s;">
+        <span class="theme-icon" style="font-size: 1.1rem; line-height: 1;">🌙</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!-- ======= HERO ======= -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div id="hero-overlay"></div>
+
+  <!-- Animated plastic ocean waves -->
+  <div class="wave-lines">
+    <!-- Layer 1: deep blue, slow -->
+    <svg class="wave-svg wave-svg--1" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wg1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0d5fa0" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#071120" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 60 C160 20 320 90 480 60 C640 30 800 90 960 60 C1120 30 1280 80 1440 55 V120 H0Z" fill="url(#wg1)"/>
+    </svg>
+    <!-- Layer 2: teal, medium speed -->
+    <svg class="wave-svg wave-svg--2" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0cbfbf" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#071120" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 75 C200 40 400 100 600 70 C800 40 1000 100 1200 65 C1300 50 1380 80 1440 70 V120 H0Z" fill="url(#wg2)"/>
+    </svg>
+    <!-- Layer 3: bright blue highlight crest -->
+    <svg class="wave-svg wave-svg--3" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wg3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#26a8e0" stop-opacity="0.12"/>
+          <stop offset="60%" stop-color="#071120" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#040d1a" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 85 C180 55 360 100 540 78 C720 55 900 105 1080 80 C1260 55 1380 90 1440 82 V120 H0Z" fill="url(#wg3)"/>
+    </svg>
+    <!-- Layer 4: solid dark fill -->
+    <svg class="wave-svg wave-svg--4" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 95 C240 70 480 110 720 92 C960 74 1200 108 1440 95 V120 H0Z" fill="#040d1a"/>
+    </svg>
+  </div>
+
+
+  <div class="hero-content">
+    <img src="images/logo.png" class="hero-logo" alt="Forum Mondial de la Mer"/>
+    <div class="hero-edition">9ème Édition · Bizerte, Tunisie</div>
+    <h1 class="hero-title">
+      Agir pour une<br/>
+      <em>Méditerranée</em><br/>
+      sans Plastique
+    </h1>
+    <p class="hero-subtitle">Forum Mondial de la Mer – Bizerte</p>
+    <div class="hero-dates">
+      <span>24 Septembre 2026</span>
+      <span class="sep">›</span>
+      <span>25 Septembre 2026</span>
+    </div>
+  </div>
+
+  <a href="#programme" class="scroll-indicator" aria-label="Voir le programme">
+    <span>Défiler</span>
+    <div class="arrow"></div>
+  </a>
+</section>
+
+<!-- ======= ABOUT ======= -->
+<section id="about">
+  <canvas class="section-wave-canvas"></canvas>
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <div class="section-label">Le Forum</div>
+      <h2 class="section-title">Forum Mondial de la <span>Mer</span></h2>
+      <div class="divider"></div>
+      <p>Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.</p>
+      <p>Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.</p>
+      <p>La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.</p>
+      <p>Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.</p>
+      <div class="about-stats">
+        <div class="stat-card reveal" style="transition-delay:0.1s">
+          <div class="num">9ème</div>
+          <div class="lbl">Édition 2026</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:0.2s">
+          <div class="num">2018</div>
+          <div class="lbl">Fondé par Pascal Lamy</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:0.3s">
+          <div class="num">24-25</div>
+          <div class="lbl">Septembre 2026</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:0.4s">
+          <div class="num">MED</div>
+          <div class="lbl">Bassin méditerranéen</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:32px;" class="reveal-right">
+      <div class="about-image-wrap">
+        <img src="images/photo4.jpg" alt="Forum Mondial de la Mer - Participants"/>
+      </div>
+      <div class="plastic-counter reveal">
+        <div class="counter-num" id="plasticCount">0</div>
+        <div class="counter-label">Tonnes de plastique / an en Méditerranée</div>
+        <div class="counter-desc">Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PROGRAMME ======= -->
+<section id="programme">
+  <canvas class="section-wave-canvas"></canvas>
+  <div class="programme-inner">
+
+    <!-- Header -->
+    <div class="reveal" style="margin-bottom:48px;">
+      <div class="section-label" style="text-align:center">9ème Édition · Bizerte, Tunisie</div>
+      <div class="prog-section-title">Programme</div>
+    </div>
+
+    <!-- ===== JEUDI 24 SEPTEMBRE 2026 ===== -->
+    <div class="prog-day-label reveal">Jeudi 24 Septembre 2026</div>
+
+    <div class="prog-table">
+
+      <div class="prog-row prog-row--dark">
+        <div class="prog-time">Matinée &rsaquo; Après-midi</div>
+        <div class="prog-content">
+          <div class="prog-label">Présentation du projet SHARE4MED &amp; Workshop</div>
+          <div class="prog-sub">Avec les représentants des municipalités et communes tunisiennes</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">Réunion restreinte</div>
+        <div class="prog-content">
+          <div class="prog-label">Assemblée Générale de Circe.med</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Séparateur -->
+    <div class="prog-day-sep reveal">
+      <div class="sep-line"></div>
+      <div class="sep-text">Jour suivant</div>
+      <div class="sep-line"></div>
+    </div>
+
+    <!-- ===== VENDREDI 25 SEPTEMBRE 2026 ===== -->
+    <div class="prog-day-label reveal">Vendredi 25 Septembre 2026</div>
+
+    <div class="prog-table">
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">8H30 &rsaquo; 9H00</div>
+        <div class="prog-content">
+          <div class="prog-label">Accueil des participants</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--dark">
+        <div class="prog-time">9H00</div>
+        <div class="prog-content">
+          <div class="prog-label">Ouverture officielle</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">9H20 &rsaquo; 11H10</div>
+        <div class="prog-content">
+          <div class="prog-label">Données et perspectives de la «&nbsp;plastification&nbsp;» de la Méditerranée à l'horizon 2030</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--dark">
+        <div class="prog-time">11H10 &rsaquo; 12H10</div>
+        <div class="prog-content">
+          <div class="prog-label">Les hotspots de la production de plastique en Méditerranée</div>
+          <div class="prog-sub">Filières</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">12H10 &rsaquo; 13H10</div>
+        <div class="prog-content">
+          <div class="prog-label">Les positions des États méditerranéens et de l'Union européenne</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">13H10 &rsaquo; 14H30</div>
+        <div class="prog-content">
+          <div class="prog-label">Déjeuner</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--dark">
+        <div class="prog-time">14H30 &rsaquo; 17H00</div>
+        <div class="prog-content">
+          <div class="prog-label">Premières propositions</div>
+          <div class="prog-sub">Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires</div>
+        </div>
+      </div>
+
+      <div class="prog-row prog-row--light">
+        <div class="prog-time">17H30 &rsaquo; 18H00</div>
+        <div class="prog-content">
+          <div class="prog-label">Synthèse &amp; programme d'action</div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+
+<!-- ======= THÈME ======= -->
+<section id="theme">
+  <canvas class="section-wave-canvas"></canvas>
+  <div class="theme-inner">
+    <div class="reveal">
+      <div class="section-label">Enjeu Central</div>
+      <div class="theme-quote">
+        « Agir pour une <strong>Méditerranée</strong> sans plastique »
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="theme-text">
+        Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style="color:#fff">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.
+      </p>
+      <p class="theme-text">
+        Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style="color:#fff">«&nbsp;déplastification&nbsp;»</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.
+      </p>
+    </div>
+
+
+
+    <div class="reveal" style="margin-top:56px;">
+      <p style="color:var(--text-light); font-size:0.97rem; line-height:1.9; font-style:italic; max-width:680px; margin:0 auto;">
+        « Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= GALLERY ======= -->
+<section id="gallery">
+  <canvas class="section-wave-canvas"></canvas>
+  <div class="gallery-header reveal">
+    <div class="section-label">Moments du Forum</div>
+    <h2 class="section-title">Galerie <span>Photos</span></h2>
+    <div class="divider" style="margin:0 auto 16px;"></div>
+    <p style="color:var(--text-light); font-size:0.92rem;">
+      Retour sur les éditions précédentes du Forum Mondial de la Mer – Bizerte
+    </p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item reveal-left">
+      <img src="images/photo4.jpg" alt="Participants Forum Mondial de la Mer" loading="lazy"/>
+    </div>
+    <div class="gallery-item reveal-right">
+      <img src="images/photo1.jpg" alt="Session de travail" loading="lazy"/>
+    </div>
+    <div class="gallery-item reveal-left" style="transition-delay:0.15s">
+      <img src="images/photo2.jpg" alt="Vue nocturne de Bizerte" loading="lazy"/>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:0.15s">
+      <img src="images/photo3.jpg" alt="Photo de groupe" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PARTNERS ======= -->
+<section id="partners">
+  <div class="partners-inner">
+    <div class="partner-badge reveal">La Saison Bleue</div>
+    <div class="partner-badge reveal" style="transition-delay:0.05s">SHARE4MED</div>
+    <div class="partner-badge reveal" style="transition-delay:0.1s">Interreg NEXT MED</div>
+    <div class="partner-badge reveal" style="transition-delay:0.15s">CirceMed</div>
+    <div class="partner-badge reveal" style="transition-delay:0.2s">République Française</div>
+    <div class="partner-badge reveal" style="transition-delay:0.25s">AVEM</div>
+    <div class="partner-badge reveal" style="transition-delay:0.3s">Gouvernorat de Bizerte</div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+  <img src="images/logo.png" alt="Forum Mondial de la Mer"/>
+  <br/>
+  <a href="https://forummondialdelamerbizerte.com" class="footer-link" target="_blank">
+    🌐 forummondialdelamerbizerte.com
+  </a>
+  <br/><br/>
+  <p>
+    9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie<br/>
+    <strong style="color:rgba(255,255,255,0.6)">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
+    Produit par <strong>La Saison Bleue</strong><br/>
+    Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ
+  </p>
+  <br/>
+  <p style="margin-top:24px; font-size:0.7rem; color:rgba(255,255,255,0.18);">
+    © 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés.
+  </p>
+</footer>
+
+<!-- ======= JAVASCRIPT ======= -->
+<script>
+  /* ---- Theme Toggle ---- */
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = themeToggle.querySelector('.theme-icon');
+
+  // Check saved preference
+  if (localStorage.getItem('fmb-theme') === 'light') {
+    document.body.classList.add('light-mode');
+    themeIcon.textContent = '☀️';
+    themeToggle.style.background = 'rgba(0,0,0,0.05)';
+    themeToggle.style.borderColor = 'rgba(0,0,0,0.1)';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    themeIcon.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('fmb-theme', isLight ? 'light' : 'dark');
+
+    if (isLight) {
+      themeToggle.style.background = 'rgba(0,0,0,0.05)';
+      themeToggle.style.borderColor = 'rgba(0,0,0,0.1)';
+    } else {
+      themeToggle.style.background = 'rgba(255,255,255,0.08)';
+      themeToggle.style.borderColor = 'rgba(255,255,255,0.15)';
+    }
+  });
+
+  /* ---- Progress Bar ---- */
+  const progressBar = document.getElementById('progress-bar');
+
+  /* ---- Navbar ---- */
+  const navbar = document.getElementById('navbar');
+
+  /* ---- Hero Parallax ---- */
+  const heroBg = document.getElementById('hero-bg');
+
+  function onScroll() {
+    const y = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    // progress bar
+    progressBar.style.width = (y / total * 100) + '%';
+    // navbar glass effect
+    navbar.classList.toggle('scrolled', y > 80);
+    // hero parallax
+    if (heroBg) heroBg.style.transform = 'translateY(' + (y * 0.4) + 'px)';
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---- Reveal on Scroll (IntersectionObserver) ---- */
+  const allReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .timeline-item, .prog-row');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  allReveal.forEach((el, i) => {
+    if (el.classList.contains('prog-row')) {
+      el.style.transitionDelay = (i % 8) * 0.07 + 's';
+    }
+    revealObs.observe(el);
+  });
+
+  /* ---- Counter animation ---- */
+  let counterStarted = false;
+  const counterEl = document.getElementById('plasticCount');
+  const TARGET = 570000;
+
+  const counterObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counterStarted) {
+      counterStarted = true;
+      let val = 0;
+      const step = Math.ceil(TARGET / 80);
+      const iv = setInterval(() => {
+        val = Math.min(val + step, TARGET);
+        counterEl.textContent = val.toLocaleString('fr-FR');
+        if (val >= TARGET) clearInterval(iv);
+      }, 20);
+    }
+  }, { threshold: 0.5 });
+  if (counterEl) counterObs.observe(counterEl);
+
+  /* ---- Floating Plastic Icons ---- */
+  const icons = ['🧴', '🥤', '🛍️', '🍶', '🧃', '🫙'];
+  const floatsContainer = document.getElementById('plastic-floats');
+  for (let i = 0; i < 15; i++) {
+    const el = document.createElement('span');
+    el.classList.add('plastic-float');
+    el.textContent = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (15 + Math.random() * 18) + 's';
+    el.style.animationDelay = (Math.random() * 20) + 's';
+    el.style.fontSize = (0.9 + Math.random() * 1.4) + 'rem';
+    floatsContainer.appendChild(el);
+  }
+
+  /* ---- Active nav links ---- */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.style.color = active ? 'var(--teal)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.45 });
+  sections.forEach(s => sectionObs.observe(s));
+
+  /* ---- Section Wavy Backgrounds ---- */
+  (function() {
+    const canvases = document.querySelectorAll('.section-wave-canvas');
+    const waveData = [];
+
+    canvases.forEach((canvas, index) => {
+      const ctx = canvas.getContext('2d');
+      waveData.push({
+        canvas: canvas,
+        ctx: ctx,
+        tick: Math.random() * 100,
+        linesCount: 7, 
+        speed: 0.012 + (index * 0.002),
+        dir: index % 2 === 0 ? 1 : -1,
+        amp: 28 + (index * 4),
+        freq: 0.003 + (index * 0.0006)
+      });
+    });
+
+    function resize() {
+      waveData.forEach(data => {
+        const parent = data.canvas.parentElement;
+        data.width = data.canvas.width = parent.clientWidth;
+        data.height = data.canvas.height = parent.clientHeight;
+      });
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+
+    let scrollOffset = window.scrollY;
+    window.addEventListener('scroll', () => {
+      scrollOffset = window.scrollY;
+    }, { passive: true });
+
+    function animate() {
+      waveData.forEach((data, index) => {
+        const rect = data.canvas.parentElement.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) {
+          return; // skip if completely offscreen
+        }
+
+        const ctx = data.ctx;
+        const W = data.width;
+        const H = data.height;
+
+        ctx.clearRect(0, 0, W, H);
+
+        const scrollShift = scrollOffset * 0.045 * data.dir;
+        const n = data.linesCount;
+        const centerY = H / 2;
+
+        for (let l = 0; l < n; l++) {
+          const t = (l / (n - 1)) - 0.5; // -0.5 to +0.5
+          const lineY = centerY + t * (n * 14); // spread lines
+          const amp = data.amp + l * 1.5;
+          const phase = data.tick * data.dir + (l * 0.28) + scrollShift;
+
+          // Thin, elegant turquoise lines
+          const centerProx = 1 - Math.abs(t) * 1.6;
+          const opacity = Math.max(0.02, Math.min(0.24, 0.035 + centerProx * 0.16));
+
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(12, 191, 191, ${opacity})`;
+          ctx.lineWidth = 0.8;
+
+          const step = 4;
+          for (let x = 0; x <= W; x += step) {
+            const y = lineY 
+                    + Math.sin(x * data.freq + phase) * amp
+                    + Math.sin(x * data.freq * 1.6 + phase * 0.5) * (amp * 0.22);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        data.tick += data.speed;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    // Delay start slightly to ensure parent dimensions are computed
+    setTimeout(() => {
+      resize();
+      animate();
+    }, 150);
+  })();
+</script>
+
+</body>
+</html>
