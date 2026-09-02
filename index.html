@@ -259,29 +259,12 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(4,13,26,0.72) 0%,
-        rgba(4,13,26,0.42) 40%,
-        rgba(4,13,26,0.18) 65%,
-        rgba(4,13,26,0.75) 85%,
-        rgba(4,13,26,1)    100%
+        rgba(4,13,26,0.7) 0%,
+        rgba(4,13,26,0.3) 40%,
+        rgba(4,13,26,0.08) 60%,
+        rgba(6,17,32,0.7) 80%,
+        #061120 100%
       );
-    }
-
-    .wave-lines {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 220px; overflow: hidden; pointer-events: none;
-    }
-    .wave-svg {
-      position: absolute; bottom: 0; left: 0;
-      width: 200%; height: 100%;
-    }
-    .wave-svg--1 { animation: wavemove 12s linear infinite; opacity: 1; }
-    .wave-svg--2 { animation: wavemove  8s linear infinite; opacity: 1; }
-    .wave-svg--3 { animation: wavemove  6s linear infinite reverse; opacity: 1; }
-    .wave-svg--4 { animation: wavemove 10s linear infinite; opacity: 1; }
-    @keyframes wavemove {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
     }
 
     .bubbles { position: absolute; inset: 0; pointer-events: none; }
@@ -1053,8 +1036,8 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 180px;
-      background: linear-gradient(180deg, #071120 0%, rgba(7, 17, 32, 0.8) 35%, transparent 100%);
+      height: 220px;
+      background: linear-gradient(180deg, #061120 0%, rgba(6, 17, 32, 0.75) 50%, transparent 100%);
       z-index: 3;
       pointer-events: none;
     }
@@ -1064,8 +1047,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 180px;
-      background: linear-gradient(0deg, #0a1628 0%, rgba(10, 22, 40, 0.85) 40%, transparent 100%);
+      height: 220px;
+      background: linear-gradient(0deg, #0a1628 0%, rgba(10, 22, 40, 0.8) 50%, transparent 100%);
       z-index: 3;
       pointer-events: none;
     }
@@ -1265,51 +1248,6 @@
   <div id="hero-bg"></div>
   <div id="hero-overlay"></div>
 
-  <!-- Animated plastic ocean waves -->
-  <div class="wave-lines">
-    <!-- Layer 1: deep blue, slow -->
-    <svg class="wave-svg wave-svg--1" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="wg1" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#0d5fa0" stop-opacity="0.55"/>
-          <stop offset="100%" stop-color="#071120" stop-opacity="1"/>
-        </linearGradient>
-      </defs>
-      <path d="M0 60 C160 20 320 90 480 60 C640 30 800 90 960 60 C1120 30 1280 80 1440 55 V120 H0Z" fill="url(#wg1)"/>
-    </svg>
-    <!-- Layer 2: teal, medium speed -->
-    <svg class="wave-svg wave-svg--2" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="wg2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#0cbfbf" stop-opacity="0.2"/>
-          <stop offset="100%" stop-color="#071120" stop-opacity="0.9"/>
-        </linearGradient>
-      </defs>
-      <path d="M0 75 C200 40 400 100 600 70 C800 40 1000 100 1200 65 C1300 50 1380 80 1440 70 V120 H0Z" fill="url(#wg2)"/>
-    </svg>
-    <!-- Layer 3: bright blue highlight crest -->
-    <svg class="wave-svg wave-svg--3" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="wg3" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#26a8e0" stop-opacity="0.12"/>
-          <stop offset="60%" stop-color="#071120" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#040d1a" stop-opacity="1"/>
-        </linearGradient>
-      </defs>
-      <path d="M0 85 C180 55 360 100 540 78 C720 55 900 105 1080 80 C1260 55 1380 90 1440 82 V120 H0Z" fill="url(#wg3)"/>
-    </svg>
-    <!-- Layer 4: smooth gradient blend into dive -->
-    <svg class="wave-svg wave-svg--4" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="wg4" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#0cbfbf" stop-opacity="0.15"/>
-          <stop offset="70%" stop-color="#071120" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#071120" stop-opacity="1"/>
-        </linearGradient>
-      </defs>
-      <path d="M0 95 C240 70 480 110 720 92 C960 74 1200 108 1440 95 V120 H0Z" fill="url(#wg4)"/>
-    </svg>
-  </div>
 
 
   <div class="hero-content">
