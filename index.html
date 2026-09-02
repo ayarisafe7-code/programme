@@ -171,6 +171,60 @@
     nav .logo-nav img { height: 52px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); transition: height 0.3s, filter 0.3s; }
     nav ul { list-style: none; display: flex; gap: 36px; align-items: center; }
 
+    /* Global Text Selection (Neutral & clean, no heavy blue) */
+    ::selection {
+      background: rgba(255, 255, 255, 0.22);
+      color: inherit;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 255, 0.22);
+      color: inherit;
+    }
+
+    /* Language Switcher in Navbar - Minimalist & Clean (FR / EN / IT without blue block) */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      border: none;
+      padding: 0;
+      gap: 2px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-color);
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 2px 4px;
+      cursor: pointer;
+      opacity: 0.42;
+      transition: opacity 0.2s ease, font-weight 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      border-bottom: 1.5px solid transparent;
+      line-height: 1.2;
+    }
+    .lang-btn:hover {
+      opacity: 0.85;
+      color: var(--text-color);
+    }
+    .lang-btn.active {
+      background: transparent !important;
+      color: var(--text-color) !important;
+      opacity: 1;
+      font-weight: 800;
+      border-bottom: 1.5px solid var(--text-color);
+    }
+    .lang-sep {
+      color: var(--text-color);
+      opacity: 0.25;
+      font-size: 0.68rem;
+      user-select: none;
+      padding: 0 1px;
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 8px 16px;
@@ -299,6 +353,12 @@
     .hero-content {
       position: relative; z-index: 2;
       text-align: center; padding: 0 24px;
+      margin: 0 auto;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       animation: heroFade 1.4s ease-out forwards;
     }
     @keyframes heroFade {
@@ -311,6 +371,7 @@
     .hero-edition {
       font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--teal); font-weight: 700; margin-bottom: 12px;
+      text-align: center; width: 100%;
     }
 
     .hero-title {
@@ -320,6 +381,7 @@
       color: var(--prog-row-dark-text);
       text-shadow: none !important;
       margin-bottom: 16px;
+      text-align: center; width: 100%;
     }
     .hero-title em {
       font-style: normal; color: var(--teal); text-shadow: none !important;
@@ -328,7 +390,10 @@
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.35rem);
       color: var(--text-muted); font-weight: 400;
-      letter-spacing: 0.02em; margin-bottom: 40px;
+      letter-spacing: 0.02em; margin: 0 auto 40px;
+      text-align: center;
+      width: 100%;
+      display: block;
     }
 
     .hero-dates {
@@ -828,6 +893,137 @@
       transform: translateY(-4px);
     }
     .pill .icon { margin-right: 8px; }
+
+    /* ========== SUPPORT & CONTACT BOX ========== */
+    .support-box-wrapper {
+      max-width: 820px;
+      margin: 48px auto 0;
+      text-align: left;
+    }
+    .support-box {
+      background: rgba(12, 191, 191, 0.04);
+      border: 1px solid rgba(12, 191, 191, 0.25);
+      border-radius: 20px;
+      padding: 36px 32px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+    .support-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .support-title {
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 8px;
+    }
+    .support-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .support-contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .support-card {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 20px 22px;
+      text-decoration: none;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+    .support-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--teal);
+      background: rgba(12, 191, 191, 0.09);
+    }
+    .support-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .support-name {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 4px;
+    }
+    .support-phone {
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+    .tech-support-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+    .tech-support-icon {
+      color: var(--teal);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tech-support-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 4px;
+    }
+    .tech-support-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+    .tech-support-email {
+      display: inline-block;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
+    }
+    .tech-support-email:hover {
+      opacity: 0.8;
+    }
+    @media (max-width: 768px) {
+      .support-box {
+        padding: 22px 14px;
+      }
+      .support-contacts-grid {
+        grid-template-columns: 1fr;
+      }
+      .tech-support-banner {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+      }
+    }
 
     /* ========== GALLERY ========== */
     #gallery { background: var(--section-bg-gallery); position: relative; }
@@ -1567,11 +1763,21 @@
     <img src="images/logo.png" alt="Forum Mondial de la Mer Bizerte"/>
   </div>
   <ul>
-    <li><a href="#scrolly-dive">Immersion</a></li>
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#programme">Programme</a></li>
-    <li><a href="#theme">Thème</a></li>
-    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#scrolly-dive" data-i18n="nav_immersion">Immersion</a></li>
+    <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+    <li><a href="#programme" data-i18n="nav_programme">Programme</a></li>
+    <li><a href="#theme" data-i18n="nav_theme">Thème</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
+    <li>
+      <!-- Language Switcher (FR / EN / IT - Minimalist text style without blue) -->
+      <div class="lang-switcher" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+      </div>
+    </li>
     <li>
       <button id="theme-toggle" aria-label="Changer le thème" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; cursor: pointer; color: var(--text-color); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0; transition: background 0.3s, border-color 0.3s;">
         <span class="theme-icon" style="font-size: 1.1rem; line-height: 1;">●</span>
@@ -1589,22 +1795,22 @@
 
   <div class="hero-content">
 
-    <h1 class="hero-title">
+    <h1 class="hero-title" data-i18n="hero_title">
       Agir pour une<br/>
       <em>Méditerranée</em><br/>
       sans Plastique
     </h1>
-    <p class="hero-subtitle">Forum Mondial de la Mer – Bizerte</p>
-    <div class="hero-edition">9ème Édition · Bizerte, Tunisie</div>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Forum Mondial de la Mer – Bizerte</p>
+    <div class="hero-edition" data-i18n="hero_edition">9ème Édition · Bizerte, Tunisie</div>
     <div class="hero-dates">
-      <span>24 Septembre 2026</span>
+      <span data-i18n="hero_date1">24 Septembre 2026</span>
       <span class="sep">›</span>
-      <span>25 Septembre 2026</span>
+      <span data-i18n="hero_date2">25 Septembre 2026</span>
     </div>
   </div>
 
   <a href="#programme" class="scroll-indicator" aria-label="Voir le programme">
-    <span>Défiler</span>
+    <span data-i18n="hero_scroll">Défiler</span>
     <div class="arrow"></div>
   </a>
 </section>
@@ -1623,14 +1829,14 @@
 
     <!-- Discrete Top Left Breadcrumb Indicator -->
     <div class="dive-top-indicator">
-      <span class="dive-top-tag">Immersion · Bizerte 2026</span>
-      <span class="dive-top-title">Du Littoral aux Grands Fonds</span>
+      <span class="dive-top-tag" data-i18n="dive_tag">Immersion · Bizerte 2026</span>
+      <span class="dive-top-title" data-i18n="dive_title">Du Littoral aux Grands Fonds</span>
     </div>
 
     <!-- Tall Graduated Bathymetric Depth Gauge (HUD Scale in Meters) -->
     <div class="dive-depth-hud">
       <div class="hud-header">
-        <span class="hud-title">Sondeur</span>
+        <span class="hud-title" data-i18n="hud_sounder">Sondeur</span>
         <div class="hud-live-depth"><span id="depthVal">0</span><small>m</small></div>
       </div>
       <div class="hud-scale-wrap">
@@ -1655,96 +1861,96 @@
       
       <!-- NIVEAU 1 : 0 MÈTRE (SURFACE ET CHOC DES ÉCHELLES) -->
       <div class="dive-stage-panel panel-stage-1">
-        <div class="stage-badge">Niveau 01 · 0 Mètre · Surface et Choc des Échelles</div>
-        <h2 class="stage-title">1% des Eaux du Globe : <span class="hl-teal">7% des Microplastiques Mondiaux</span></h2>
-        <p class="stage-desc">
+        <div class="stage-badge" data-i18n="stage1_badge">Niveau 01 · 0 Mètre · Surface et Choc des Échelles</div>
+        <h2 class="stage-title" data-i18n="stage1_title">1% des Eaux du Globe : <span class="hl-teal">7% des Microplastiques Mondiaux</span></h2>
+        <p class="stage-desc" data-i18n="stage1_desc">
           La Méditerranée est une mer semi-fermée hyper-dense : elle est <strong>4 fois plus polluée que le Pacifique Nord</strong>. Chaque année, entre 229 000 et 600 000 tonnes de plastique y sont déversées, soit l'équivalent de <strong>+500 conteneurs maritimes jetés à la mer chaque jour</strong>.
         </p>
         <div class="stage-metrics-grid">
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="1250000" data-format="integer">1 250 000</div>
-            <div class="m-label">Fragments / km² en surface</div>
+            <div class="m-label" data-i18n="stage1_m1">Fragments / km² en surface</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="4" data-suffix="x">4x</div>
-            <div class="m-label">Plus polluée que le Pacifique Nord</div>
+            <div class="m-label" data-i18n="stage1_m2">Plus polluée que le Pacifique Nord</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="500" data-prefix="+">+500</div>
-            <div class="m-label">Conteneurs déversés par jour</div>
+            <div class="m-label" data-i18n="stage1_m3">Conteneurs déversés par jour</div>
           </div>
         </div>
       </div>
 
       <!-- NIVEAU 2 : -35 MÈTRES (CASCADE DE FRAGMENTATION ET PIC ESTIVAL) -->
       <div class="dive-stage-panel panel-stage-2">
-        <div class="stage-badge">Niveau 02 · -35 Mètres · Fragmentation et Saisonnalité</div>
-        <h2 class="stage-title">La Cascade Invisible : <span class="hl-teal">94% de Microplastiques</span></h2>
-        <p class="stage-desc">
+        <div class="stage-badge" data-i18n="stage2_badge">Niveau 02 · -35 Mètres · Fragmentation et Saisonnalité</div>
+        <h2 class="stage-title" data-i18n="stage2_title">La Cascade Invisible : <span class="hl-teal">94% de Microplastiques</span></h2>
+        <p class="stage-desc" data-i18n="stage2_desc">
           En s'enfonçant sous la surface, <strong>94% des macro-déchets se fragmentent</strong> en micro-particules invisibles à l'œil nu. Avec 150 millions d'habitants côtiers et <strong>+150 millions de touristes</strong> en été, la pollution marine explose de <strong>+40% chaque été</strong>.
         </p>
         <div class="stage-metrics-grid">
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="94" data-suffix="%">94%</div>
-            <div class="m-label">Des plastiques fragmentés en micro-particules</div>
+            <div class="m-label" data-i18n="stage2_m1">Des plastiques fragmentés en micro-particules</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="150" data-prefix="+" data-suffix=" M">+150 M</div>
-            <div class="m-label">Touristes estivaux sur les 22 pays côtiers</div>
+            <div class="m-label" data-i18n="stage2_m2">Touristes estivaux sur les 22 pays côtiers</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="40" data-prefix="+" data-suffix="%">+40%</div>
-            <div class="m-label">De pollution marine supplémentaire en été</div>
+            <div class="m-label" data-i18n="stage2_m3">De pollution marine supplémentaire en été</div>
           </div>
         </div>
       </div>
 
       <!-- NIVEAU 3 : -75 MÈTRES (HÉMORRAGIE ÉCONOMIQUE) -->
       <div class="dive-stage-panel panel-stage-3">
-        <div class="stage-badge">Niveau 03 · -75 Mètres · L'Impact Économique</div>
-        <h2 class="stage-title">L'Hémorragie Économique : <span class="hl-teal">641 Millions € / an</span></h2>
-        <p class="stage-desc">
+        <div class="stage-badge" data-i18n="stage3_badge">Niveau 03 · -75 Mètres · L'Impact Économique</div>
+        <h2 class="stage-title" data-i18n="stage3_title">L'Hémorragie Économique : <span class="hl-teal">641 Millions € / an</span></h2>
+        <p class="stage-desc" data-i18n="stage3_desc">
           La pollution plastique frappe directement la pêche, le tourisme et la navigation. Nettoyer une seule tonne de déchets coûte jusqu'à <strong>18 000 €</strong> (la ville de Nice dépense par exemple 2 millions €/an uniquement pour ses plages).
         </p>
         <div class="stage-metrics-grid">
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="641" data-suffix=" M€">641 M€</div>
-            <div class="m-label">Perdus chaque année par les économies côtières</div>
+            <div class="m-label" data-i18n="stage3_m1">Perdus chaque année par les économies côtières</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="18000" data-format="integer" data-suffix=" €">18 000 €</div>
-            <div class="m-label">Coût de nettoyage par tonne de déchets</div>
+            <div class="m-label" data-i18n="stage3_m2">Coût de nettoyage par tonne de déchets</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="2" data-suffix=" M€ / an">2 M€ / an</div>
-            <div class="m-label">Dépensés par ville côtière (ex: Nice)</div>
+            <div class="m-label" data-i18n="stage3_m3">Dépensés par ville côtière (ex: Nice)</div>
           </div>
         </div>
       </div>
 
       <!-- NIVEAU 4 : -120 MÈTRES (LE SOCLE DES SOLUTIONS ET BIZERTE 2026) -->
       <div class="dive-stage-panel panel-stage-4">
-        <div class="stage-badge">Niveau 04 · -120 Mètres · Le Socle des Solutions</div>
-        <h2 class="stage-title">L'Alliance de Bizerte : <span class="hl-teal">Objectif Zéro Plastique 2030</span></h2>
-        <p class="stage-desc">
+        <div class="stage-badge" data-i18n="stage4_badge">Niveau 04 · -120 Mètres · Le Socle des Solutions</div>
+        <h2 class="stage-title" data-i18n="stage4_title">L'Alliance de Bizerte : <span class="hl-teal">Objectif Zéro Plastique 2030</span></h2>
+        <p class="stage-desc" data-i18n="stage4_desc">
           Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong> au plan <strong>PAMEx (PNUE)</strong> et <strong>BeMed</strong>, le <strong>Forum Mondial de la Mer – Bizerte 2026</strong> unit les 22 nations pour sanctuariser notre mer commune.
         </p>
         <div class="stage-metrics-grid">
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="22">22</div>
-            <div class="m-label">Nations méditerranéennes signataires</div>
+            <div class="m-label" data-i18n="stage4_m1">Nations méditerranéennes signataires</div>
           </div>
           <div class="stage-metric-pill">
-            <div class="m-val">PAMEx et BeMed</div>
-            <div class="m-label">Plans d'action régionaux exemplaires (PNUE)</div>
+            <div class="m-val" data-i18n="stage4_m2_val">PAMEx et BeMed</div>
+            <div class="m-label" data-i18n="stage4_m2">Plans d'action régionaux exemplaires (PNUE)</div>
           </div>
           <div class="stage-metric-pill">
-            <div class="m-val" data-counter="2030" data-prefix="Cap ">Cap 2030</div>
-            <div class="m-label">Zéro plastique en mer et 9ème Sommet Bizerte</div>
+            <div class="m-val" data-counter="2030" data-prefix="Cap " data-i18n="stage4_m3_val">Cap 2030</div>
+            <div class="m-label" data-i18n="stage4_m3">Zéro plastique en mer et 9ème Sommet Bizerte</div>
           </div>
         </div>
         <a href="#programme" class="stage-cta-btn">
-          <span>Découvrir le Programme du Sommet</span>
+          <span data-i18n="stage4_cta">Découvrir le Programme du Sommet</span>
           <span>→</span>
         </a>
       </div>
@@ -1759,29 +1965,29 @@
   <canvas class="section-wave-canvas"></canvas>
   <div class="about-grid">
     <div class="about-text reveal-left">
-      <div class="section-label">Le Forum</div>
-      <h2 class="section-title">Forum Mondial de la <span>Mer</span></h2>
+      <div class="section-label" data-i18n="about_label">Le Forum</div>
+      <h2 class="section-title" data-i18n="about_title">Forum Mondial de la <span>Mer</span></h2>
       <div class="divider"></div>
-      <p>Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.</p>
-      <p>Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.</p>
-      <p>La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.</p>
-      <p>Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.</p>
+      <p data-i18n="about_p1">Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.</p>
+      <p data-i18n="about_p2">Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.</p>
+      <p data-i18n="about_p3">La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.</p>
+      <p data-i18n="about_p4">Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.</p>
       <div class="about-stats">
         <div class="stat-card reveal" style="transition-delay:0.1s">
-          <div class="num">9ème</div>
-          <div class="lbl">Édition 2026</div>
+          <div class="num" data-i18n="about_stat1_num">9ème</div>
+          <div class="lbl" data-i18n="about_stat1_lbl">Édition 2026</div>
         </div>
         <div class="stat-card reveal" style="transition-delay:0.2s">
           <div class="num">2018</div>
-          <div class="lbl">Fondé par Pascal Lamy</div>
+          <div class="lbl" data-i18n="about_stat2_lbl">Fondé par Pascal Lamy</div>
         </div>
         <div class="stat-card reveal" style="transition-delay:0.3s">
           <div class="num">24-25</div>
-          <div class="lbl">Septembre 2026</div>
+          <div class="lbl" data-i18n="about_stat3_lbl">Septembre 2026</div>
         </div>
         <div class="stat-card reveal" style="transition-delay:0.4s">
           <div class="num">MED</div>
-          <div class="lbl">Bassin méditerranéen</div>
+          <div class="lbl" data-i18n="about_stat4_lbl">Bassin méditerranéen</div>
         </div>
       </div>
     </div>
@@ -1792,8 +1998,8 @@
       </div>
       <div class="plastic-counter reveal">
         <div class="counter-num" id="plasticCount">0</div>
-        <div class="counter-label">Tonnes de plastique / an en Méditerranée</div>
-        <div class="counter-desc">Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.</div>
+        <div class="counter-label" data-i18n="counter_label">Tonnes de plastique / an en Méditerranée</div>
+        <div class="counter-desc" data-i18n="counter_desc">Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.</div>
       </div>
     </div>
   </div>
@@ -1852,27 +2058,27 @@
 
     <!-- Header -->
     <div class="reveal" style="margin-bottom:48px;">
-      <div class="section-label" style="text-align:center">9ème Édition · Bizerte, Tunisie</div>
-      <div class="prog-section-title">Programme</div>
+      <div class="section-label" style="text-align:center" data-i18n="prog_header_label">9ème Édition · Bizerte, Tunisie</div>
+      <div class="prog-section-title" data-i18n="prog_header_title">Programme</div>
     </div>
 
     <!-- ===== JEUDI 24 SEPTEMBRE 2026 ===== -->
-    <div class="prog-day-label reveal">Jeudi 24 Septembre 2026</div>
+    <div class="prog-day-label reveal" data-i18n="prog_day1_title">Jeudi 24 Septembre 2026</div>
 
     <div class="prog-table">
 
       <div class="prog-row prog-row--dark">
-        <div class="prog-time">Matinée &rsaquo; Après-midi</div>
+        <div class="prog-time" data-i18n="prog_r1_time">Matinée &rsaquo; Après-midi</div>
         <div class="prog-content">
-          <div class="prog-label">Présentation du projet SHARE4MED et Workshop</div>
-          <div class="prog-sub">Avec les représentants des municipalités et communes tunisiennes</div>
+          <div class="prog-label" data-i18n="prog_r1_label">Présentation du projet SHARE4MED et Workshop</div>
+          <div class="prog-sub" data-i18n="prog_r1_sub">Avec les représentants des municipalités et communes tunisiennes</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--light">
-        <div class="prog-time">Réunion restreinte</div>
+        <div class="prog-time" data-i18n="prog_r2_time">Réunion restreinte</div>
         <div class="prog-content">
-          <div class="prog-label">Assemblée Générale de Circe.med</div>
+          <div class="prog-label" data-i18n="prog_r2_label">Assemblée Générale de Circe.med</div>
         </div>
       </div>
 
@@ -1881,70 +2087,70 @@
     <!-- Séparateur -->
     <div class="prog-day-sep reveal">
       <div class="sep-line"></div>
-      <div class="sep-text">Jour suivant</div>
+      <div class="sep-text" data-i18n="prog_sep_nextday">Jour suivant</div>
       <div class="sep-line"></div>
     </div>
 
     <!-- ===== VENDREDI 25 SEPTEMBRE 2026 ===== -->
-    <div class="prog-day-label reveal">Vendredi 25 Septembre 2026</div>
+    <div class="prog-day-label reveal" data-i18n="prog_day2_title">Vendredi 25 Septembre 2026</div>
 
     <div class="prog-table">
 
       <div class="prog-row prog-row--light">
         <div class="prog-time">8H30 &rsaquo; 9H00</div>
         <div class="prog-content">
-          <div class="prog-label">Accueil des participants</div>
+          <div class="prog-label" data-i18n="prog_r3_label">Accueil des participants</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--dark">
         <div class="prog-time">9H00</div>
         <div class="prog-content">
-          <div class="prog-label">Ouverture officielle</div>
+          <div class="prog-label" data-i18n="prog_r4_label">Ouverture officielle</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--light">
         <div class="prog-time">9H20 &rsaquo; 11H10</div>
         <div class="prog-content">
-          <div class="prog-label">Données et perspectives de la «&nbsp;plastification&nbsp;» de la Méditerranée à l'horizon 2030</div>
+          <div class="prog-label" data-i18n="prog_r5_label">Données et perspectives de la «&nbsp;plastification&nbsp;» de la Méditerranée à l'horizon 2030</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--dark">
         <div class="prog-time">11H10 &rsaquo; 12H10</div>
         <div class="prog-content">
-          <div class="prog-label">Les hotspots de la production de plastique en Méditerranée</div>
-          <div class="prog-sub">Filières</div>
+          <div class="prog-label" data-i18n="prog_r6_label">Les hotspots de la production de plastique en Méditerranée</div>
+          <div class="prog-sub" data-i18n="prog_r6_sub">Filières</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--light">
         <div class="prog-time">12H10 &rsaquo; 13H10</div>
         <div class="prog-content">
-          <div class="prog-label">Les positions des États méditerranéens et de l'Union européenne</div>
+          <div class="prog-label" data-i18n="prog_r7_label">Les positions des États méditerranéens et de l'Union européenne</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--light">
         <div class="prog-time">13H10 &rsaquo; 14H30</div>
         <div class="prog-content">
-          <div class="prog-label">Déjeuner</div>
+          <div class="prog-label" data-i18n="prog_r8_label">Déjeuner</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--dark">
         <div class="prog-time">14H30 &rsaquo; 17H00</div>
         <div class="prog-content">
-          <div class="prog-label">Premières propositions</div>
-          <div class="prog-sub">Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires</div>
+          <div class="prog-label" data-i18n="prog_r9_label">Premières propositions</div>
+          <div class="prog-sub" data-i18n="prog_r9_sub">Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires</div>
         </div>
       </div>
 
       <div class="prog-row prog-row--light">
         <div class="prog-time">17H30 &rsaquo; 18H00</div>
         <div class="prog-content">
-          <div class="prog-label">Synthèse et programme d'action</div>
+          <div class="prog-label" data-i18n="prog_r10_label">Synthèse et programme d'action</div>
         </div>
       </div>
 
@@ -1960,27 +2166,70 @@
   <canvas class="section-wave-canvas"></canvas>
   <div class="theme-inner">
     <div class="reveal">
-      <div class="section-label">Enjeu Central</div>
-      <div class="theme-quote">
+      <div class="section-label" data-i18n="theme_label">Enjeu Central</div>
+      <div class="theme-quote" data-i18n="theme_quote">
         « Agir pour une <strong>Méditerranée</strong> sans plastique »
       </div>
     </div>
 
     <div class="reveal">
-      <p class="theme-text">
+      <p class="theme-text" data-i18n="theme_p1">
         Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style="color:var(--text-color)">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.
       </p>
-      <p class="theme-text">
+      <p class="theme-text" data-i18n="theme_p2">
         Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style="color:var(--text-color)">«&nbsp;déplastification&nbsp;»</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.
       </p>
     </div>
 
-
-
-    <div class="reveal" style="margin-top:56px;">
-      <p style="color:var(--text-light); font-size:0.97rem; line-height:1.9; font-style:italic; max-width:680px; margin:0 auto;">
+    <div class="reveal" style="margin-top:40px;">
+      <p style="color:var(--text-light); font-size:0.97rem; line-height:1.9; font-style:italic; max-width:680px; margin:0 auto;" data-i18n="theme_invitation">
         « Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »
       </p>
+    </div>
+
+    <!-- Contact & Support Sur Place & Support Technique (Sans emoji) -->
+    <div class="reveal support-box-wrapper">
+      <div class="support-box">
+        <div class="support-header">
+          <div class="section-label" style="text-align:center; margin-bottom:8px;" data-i18n="support_label">Assistance & Support sur place</div>
+          <h3 class="support-title" data-i18n="support_title">Des questions sur place ou besoin d'assistance ?</h3>
+          <p class="support-subtitle" data-i18n="support_subtitle">En cas d'incompréhension ou pour vos questions sur place, contactez notre équipe sur WhatsApp :</p>
+        </div>
+
+        <div class="support-contacts-grid">
+          <!-- Contact 1 : Nedra Berriche -->
+          <a href="https://wa.me/21629190882" target="_blank" rel="noopener noreferrer" class="support-card">
+            <div class="support-card-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.79 14.07c-.24.67-1.39 1.28-1.92 1.36-.51.08-1.16.12-3.37-.79-2.78-1.15-4.57-3.99-4.71-4.18-.14-.18-1.13-1.51-1.13-2.88 0-1.37.72-2.04.97-2.32.26-.28.56-.35.75-.35.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.15.12.32.02.52-.09.2-.14.33-.29.49-.15.17-.31.38-.45.51-.15.15-.31.31-.13.62.18.31.8 1.32 1.71 2.13 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.71-.15.29.11 1.83.86 2.14 1.02.31.15.52.23.6.35.08.13.08.76-.16 1.43z"/></svg>
+              <span>WhatsApp</span>
+            </div>
+            <div class="support-name">Nedra Berriche</div>
+            <div class="support-phone">+216 29 190 882</div>
+          </a>
+
+          <!-- Contact 2 : Roua Ben Slimen -->
+          <a href="https://wa.me/21652469389" target="_blank" rel="noopener noreferrer" class="support-card">
+            <div class="support-card-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.79 14.07c-.24.67-1.39 1.28-1.92 1.36-.51.08-1.16.12-3.37-.79-2.78-1.15-4.57-3.99-4.71-4.18-.14-.18-1.13-1.51-1.13-2.88 0-1.37.72-2.04.97-2.32.26-.28.56-.35.75-.35.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.15.12.32.02.52-.09.2-.14.33-.29.49-.15.17-.31.38-.45.51-.15.15-.31.31-.13.62.18.31.8 1.32 1.71 2.13 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.71-.15.29.11 1.83.86 2.14 1.02.31.15.52.23.6.35.08.13.08.76-.16 1.43z"/></svg>
+              <span>WhatsApp</span>
+            </div>
+            <div class="support-name">Roua Ben Slimen</div>
+            <div class="support-phone">+216 52 469 389</div>
+          </a>
+        </div>
+
+        <!-- Tech Support & PPT Submissions -->
+        <div class="tech-support-banner">
+          <div class="tech-support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="tech-support-text">
+            <div class="tech-support-title" data-i18n="tech_support_title">Support Technique & Présentations PPT</div>
+            <div class="tech-support-desc" data-i18n="tech_support_desc">Si vous avez besoin d'un support technique ou pour envoyer vos présentations PowerPoint, merci de les transmettre par email à :</div>
+            <a href="mailto:seifeddine.ayari@imageactions.com" class="tech-support-email">seifeddine.ayari@imageactions.com</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1989,10 +2238,10 @@
 <section id="gallery">
   <canvas class="section-wave-canvas"></canvas>
   <div class="gallery-header reveal">
-    <div class="section-label">Moments du Forum</div>
-    <h2 class="section-title">Galerie <span>Photos</span></h2>
+    <div class="section-label" data-i18n="gallery_label">Moments du Forum</div>
+    <h2 class="section-title" data-i18n="gallery_title">Galerie <span>Photos</span></h2>
     <div class="divider" style="margin:0 auto 16px;"></div>
-    <p style="color:var(--text-light); font-size:0.92rem;">
+    <p style="color:var(--text-light); font-size:0.92rem;" data-i18n="gallery_desc">
       Retour sur les éditions précédentes du Forum Mondial de la Mer – Bizerte
     </p>
   </div>
@@ -2037,13 +2286,13 @@
   </a>
   <br/><br/>
   <p>
-    9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie<br/>
-    <strong style="color:var(--text-color); opacity:0.85;">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
-    Produit par <strong>La Saison Bleue</strong><br/>
-    Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ
+    <span data-i18n="footer_dates">9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie</span><br/>
+    <strong style="color:var(--text-color); opacity:0.85;" data-i18n="footer_theme">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
+    <span data-i18n="footer_produced">Produit par</span> <strong>La Saison Bleue</strong><br/>
+    <span data-i18n="footer_leadership">Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ</span>
   </p>
   <br/>
-  <p style="margin-top:24px; font-size:0.7rem; color:var(--text-muted); opacity:0.65;">
+  <p style="margin-top:24px; font-size:0.7rem; color:var(--text-muted); opacity:0.65;" data-i18n="footer_rights">
     © 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés.
   </p>
 </footer>
@@ -2461,6 +2710,393 @@
 
     // Initial render
     setTimeout(resizeCanvas, 80);
+  });
+
+  /* ========================================================
+     INTERNATIONALIZATION (i18n) - FR | EN | IT (NO EMOJIS)
+     ======================================================== */
+  const translations = {
+    fr: {
+      // Nav
+      nav_immersion: "Immersion",
+      nav_about: "À propos",
+      nav_programme: "Programme",
+      nav_theme: "Thème",
+      nav_gallery: "Galerie",
+
+      // Hero
+      hero_title: "Agir pour une<br/><em>Méditerranée</em><br/>sans Plastique",
+      hero_subtitle: "Forum Mondial de la Mer – Bizerte",
+      hero_edition: "9ème Édition · Bizerte, Tunisie",
+      hero_date1: "24 Septembre 2026",
+      hero_date2: "25 Septembre 2026",
+      hero_scroll: "Défiler",
+
+      // Immersion HUD
+      dive_tag: "Immersion · Bizerte 2026",
+      dive_title: "Du Littoral aux Grands Fonds",
+      hud_sounder: "Sondeur",
+
+      // Stage 1
+      stage1_badge: "Niveau 01 · 0 Mètre · Surface et Choc des Échelles",
+      stage1_title: "1% des Eaux du Globe : <span class=\"hl-teal\">7% des Microplastiques Mondiaux</span>",
+      stage1_desc: "La Méditerranée est une mer semi-fermée hyper-dense : elle est <strong>4 fois plus polluée que le Pacifique Nord</strong>. Chaque année, entre 229 000 et 600 000 tonnes de plastique y sont déversées, soit l'équivalent de <strong>+500 conteneurs maritimes jetés à la mer chaque jour</strong>.",
+      stage1_m1: "Fragments / km² en surface",
+      stage1_m2: "Plus polluée que le Pacifique Nord",
+      stage1_m3: "Conteneurs déversés par jour",
+
+      // Stage 2
+      stage2_badge: "Niveau 02 · -35 Mètres · Fragmentation et Saisonnalité",
+      stage2_title: "La Cascade Invisible : <span class=\"hl-teal\">94% de Microplastiques</span>",
+      stage2_desc: "En s'enfonçant sous la surface, <strong>94% des macro-déchets se fragmentent</strong> en micro-particules invisibles à l'œil nu. Avec 150 millions d'habitants côtiers et <strong>+150 millions de touristes</strong> en été, la pollution marine explose de <strong>+40% chaque été</strong>.",
+      stage2_m1: "Des plastiques fragmentés en micro-particules",
+      stage2_m2: "Touristes estivaux sur les 22 pays côtiers",
+      stage2_m3: "De pollution marine supplémentaire en été",
+
+      // Stage 3
+      stage3_badge: "Niveau 03 · -75 Mètres · L'Impact Économique",
+      stage3_title: "L'Hémorragie Économique : <span class=\"hl-teal\">641 Millions € / an</span>",
+      stage3_desc: "La pollution plastique frappe directement la pêche, le tourisme et la navigation. Nettoyer une seule tonne de déchets coûte jusqu'à <strong>18 000 €</strong> (la ville de Nice dépense par exemple 2 millions €/an uniquement pour ses plages).",
+      stage3_m1: "Perdus chaque année par les économies côtières",
+      stage3_m2: "Coût de nettoyage par tonne de déchets",
+      stage3_m3: "Dépensés par ville côtière (ex: Nice)",
+
+      // Stage 4
+      stage4_badge: "Niveau 04 · -120 Mètres · Le Socle des Solutions",
+      stage4_title: "L'Alliance de Bizerte : <span class=\"hl-teal\">Objectif Zéro Plastique 2030</span>",
+      stage4_desc: "Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong> au plan <strong>PAMEx (PNUE)</strong> et <strong>BeMed</strong>, le <strong>Forum Mondial de la Mer – Bizerte 2026</strong> unit les 22 nations pour sanctuariser notre mer commune.",
+      stage4_m1: "Nations méditerranéennes signataires",
+      stage4_m2_val: "PAMEx et BeMed",
+      stage4_m2: "Plans d'action régionaux exemplaires (PNUE)",
+      stage4_m3_val: "Cap 2030",
+      stage4_m3: "Zéro plastique en mer et 9ème Sommet Bizerte",
+      stage4_cta: "Découvrir le Programme du Sommet",
+
+      // About
+      about_label: "Le Forum",
+      about_title: "Forum Mondial de la <span>Mer</span>",
+      about_p1: "Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.",
+      about_p2: "Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.",
+      about_p3: "La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.",
+      about_p4: "Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.",
+      about_stat1_num: "9ème",
+      about_stat1_lbl: "Édition 2026",
+      about_stat2_lbl: "Fondé par Pascal Lamy",
+      about_stat3_lbl: "Septembre 2026",
+      about_stat4_lbl: "Bassin méditerranéen",
+      counter_label: "Tonnes de plastique / an en Méditerranée",
+      counter_desc: "Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.",
+
+      // Programme
+      prog_header_label: "9ème Édition · Bizerte, Tunisie",
+      prog_header_title: "Programme",
+      prog_day1_title: "Jeudi 24 Septembre 2026",
+      prog_r1_time: "Matinée › Après-midi",
+      prog_r1_label: "Présentation du projet SHARE4MED et Workshop",
+      prog_r1_sub: "Avec les représentants des municipalités et communes tunisiennes",
+      prog_r2_time: "Réunion restreinte",
+      prog_r2_label: "Assemblée Générale de Circe.med",
+      prog_sep_nextday: "Jour suivant",
+      prog_day2_title: "Vendredi 25 Septembre 2026",
+      prog_r3_label: "Accueil des participants",
+      prog_r4_label: "Ouverture officielle",
+      prog_r5_label: "Données et perspectives de la « plastification » de la Méditerranée à l'horizon 2030",
+      prog_r6_label: "Les hotspots de la production de plastique en Méditerranée",
+      prog_r6_sub: "Filières",
+      prog_r7_label: "Les positions des États méditerranéens et de l'Union européenne",
+      prog_r8_label: "Déjeuner",
+      prog_r9_label: "Premières propositions",
+      prog_r9_sub: "Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires",
+      prog_r10_label: "Synthèse et programme d'action",
+
+      // Theme & Contacts
+      theme_label: "Enjeu Central",
+      theme_quote: "« Agir pour une <strong>Méditerranée</strong> sans plastique »",
+      theme_p1: "Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style=\"color:var(--text-color)\">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.",
+      theme_p2: "Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style=\"color:var(--text-color)\">« déplastification »</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.",
+      theme_invitation: "« Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »",
+      support_label: "Assistance & Support sur place",
+      support_title: "Des questions sur place ou besoin d'assistance ?",
+      support_subtitle: "En cas d'incompréhension ou pour vos questions sur place, contactez notre équipe sur WhatsApp :",
+      tech_support_title: "Support Technique & Présentations PPT",
+      tech_support_desc: "Si vous avez besoin d'un support technique ou pour envoyer vos présentations PowerPoint, merci de les transmettre par email à :",
+
+      // Gallery & Footer
+      gallery_label: "Moments du Forum",
+      gallery_title: "Galerie <span>Photos</span>",
+      gallery_desc: "Retour sur les éditions précédentes du Forum Mondial de la Mer – Bizerte",
+      footer_dates: "9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie",
+      footer_theme: "« Agir pour une Méditerranée sans plastique »",
+      footer_produced: "Produit par",
+      footer_leadership: "Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ",
+      footer_rights: "© 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés."
+    },
+
+    en: {
+      // Nav
+      nav_immersion: "Immersion",
+      nav_about: "About",
+      nav_programme: "Program",
+      nav_theme: "Theme",
+      nav_gallery: "Gallery",
+
+      // Hero
+      hero_title: "Acting for a<br/><em>Mediterranean</em><br/>free of Plastic",
+      hero_subtitle: "World Ocean Forum – Bizerte",
+      hero_edition: "9th Edition · Bizerte, Tunisia",
+      hero_date1: "24 September 2026",
+      hero_date2: "25 September 2026",
+      hero_scroll: "Scroll",
+
+      // Immersion HUD
+      dive_tag: "Immersion · Bizerte 2026",
+      dive_title: "From Coastlines to the Deep Sea",
+      hud_sounder: "Echo Sounder",
+
+      // Stage 1
+      stage1_badge: "Level 01 · 0 Meter · Surface & Scale Contrast",
+      stage1_title: "1% of the World's Waters: <span class=\"hl-teal\">7% of Global Microplastics</span>",
+      stage1_desc: "The Mediterranean is a semi-enclosed hyper-dense sea: it is <strong>4 times more polluted than the North Pacific</strong>. Between 229,000 and 600,000 tons of plastic enter it every year, the equivalent of <strong>+500 shipping containers dumped into the sea every day</strong>.",
+      stage1_m1: "Fragments / km² at surface",
+      stage1_m2: "More polluted than North Pacific",
+      stage1_m3: "Containers dumped per day",
+
+      // Stage 2
+      stage2_badge: "Level 02 · -35 Meters · Fragmentation & Seasonality",
+      stage2_title: "The Invisible Cascade: <span class=\"hl-teal\">94% Microplastics</span>",
+      stage2_desc: "Sinking beneath the surface, <strong>94% of macro-waste breaks down</strong> into micro-particles invisible to the naked eye. With 150 million coastal residents and <strong>+150 million tourists</strong> in summer, marine pollution surges by <strong>+40% every summer</strong>.",
+      stage2_m1: "Of plastics fragmented into micro-particles",
+      stage2_m2: "Summer tourists across 22 coastal nations",
+      stage2_m3: "Additional marine pollution in summer",
+
+      // Stage 3
+      stage3_badge: "Level 03 · -75 Meters · Economic Impact",
+      stage3_title: "The Economic Bleed: <span class=\"hl-teal\">€641 Million / year</span>",
+      stage3_desc: "Plastic pollution directly strikes fisheries, tourism, and maritime navigation. Cleaning up a single ton of debris costs up to <strong>€18,000</strong> (the city of Nice spends €2 million/year solely for its beaches).",
+      stage3_m1: "Lost annually by coastal economies",
+      stage3_m2: "Cleanup cost per ton of waste",
+      stage3_m3: "Spent per coastal city (e.g. Nice)",
+
+      // Stage 4
+      stage4_badge: "Level 04 · -120 Meters · The Foundation of Solutions",
+      stage4_title: "The Bizerte Alliance: <span class=\"hl-teal\">Target Zero Plastic 2030</span>",
+      stage4_desc: "On this submarine foundation, the response is organized: from the <strong>Barcelona Convention (1976)</strong> to the <strong>PAMEx (UNEP)</strong> plan and <strong>BeMed</strong>, the <strong>World Ocean Forum – Bizerte 2026</strong> unites 22 nations to safeguard our shared sea.",
+      stage4_m1: "Mediterranean signatory nations",
+      stage4_m2_val: "PAMEx & BeMed",
+      stage4_m2: "Exemplary regional action plans (UNEP)",
+      stage4_m3_val: "Target 2030",
+      stage4_m3: "Zero plastic at sea & 9th Bizerte Summit",
+      stage4_cta: "Discover the Summit Program",
+
+      // About
+      about_label: "The Forum",
+      about_title: "World Ocean <span>Forum</span>",
+      about_p1: "Since its creation in <strong>2018</strong> under the presidency of <strong>Pascal Lamy</strong>, the World Ocean Forum – Bizerte has established itself as one of the essential international events on the southern shore of the Mediterranean, dedicated to maritime challenges.",
+      about_p2: "This forum has played a key role in Tunisia by fostering the creation of the <strong>Secretariat for Maritime Affairs</strong>, the Maritime Cluster, and launching the deep-water port project in Enfidha. In 2021, it initiated the <strong>Coalition of Mediterranean Elected Officials</strong>.",
+      about_p3: "<strong>La Saison Bleue</strong>, in collaboration with <strong>SHARE4MED</strong>, is pleased to welcome you to the <strong>9th edition</strong> of the World Ocean Forum – Bizerte, held on <strong>24 and 25 September 2026</strong> in Bizerte, Tunisia.",
+      about_p4: "The Forum brings together public decision-makers, representatives of international organizations, researchers, entrepreneurs, and civil society actors to define <strong>shared priorities</strong> and propose concrete actions.",
+      about_stat1_num: "9th",
+      about_stat1_lbl: "Edition 2026",
+      about_stat2_lbl: "Founded by Pascal Lamy",
+      about_stat3_lbl: "September 2026",
+      about_stat4_lbl: "Mediterranean Basin",
+      counter_label: "Tons of plastic / year in the Mediterranean",
+      counter_desc: "Every year, more than 570,000 tons of plastic end up in our seas. The Forum acts to reverse this trend.",
+
+      // Programme
+      prog_header_label: "9th Edition · Bizerte, Tunisia",
+      prog_header_title: "Program",
+      prog_day1_title: "Thursday 24 September 2026",
+      prog_r1_time: "Morning › Afternoon",
+      prog_r1_label: "Presentation of the SHARE4MED project and Workshop",
+      prog_r1_sub: "With representatives of Tunisian municipalities and communes",
+      prog_r2_time: "Restricted meeting",
+      prog_r2_label: "General Assembly of Circe.med",
+      prog_sep_nextday: "Next day",
+      prog_day2_title: "Friday 25 September 2026",
+      prog_r3_label: "Welcome & Registration of participants",
+      prog_r4_label: "Official Opening",
+      prog_r5_label: "Data and perspectives on the 'plasticization' of the Mediterranean towards 2030",
+      prog_r6_label: "Hotspots of plastic production in the Mediterranean",
+      prog_r6_sub: "Industry Sectors",
+      prog_r7_label: "Positions of Mediterranean States and the European Union",
+      prog_r8_label: "Lunch",
+      prog_r9_label: "First proposals",
+      prog_r9_sub: "SHARE4MED Projects · Alliances · Multi-stakeholder cooperation · Circular twinnings",
+      prog_r10_label: "Synthesis and action program",
+
+      // Theme & Contacts
+      theme_label: "Central Challenge",
+      theme_quote: "« Acting for a <strong>Mediterranean</strong> free of plastic »",
+      theme_p1: "This edition aims to mobilize all actors across the Mediterranean basin around a <strong style=\"color:var(--text-color)\">concrete and collective</strong> response to one of the most pressing environmental challenges of our era.",
+      theme_p2: "The Bizerte Forum aims to serve as a space for building cooperation and submitting a realistic agenda for the <strong style=\"color:var(--text-color)\">« de-plasticization »</strong> of the Mediterranean basin — demonstrating that States, elected officials, entrepreneurs, and civil society can unite as a laboratory for an ocean free of lethal waste.",
+      theme_invitation: "« Join us in Bizerte on September 24 & 25, 2026, to write the next chapter of an ever-renewed odyssey! »",
+      support_label: "Support & Direct Contact",
+      support_title: "Questions on-site or need assistance?",
+      support_subtitle: "For any inquiries or assistance during the event, contact our on-site team on WhatsApp:",
+      tech_support_title: "Technical Support & PPT Presentations",
+      tech_support_desc: "If you need technical assistance or wish to send your PowerPoint presentations, please email:",
+
+      // Gallery & Footer
+      gallery_label: "Forum Moments",
+      gallery_title: "Photo <span>Gallery</span>",
+      gallery_desc: "Highlights from previous editions of the World Ocean Forum – Bizerte",
+      footer_dates: "9th edition · 24–25 September 2026 · Bizerte, Tunisia",
+      footer_theme: "« Acting for a Mediterranean free of plastic »",
+      footer_produced: "Produced by",
+      footer_leadership: "President: Pascal LAMY · Director: Rym BENZINA · General Commissioner: Mehdi BEN HAJ",
+      footer_rights: "© 2026 World Ocean Forum – Bizerte. All rights reserved."
+    },
+
+    it: {
+      // Nav
+      nav_immersion: "Immersione",
+      nav_about: "Chi siamo",
+      nav_programme: "Programma",
+      nav_theme: "Tema",
+      nav_gallery: "Galleria",
+
+      // Hero
+      hero_title: "Agire per un<br/><em>Mediterraneo</em><br/>senza Plastica",
+      hero_subtitle: "Forum Mondiale del Mare – Biserta",
+      hero_edition: "9ª Edizione · Biserta, Tunisia",
+      hero_date1: "24 Settembre 2026",
+      hero_date2: "25 Settembre 2026",
+      hero_scroll: "Scorri",
+
+      // Immersion HUD
+      dive_tag: "Immersione · Biserta 2026",
+      dive_title: "Dal Litorale agli Abissi",
+      hud_sounder: "Ecoscandaglio",
+
+      // Stage 1
+      stage1_badge: "Livello 01 · 0 Metri · Superficie e Contrasto delle Scale",
+      stage1_title: "1% delle Acque Mondiali: <span class=\"hl-teal\">7% delle Microplastiche Globali</span>",
+      stage1_desc: "Il Mediterraneo è un mare semichiuso iper-denso: è <strong>4 volte più inquinato del Pacifico Settentrionale</strong>. Ogni anno vi finiscono tra 229.000 e 600.000 tonnellate di plastica, l'equivalente di <strong>+500 container marittimi gettati in mare al giorno</strong>.",
+      stage1_m1: "Frammenti / km² in superficie",
+      stage1_m2: "Più inquinato del Pacifico Nord",
+      stage1_m3: "Container sversati al giorno",
+
+      // Stage 2
+      stage2_badge: "Livello 02 · -35 Metri · Frammentazione e Stagionalità",
+      stage2_title: "La Cascata Invisibile: <span class=\"hl-teal\">94% di Microplastiche</span>",
+      stage2_desc: "Scendendo sotto la superficie, il <strong>94% dei macro-rifiuti si frammenta</strong> in micro-particelle invisibili a occhio nudo. Con 150 milioni di residenti costieri e <strong>+150 milioni di turisti</strong> in estate, l'inquinamento marino aumenta del <strong>+40% ogni estate</strong>.",
+      stage2_m1: "Delle plastiche frammentate in micro-particelle",
+      stage2_m2: "Turisti estivi nei 22 paesi costieri",
+      stage2_m3: "Di inquinamento marino in più in estate",
+
+      // Stage 3
+      stage3_badge: "Livello 03 · -75 Metri · L'Impatto Economico",
+      stage3_title: "L'Emorragia Economica: <span class=\"hl-teal\">641 Milioni di € / anno</span>",
+      stage3_desc: "L'inquinamento da plastica colpisce direttamente la pesca, il turismo e la navigazione marittima. Pulire una singola tonnellata di rifiuti costa fino a <strong>18.000 €</strong> (la città di Nizza spende 2 milioni di €/anno solo per le sue spiagge).",
+      stage3_m1: "Persi ogni anno dalle economie costiere",
+      stage3_m2: "Costo di pulizia per tonnellata di rifiuti",
+      stage3_m3: "Spesi per città costiera (es: Nizza)",
+
+      // Stage 4
+      stage4_badge: "Livello 04 · -120 Metri · La Base delle Soluzioni",
+      stage4_title: "L'Alleanza di Biserta: <span class=\"hl-teal\">Obiettivo Zero Plastica 2030</span>",
+      stage4_desc: "Su questa base sottomarina si organizza la risposta: dalla <strong>Convenzione di Barcellona (1976)</strong> al piano <strong>PAMEx (UNEP)</strong> e <strong>BeMed</strong>, il <strong>Forum Mondiale del Mare – Biserta 2026</strong> unisce 22 nazioni per tutelare il nostro mare comune.",
+      stage4_m1: "Nazioni mediterranee firmatarie",
+      stage4_m2_val: "PAMEx e BeMed",
+      stage4_m2: "Piani d'azione regionali esemplari (UNEP)",
+      stage4_m3_val: "Verso il 2030",
+      stage4_m3: "Zero plastica in mare e 9° Vertice Biserta",
+      stage4_cta: "Scopri il Programma del Vertice",
+
+      // About
+      about_label: "Il Forum",
+      about_title: "Forum Mondiale del <span>Mare</span>",
+      about_p1: "Dalla sua creazione nel <strong>2018</strong> sotto la presidenza di <strong>Pascal Lamy</strong>, il Forum Mondiale del Mare – Biserta si è affermato come uno degli appuntamenti internazionali imprescindibili sulla sponda sud del Mediterraneo, dedicato alle sfide marittime.",
+      about_p2: "Questo forum ha svolto un ruolo chiave in Tunisia promuovendo la creazione del <strong>Segretariato per gli Affari Marittimi</strong>, del Cluster Marittimo e avviando il progetto del porto in acque profonde di Enfidha. Nel 2021, ha avviato la <strong>Coalizione degli Eletti del Mediterraneo</strong>.",
+      about_p3: "<strong>La Saison Bleue</strong>, in collaborazione con <strong>SHARE4MED</strong>, ha il piacere di accogliervi alla <strong>9ª edizione</strong> del Forum Mondiale del Mare – Biserta, che si terrà il <strong>24 e 25 settembre 2026</strong> a Biserta, Tunisia.",
+      about_p4: "Il Forum riunirà decisori pubblici, rappresentanti di organizzazioni internazionali, ricercatori, imprenditori e società civile per definire <strong>priorità comuni</strong> e proporre azioni concrete.",
+      about_stat1_num: "9ª",
+      about_stat1_lbl: "Edizione 2026",
+      about_stat2_lbl: "Fondato da Pascal Lamy",
+      about_stat3_lbl: "Settembre 2026",
+      about_stat4_lbl: "Bacino Mediterraneo",
+      counter_label: "Tonnellate di plastica / anno nel Mediterraneo",
+      counter_desc: "Ogni anno, oltre 570.000 tonnellate di plastica finiscono nei nostri mari. Il Forum agisce per invertire questa rotta.",
+
+      // Programme
+      prog_header_label: "9ª Edizione · Biserta, Tunisia",
+      prog_header_title: "Programma",
+      prog_day1_title: "Giovedì 24 Settembre 2026",
+      prog_r1_time: "Mattina › Pomeriggio",
+      prog_r1_label: "Presentazione del progetto SHARE4MED e Workshop",
+      prog_r1_sub: "Con i rappresentanti delle municipalità e dei comuni tunisini",
+      prog_r2_time: "Riunione ristretta",
+      prog_r2_label: "Assemblea Generale di Circe.med",
+      prog_sep_nextday: "Giorno successivo",
+      prog_day2_title: "Venerdì 25 Settembre 2026",
+      prog_r3_label: "Accoglienza e registrazione dei partecipanti",
+      prog_r4_label: "Apertura ufficiale",
+      prog_r5_label: "Dati e prospettive della 'plastificazione' del Mediterraneo verso il 2030",
+      prog_r6_label: "Gli hotspot della produzione di plastica nel Mediterraneo",
+      prog_r6_sub: "Filiere",
+      prog_r7_label: "Le posizioni degli Stati mediterranei e dell'Unione Europea",
+      prog_r8_label: "Pranzo",
+      prog_r9_label: "Prime proposte",
+      prog_r9_sub: "Progetti SHARE4MED · Alleanze · Cooperazioni multi-attore · Gemellaggi circolari",
+      prog_r10_label: "Sintesi e programma d'azione",
+
+      // Theme & Contacts
+      theme_label: "Sfida Centrale",
+      theme_quote: "« Agire per un <strong>Mediterraneo</strong> senza plastica »",
+      theme_p1: "Questa edizione ambisce a mobilitare tutti gli attori del bacino mediterraneo attorno a una risposta <strong style=\"color:var(--text-color)\">concreta e collettiva</strong> di fronte a una delle sfide ambientali più urgenti della nostra epoca.",
+      theme_p2: "Il Forum di Biserta si propone di essere lo spazio di costruzione di una collaborazione e di presentare un'agenda realistica di <strong style=\"color:var(--text-color)\">« de-plastificazione »</strong> del bacino mediterraneo — dimostrando che Stati, eletti, imprenditori e società civile possono essere il laboratorio di un oceano liberato da un veleno mortale.",
+      theme_invitation: "« Ci vediamo a Biserta il 24 e 25 settembre 2026 per scrivere questa pagina di un'odissea sempre rinnovata! »",
+      support_label: "Assistenza & Supporto sul posto",
+      support_title: "Domande sul posto o bisogno di assistenza?",
+      support_subtitle: "In caso di dubbi o per qualsiasi richiesta durante l'evento, contattate il nostro team su WhatsApp:",
+      tech_support_title: "Supporto Tecnico & Presentazioni PPT",
+      tech_support_desc: "Se avete bisogno di supporto tecnico o per inviare le vostre presentazioni PowerPoint, vi preghiamo di scrivere a:",
+
+      // Gallery & Footer
+      gallery_label: "Momenti del Forum",
+      gallery_title: "Galleria <span>Fotografica</span>",
+      gallery_desc: "I momenti salienti delle edizioni precedenti del Forum Mondiale del Mare – Biserta",
+      footer_dates: "9ª edizione · 24–25 Settembre 2026 · Biserta, Tunisia",
+      footer_theme: "« Agire per un Mediterraneo senza plastica »",
+      footer_produced: "Prodotto da",
+      footer_leadership: "Presidente: Pascal LAMY · Direttrice: Rym BENZINA · Commissario generale: Mehdi BEN HAJ",
+      footer_rights: "© 2026 Forum Mondiale del Mare – Biserta. Tutti i diritti riservati."
+    }
+  };
+
+  let currentLang = localStorage.getItem('fmb_lang') || 'fr';
+
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    localStorage.setItem('fmb_lang', lang);
+
+    // Update active button state
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Update all i18n texts
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) {
+        el.innerHTML = t[key];
+      }
+    });
+
+    // Set html lang attribute
+    document.documentElement.lang = lang;
+  }
+
+  // Initialize language on DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    setLanguage(currentLang);
   });
 </script>
 
