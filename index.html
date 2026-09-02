@@ -173,17 +173,32 @@
 
     @media (max-width: 768px) {
       nav {
-        padding: 12px 24px;
-        flex-direction: column;
-        gap: 12px;
+        padding: 8px 16px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
       }
       nav.scrolled {
-        padding: 8px 24px;
+        padding: 6px 16px;
+      }
+      nav .logo-nav img {
+        height: 32px;
       }
       nav ul {
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 12px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      nav ul::-webkit-scrollbar {
+        display: none;
+      }
+      nav ul li a {
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
       }
     }
 
@@ -1206,216 +1221,243 @@
     }
 
     /* ========================================================
-       MOBILE & TABLET RESPONSIVE ENGINE
+       MOBILE & TABLET RESPONSIVE ENGINE (DÉCOUPLAGE TOTAL PC / MOBILE)
        ======================================================== */
-    @media (max-width: 900px) {
-      .dive-stage-container {
-        padding: 70px 18px 24px;
-        align-items: center;
-        justify-content: flex-start;
-      }
-      .dive-stage-panel {
-        width: calc(100% - 64px);
-        max-width: calc(100% - 64px);
-        left: 10px;
-        margin: 0;
-        padding: 22px 18px;
-        border-radius: 18px;
-      }
-      .stage-title {
-        font-size: clamp(1.2rem, 4.2vw, 1.6rem);
-        line-height: 1.25;
-        margin-bottom: 10px;
-      }
-      .stage-desc {
-        font-size: 0.84rem;
-        line-height: 1.5;
-        margin-bottom: 12px;
-      }
-      .stage-metrics-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin-top: 12px;
-      }
-      .stage-metric-pill {
-        padding: 10px 6px;
-        border-radius: 10px;
-      }
-      .stage-metric-pill .m-val {
-        font-size: 1.15rem;
-        margin-bottom: 2px;
-      }
-      .stage-metric-pill .m-label {
-        font-size: 0.62rem;
-        line-height: 1.25;
-      }
-      .stage-cta-btn {
-        padding: 11px 22px;
-        font-size: 0.76rem;
-        margin-top: 14px;
-        width: 100%;
-        justify-content: center;
-      }
-      .dive-depth-hud {
-        right: 8px;
-        top: 12vh;
-        bottom: 12vh;
-        height: 76vh;
-        gap: 8px;
-      }
-      .hud-live-depth {
-        font-size: 1.3rem;
-      }
-      .hud-title {
-        font-size: 0.55rem;
-      }
-      .mark-label {
-        font-size: 0.62rem;
-        min-width: 32px;
-      }
-      .mark-line {
-        width: 8px;
-      }
-      .hud-mark.active .mark-line {
-        width: 14px;
-      }
+    @media (max-width: 768px) {
+      /* Discrete Top Header Elements on Mobile */
       .dive-top-indicator {
-        top: 16px;
-        left: 16px;
+        top: 54px;
+        left: 14px;
+        max-width: calc(100% - 135px);
+        z-index: 9;
       }
       .dive-top-tag {
-        font-size: 0.6rem;
+        font-size: 0.56rem;
+        letter-spacing: 0.16em;
       }
       .dive-top-title {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Sondeur Pill on Mobile (No vertical line across text) */
+      .dive-depth-hud {
+        position: absolute !important;
+        top: 50px !important;
+        right: 14px !important;
+        bottom: auto !important;
+        height: auto !important;
+        background: rgba(6, 17, 32, 0.88) !important;
+        border: 1px solid rgba(12, 191, 191, 0.35) !important;
+        border-radius: 20px !important;
+        padding: 5px 12px !important;
+        flex-direction: row !important;
+        align-items: baseline !important;
+        gap: 6px !important;
+        z-index: 10 !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+      }
+      .hud-header {
+        flex-direction: row !important;
+        align-items: baseline !important;
+        gap: 5px !important;
+      }
+      .hud-title {
+        font-size: 0.58rem !important;
+        letter-spacing: 0.12em !important;
+      }
+      .hud-live-depth {
+        font-size: 1.15rem !important;
+      }
+
+      /* HIDE the tall vertical scale track and graduation marks on mobile */
+      .hud-scale-wrap {
+        display: none !important;
+      }
+
+      /* Centered Ocean Glass Stage Container & Panels */
+      .dive-stage-container {
+        padding: 105px 12px 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+
+      .dive-stage-panel {
+        position: absolute !important;
+        width: calc(100% - 24px) !important;
+        max-width: 440px !important;
+        left: auto !important;
+        right: auto !important;
+        margin: auto !important;
+        padding: 18px 14px !important;
+        border-radius: 16px !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+      }
+
+      .stage-badge {
+        font-size: 0.64rem !important;
+        letter-spacing: 0.12em !important;
+        margin-bottom: 6px !important;
+      }
+      .stage-title {
+        font-size: clamp(1.1rem, 4.2vw, 1.4rem) !important;
+        line-height: 1.22 !important;
+        margin-bottom: 6px !important;
+      }
+      .stage-desc {
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 10px !important;
+        text-align: justify !important;
+      }
+      .stage-metrics-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+        margin-top: 10px !important;
+      }
+      .stage-metric-pill {
+        padding: 8px 4px !important;
+        border-radius: 8px !important;
+      }
+      .stage-metric-pill .m-val {
+        font-size: 1rem !important;
+        margin-bottom: 2px !important;
+      }
+      .stage-metric-pill .m-label {
+        font-size: 0.56rem !important;
+        line-height: 1.2 !important;
+      }
+      .stage-cta-btn {
+        padding: 9px 18px !important;
+        font-size: 0.72rem !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+        justify-content: center !important;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       section {
-        padding: 60px 16px;
+        padding: 50px 14px;
       }
       #hero {
-        padding: 0 16px;
+        padding: 0 14px;
         min-height: 100svh;
       }
       .hero-title {
-        font-size: clamp(2rem, 8.5vw, 2.75rem);
+        font-size: clamp(1.85rem, 8.2vw, 2.5rem);
         line-height: 1.12;
       }
       .hero-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 24px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
       }
       .hero-dates {
         flex-direction: column;
-        gap: 6px;
-        padding: 10px 20px;
-        font-size: 0.84rem;
-        border-radius: 14px;
+        gap: 4px;
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        border-radius: 12px;
       }
       .hero-dates .sep {
         display: none;
       }
+
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
       }
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
       }
       .stat-card {
-        padding: 20px 14px;
-        border-radius: 14px;
+        padding: 16px 10px;
+        border-radius: 12px;
       }
       .stat-card .num {
-        font-size: 1.75rem;
+        font-size: 1.6rem;
       }
       .plastic-counter {
-        padding: 22px 16px;
-        border-radius: 16px;
-      }
-      .plastic-counter .counter-num {
-        font-size: 2.1rem;
-      }
-      .dive-stage-container {
-        padding: 55px 10px 16px;
-      }
-      .dive-stage-panel {
-        width: calc(100% - 54px);
-        max-width: calc(100% - 54px);
-        left: 6px;
-        padding: 16px 12px;
+        padding: 18px 12px;
         border-radius: 14px;
       }
+      .plastic-counter .counter-num {
+        font-size: 1.95rem;
+      }
+
+      .dive-stage-container {
+        padding: 95px 8px 14px !important;
+      }
+      .dive-stage-panel {
+        width: calc(100% - 16px) !important;
+        max-width: calc(100% - 16px) !important;
+        padding: 14px 10px !important;
+      }
       .stage-title {
-        font-size: 1.05rem;
-        line-height: 1.22;
-        margin-bottom: 6px;
+        font-size: 1.02rem !important;
+        margin-bottom: 4px !important;
       }
       .stage-desc {
-        font-size: 0.76rem;
-        line-height: 1.4;
-        margin-bottom: 8px;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        font-size: 0.72rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 6px !important;
       }
       .stage-metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 5px;
-        margin-top: 8px;
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+        margin-top: 6px !important;
       }
       .stage-metric-pill {
-        padding: 6px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 8px;
-        text-align: left;
+        padding: 6px 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        text-align: left !important;
+        border-radius: 6px !important;
       }
       .stage-metric-pill .m-val {
-        font-size: 0.96rem;
-        margin-bottom: 0;
-        min-width: 80px;
-        text-align: left;
+        font-size: 0.92rem !important;
+        min-width: 70px !important;
+        margin-bottom: 0 !important;
+        text-align: left !important;
       }
       .stage-metric-pill .m-label {
-        font-size: 0.65rem;
-        text-align: right;
-        line-height: 1.15;
+        font-size: 0.62rem !important;
+        text-align: right !important;
+        line-height: 1.15 !important;
       }
       .stage-cta-btn {
-        padding: 8px 14px;
-        font-size: 0.7rem;
-        margin-top: 8px;
+        padding: 7px 12px !important;
+        font-size: 0.68rem !important;
+        margin-top: 6px !important;
       }
-      .dive-depth-hud {
-        right: 4px;
-        top: 14vh;
-        bottom: 14vh;
-        height: 72vh;
-      }
+
       .theme-quote {
-        font-size: 1.3rem;
-        margin: 20px 0;
+        font-size: 1.22rem;
+        margin: 18px 0;
       }
       .theme-pills {
-        gap: 8px;
-        margin-top: 20px;
+        gap: 6px;
+        margin-top: 16px;
       }
       .pill {
-        padding: 8px 16px;
-        font-size: 0.74rem;
+        padding: 7px 14px;
+        font-size: 0.72rem;
       }
       .gallery-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
       .gallery-item img {
-        height: 220px;
+        height: 200px;
       }
     }
   </style>
