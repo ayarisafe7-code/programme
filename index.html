@@ -181,48 +181,124 @@
       color: inherit;
     }
 
-    /* Language Switcher in Navbar - Minimalist & Clean (FR / EN / IT without blue block) */
-    .lang-switcher {
+    /* Language Globe Minimalist Dropdown */
+    .lang-dropdown-wrap {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      background: transparent;
-      border: none;
-      padding: 0;
-      gap: 2px;
     }
-    .lang-btn {
-      background: transparent;
-      border: none;
+    .lang-globe-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       color: var(--text-color);
+      border-radius: 20px;
+      padding: 6px 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
       font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
       font-size: 0.74rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      padding: 2px 4px;
-      cursor: pointer;
-      opacity: 0.42;
-      transition: opacity 0.2s ease, font-weight 0.2s ease, border-color 0.2s ease;
-      position: relative;
-      border-bottom: 1.5px solid transparent;
-      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+      line-height: 1;
     }
-    .lang-btn:hover {
+    .lang-globe-btn:hover, .lang-globe-btn.open {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--text-color);
+    }
+    .globe-svg {
       opacity: 0.85;
-      color: var(--text-color);
+      transition: transform 0.3s ease;
     }
-    .lang-btn.active {
-      background: transparent !important;
-      color: var(--text-color) !important;
+    .lang-globe-btn:hover .globe-svg {
+      transform: rotate(15deg);
       opacity: 1;
-      font-weight: 800;
-      border-bottom: 1.5px solid var(--text-color);
     }
-    .lang-sep {
+    .chevron-svg {
+      opacity: 0.6;
+      transition: transform 0.25s ease;
+    }
+    .lang-globe-btn.open .chevron-svg {
+      transform: rotate(180deg);
+    }
+
+    /* Floating Dropdown */
+    .lang-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: rgba(8, 26, 48, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+      min-width: 135px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      z-index: 1000;
+    }
+    .lang-dropdown-menu.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .lang-menu-item {
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       color: var(--text-color);
-      opacity: 0.25;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      text-align: left;
+      width: 100%;
+    }
+    .lang-menu-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--teal);
+    }
+    .lang-menu-item.active {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--text-color);
+      font-weight: 800;
+    }
+    .lang-menu-item .lang-code {
       font-size: 0.68rem;
-      user-select: none;
-      padding: 0 1px;
+      font-weight: 700;
+      opacity: 0.55;
+      letter-spacing: 0.06em;
+    }
+    .lang-menu-item.active .lang-code {
+      opacity: 0.9;
+    }
+
+    body.light-mode .lang-dropdown-menu {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(12, 61, 120, 0.15);
+      box-shadow: 0 14px 40px rgba(12, 61, 120, 0.18);
+    }
+    body.light-mode .lang-menu-item:hover {
+      background: rgba(12, 61, 120, 0.07);
+    }
+    body.light-mode .lang-menu-item.active {
+      background: rgba(12, 61, 120, 0.1);
     }
 
     @media (max-width: 768px) {
@@ -668,86 +744,449 @@
       font-weight: 600; letter-spacing: 0.05em;
     }
 
-    /* ========== PROGRAMME CARDS (new format) ========== */
-    .prog-section-title {
-      font-size: clamp(2.4rem,6vw,4rem); font-weight: 900;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      text-align: center; color: var(--prog-row-dark-text);
-      margin-bottom: 6px;
+    /* ========== OFFICIAL POSTER FRAME (MATCHING POSTER PHOTO 1:1) ========== */
+    /* ========== DIRECT PROGRAMME LAYOUT (DIRECTEMENT SUR LE FOND DU SITE) ========== */
+    .programme-poster-frame {
+      max-width: 860px;
+      margin: 0 auto;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      position: relative;
+      z-index: 5;
     }
-    .prog-day-label {
-      font-size: 0.88rem; letter-spacing: 0.22em; text-transform: uppercase;
-      font-weight: 600; text-align: center;
-      color: var(--text-muted); margin-bottom: 36px;
-    }
-    .prog-table {
-      display: flex; flex-direction: column; gap: 8px;
-      max-width: 820px; margin: 0 auto 64px;
-    }
-    .prog-row {
-      display: flex; align-items: stretch;
-      border-radius: 14px; overflow: hidden;
-      min-height: 62px;
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .prog-row.visible { opacity: 1; transform: translateY(0); }
 
-    /* Dark navy row */
-    .prog-row--dark { background: var(--prog-row-dark-bg); }
-    .prog-row--dark .prog-time {
-      background: var(--prog-row-dark-time-bg); color: var(--prog-row-dark-text);
-      border-right: 2px solid rgba(255,255,255,0.12);
+    /* Top Header of Poster */
+    .poster-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.14);
     }
-    .prog-row--dark .prog-label { color: var(--prog-row-dark-text); }
-    .prog-row--dark .prog-sub { color: rgba(255,255,255,0.6); }
+    .poster-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .poster-logo img {
+      height: 58px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+    .poster-date-badge {
+      text-align: right;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      line-height: 1.15;
+    }
+    .poster-date-range {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+    .poster-date-month {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.22em;
+    }
+    .poster-date-year {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.15em;
+    }
+    .poster-date-edition {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
 
-    /* Light white row */
-    .prog-row--light { background: var(--prog-row-light-bg); border: 1px solid var(--card-border); }
-    .prog-row--light .prog-time {
-      background: var(--prog-row-light-time-bg); color: var(--blue-mid);
-      border-right: 2px solid rgba(13,59,110,0.1);
+    /* Poster Title */
+    .poster-main-title {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #ffffff;
+      margin: 12px 0 6px;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
-    .prog-row--light .prog-label { color: #0d2a4e; }
-    .prog-row--light .prog-sub { color: rgba(13,42,78,0.55); }
+    .poster-title-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), rgba(255, 255, 255, 0.6), var(--teal), transparent);
+      margin: 10px 0 28px;
+      border-radius: 2px;
+    }
 
-    /* Gold/restricted row */
-    .prog-row--gold { background: rgba(200,168,75,0.15); border: 1px solid rgba(200,168,75,0.3); }
-    .prog-row--gold .prog-time {
-      background: rgba(200,168,75,0.2); color: var(--gold);
-      border-right: 2px solid rgba(200,168,75,0.2);
+    /* Poster Day Headings & Separators */
+    .poster-day-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 28px 0 18px;
+      text-align: center;
     }
-    .prog-row--gold .prog-label { color: var(--gold); }
-    .prog-row--gold .prog-sub { color: rgba(200,168,75,0.65); }
+    .poster-day-heading-title {
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+      font-weight: 900;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .poster-day-heading::before,
+    .poster-day-heading::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
 
-    .prog-time {
-      min-width: 148px; padding: 14px 18px;
-      font-size: 0.82rem; font-weight: 800;
-      text-align: center; letter-spacing: 0.06em;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+    /* Day Separator between Day 1 and Day 2 */
+    .poster-day-sep {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 38px 0 28px;
+      position: relative;
     }
-    .prog-content {
-      padding: 14px 24px; flex: 1;
-      display: flex; flex-direction: column; justify-content: center;
+    .poster-day-sep-line {
+      width: 100%;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(12, 191, 191, 0.6), rgba(255, 255, 255, 0.2), transparent);
     }
-    .prog-label {
-      font-size: 0.95rem; font-weight: 700; line-height: 1.35;
+    .poster-day-sep-badge {
+      position: absolute;
+      background: rgba(8, 28, 54, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 6px 22px;
+      border: 1.5px solid rgba(12, 191, 191, 0.45);
+      border-radius: 20px;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
-    .prog-sub {
-      font-size: 0.77rem; font-style: italic; margin-top: 4px; line-height: 1.4;
+
+    /* Bottom Partner Strip */
+    .poster-partners-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      margin-top: 20px;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.14);
     }
-    .prog-day-sep {
-      display: flex; align-items: center; gap: 16px;
-      margin: 48px 0 40px; max-width: 820px; margin-left: auto; margin-right: auto;
+    .poster-partner-item {
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease;
     }
-    .prog-day-sep .sep-line {
-      flex:1; height:1px;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+    .poster-partner-item:hover {
+      color: var(--teal);
     }
-    .prog-day-sep .sep-text {
-      font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase;
-      color:rgba(255,255,255,0.3);
+
+    /* Light Mode Adaptation */
+    body.light-mode .poster-top-bar {
+      border-bottom-color: rgba(12, 61, 120, 0.15);
+    }
+    body.light-mode .poster-date-range,
+    body.light-mode .poster-date-month,
+    body.light-mode .poster-date-year {
+      color: #003882;
+    }
+    body.light-mode .poster-main-title {
+      color: #003882;
+      text-shadow: none;
+    }
+    body.light-mode .poster-day-heading-title {
+      color: #003882;
+      text-shadow: none;
+    }
+    body.light-mode .poster-day-heading::before,
+    body.light-mode .poster-day-heading::after {
+      background: linear-gradient(90deg, transparent, rgba(12, 61, 120, 0.25), transparent);
+    }
+    body.light-mode .poster-day-sep-badge {
+      background: #ffffff;
+      border-color: rgba(0, 56, 130, 0.25);
+      color: #003882;
+      box-shadow: 0 4px 14px rgba(0, 56, 130, 0.12);
+    }
+    body.light-mode .poster-partners-strip {
+      border-top-color: rgba(12, 61, 120, 0.15);
+    }
+    body.light-mode .poster-partner-item {
+      color: #003882;
+    }
+
+    /* Cards container */
+    .poster-cards-stack {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-bottom: 34px;
+      padding: 6px 0;
+    }
+
+    /* Base Floating Layered Card (Matching the photo exactly) */
+    .prog-poster-card {
+      display: flex;
+      align-items: center;
+      border-radius: 16px;
+      padding: 16px 26px;
+      gap: 20px;
+      position: relative;
+      box-shadow: 0 10px 28px rgba(3, 30, 65, 0.18);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      will-change: transform, opacity;
+      margin-top: -10px;
+      /* Initial state for sequential animation */
+      opacity: 0;
+    }
+    .prog-poster-card:first-child {
+      margin-top: 0;
+    }
+    .prog-poster-card:hover {
+      z-index: 25 !important;
+      box-shadow: 0 16px 42px rgba(3, 30, 65, 0.28);
+    }
+
+    /* Alternating Shifts & Rotations (Conforme à l'affiche) */
+    .card-shift-left-1 {
+      width: calc(100% - 35px);
+      margin-left: 0;
+      margin-right: auto;
+      transform: rotate(-0.6deg);
+      z-index: 1;
+    }
+    .card-shift-right-1 {
+      width: calc(100% - 28px);
+      margin-left: auto;
+      margin-right: 0;
+      transform: rotate(0.6deg);
+      z-index: 2;
+    }
+    .card-shift-left-2 {
+      width: calc(100% - 38px);
+      margin-left: 0;
+      margin-right: auto;
+      transform: rotate(-0.5deg);
+      z-index: 3;
+    }
+    .card-shift-right-2 {
+      width: calc(100% - 26px);
+      margin-left: auto;
+      margin-right: 0;
+      transform: rotate(0.5deg);
+      z-index: 4;
+    }
+    .card-shift-sky {
+      width: calc(100% - 18px);
+      margin-left: auto;
+      margin-right: 6px;
+      transform: rotate(0.25deg);
+      z-index: 5;
+    }
+    .card-shift-left-3 {
+      width: calc(100% - 36px);
+      margin-left: 0;
+      margin-right: auto;
+      transform: rotate(-0.6deg);
+      z-index: 6;
+    }
+    .card-shift-right-3 {
+      width: calc(100% - 24px);
+      margin-left: auto;
+      margin-right: 0;
+      transform: rotate(0.5deg);
+      z-index: 7;
+    }
+
+    /* Navy Card (Ouverture, Hotspots, Premières propositions, SHARE4MED) */
+    .prog-poster-card--navy {
+      background: #003882;
+      background: linear-gradient(135deg, #003882 0%, #004ba8 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .prog-poster-card--navy .prog-poster-time {
+      color: #ffffff;
+    }
+    .prog-poster-card--navy .prog-poster-divider {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .prog-poster-card--navy .prog-title-val {
+      color: #ffffff;
+    }
+    .prog-poster-card--navy .prog-sub-val {
+      color: #bae6fd;
+    }
+
+    /* White Card (Données, Positions, Synthèse, Circe.med) */
+    .prog-poster-card--white {
+      background: #ffffff;
+      color: #003882;
+      border: 1px solid rgba(0, 56, 130, 0.09);
+    }
+    .prog-poster-card--white .prog-poster-time {
+      color: #003882;
+    }
+    .prog-poster-card--white .prog-poster-divider {
+      background: #0284c7;
+    }
+    .prog-poster-card--white .prog-title-val {
+      color: #003882;
+    }
+    .prog-poster-card--white .prog-sub-val {
+      color: #475569;
+    }
+
+    /* Pastel Sky Blue Card (Déjeuner) */
+    .prog-poster-card--sky {
+      background: #c3e4fb;
+      background: linear-gradient(135deg, #cbe8fc 0%, #b8e0fc 100%);
+      color: #003882;
+      border: 1px solid rgba(0, 56, 130, 0.12);
+    }
+    .prog-poster-card--sky .prog-poster-time {
+      color: #003882;
+    }
+    .prog-poster-card--sky .prog-poster-divider {
+      background: #003882;
+    }
+    .prog-poster-card--sky .prog-title-val {
+      color: #003882;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Internal Card Structure */
+    .prog-poster-time {
+      flex: 0 0 155px;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .prog-poster-divider {
+      flex: 0 0 2px;
+      height: 32px;
+      border-radius: 2px;
+    }
+    .prog-poster-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .prog-title-val {
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.35;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+    }
+    .prog-sub-val {
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 3px;
+      line-height: 1.35;
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+    }
+
+    /* Bottom Partner Strip of Poster */
+    .poster-partners-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1.5px solid rgba(12, 61, 120, 0.1);
+    }
+    .poster-partner-item {
+      font-family: 'AktivGrotesk', 'Aktiv Grotesk', -apple-system, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0c3d78;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    .poster-partner-item:hover {
+      opacity: 1;
+      color: #0284c7;
+    }
+
+    @media (max-width: 768px) {
+      .programme-poster-frame {
+        padding: 24px 16px 20px;
+        border-radius: 20px;
+      }
+      .poster-top-bar {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+      }
+      .poster-logo img {
+        height: 44px;
+      }
+      .poster-date-range {
+        font-size: 1.1rem;
+      }
+      .poster-main-title {
+        font-size: 2.2rem;
+      }
+      .poster-day-tab {
+        padding: 6px 14px;
+        font-size: 0.78rem;
+      }
+      .prog-poster-card {
+        padding: 12px 14px;
+        gap: 12px;
+        border-radius: 14px;
+      }
+      .prog-poster-time {
+        flex: 0 0 110px;
+        font-size: 0.86rem;
+      }
+      .prog-title-val {
+        font-size: 0.90rem;
+      }
+      .prog-sub-val {
+        font-size: 0.75rem;
+      }
+      .prog-poster-divider {
+        height: 26px;
+      }
     }
 
     /* ========== PLASTIC CURTAIN SCATTER ANIMATION ========== */
@@ -1769,13 +2208,33 @@
     <li><a href="#theme" data-i18n="nav_theme">Thème</a></li>
     <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
     <li>
-      <!-- Language Switcher (FR / EN / IT - Minimalist text style without blue) -->
-      <div class="lang-switcher" role="group" aria-label="Language selector">
-        <button type="button" class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
-        <span class="lang-sep">/</span>
-        <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-        <span class="lang-sep">/</span>
-        <button type="button" class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+      <!-- Minimalist Globe Language Dropdown -->
+      <div class="lang-dropdown-wrap">
+        <button type="button" class="lang-globe-btn" id="langGlobeBtn" aria-label="Choisir la langue" aria-expanded="false" onclick="toggleLangDropdown(event)">
+          <svg class="globe-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="lang-current-code" id="langCurrentCode">FR</span>
+          <svg class="chevron-svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="lang-dropdown-menu" id="langDropdownMenu" role="menu">
+          <button type="button" class="lang-menu-item active" data-lang="fr" onclick="selectLang('fr')">
+            <span class="lang-name">Français</span>
+            <span class="lang-code">FR</span>
+          </button>
+          <button type="button" class="lang-menu-item" data-lang="en" onclick="selectLang('en')">
+            <span class="lang-name">English</span>
+            <span class="lang-code">EN</span>
+          </button>
+          <button type="button" class="lang-menu-item" data-lang="it" onclick="selectLang('it')">
+            <span class="lang-name">Italiano</span>
+            <span class="lang-code">IT</span>
+          </button>
+        </div>
       </div>
     </li>
     <li>
@@ -2056,106 +2515,144 @@
 
   <div class="programme-inner">
 
-    <!-- Header -->
-    <div class="reveal" style="margin-bottom:48px;">
-      <div class="section-label" style="text-align:center" data-i18n="prog_header_label">9ème Édition · Bizerte, Tunisie</div>
-      <div class="prog-section-title" data-i18n="prog_header_title">Programme</div>
+    <!-- Cadre Poster Officiel (Conforme à l'affiche) -->
+    <div class="programme-poster-frame reveal">
+
+      <!-- Top Bar: Logo à gauche + Bloc Dates à droite -->
+      <div class="poster-top-bar">
+        <div class="poster-logo">
+          <img src="images/logo.png" alt="Forum Mondial de la Mer Bizerte"/>
+        </div>
+        <div class="poster-date-badge">
+          <div class="poster-date-range">24 &gt; 25</div>
+          <div class="poster-date-month">SEPT</div>
+          <div class="poster-date-year">2026</div>
+          <div class="poster-date-edition">9ᵉ ÉDITION</div>
+        </div>
+      </div>
+
+      <!-- Titre PROGRAMME -->
+      <div class="poster-main-title" data-i18n="prog_header_title">PROGRAMME</div>
+      <div class="poster-title-line"></div>
+
+      <!-- ===== JEUDI 24 SEPTEMBRE 2026 ===== -->
+      <div class="poster-day-heading">
+        <span class="poster-day-heading-title" data-i18n="prog_day1_title">Jeudi 24 Septembre 2026</span>
+      </div>
+
+      <div class="poster-cards-stack">
+
+        <!-- Card J1-1 (Navy - Décalé Gauche) -->
+        <div class="prog-poster-card prog-poster-card--navy card-shift-left-1">
+          <div class="prog-poster-time" data-i18n="prog_r1_time">Matinée › Après-midi</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r1_label">Présentation du projet SHARE4MED et Workshop</div>
+            <div class="prog-sub-val" data-i18n="prog_r1_sub">Avec les représentants des municipalités et communes tunisiennes</div>
+          </div>
+        </div>
+
+        <!-- Card J1-2 (White - Décalé Droite, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--white card-shift-right-1">
+          <div class="prog-poster-time" data-i18n="prog_r2_time">Réunion restreinte</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r2_label">Assemblée Générale de Circe.med</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== SÉPARATION 2ÈME JOUR ===== -->
+      <div class="poster-day-sep">
+        <div class="poster-day-sep-line"></div>
+        <div class="poster-day-sep-badge" data-i18n="prog_sep_nextday">Jour suivant</div>
+      </div>
+
+      <!-- ===== VENDREDI 25 SEPTEMBRE 2026 ===== -->
+      <div class="poster-day-heading">
+        <span class="poster-day-heading-title" data-i18n="prog_day2_title">Vendredi 25 Septembre 2026</span>
+      </div>
+
+      <!-- VENDREDI 25 SEPTEMBRE 2026 (7 Blocs conformes à l'affiche - Décalages & Superposition exacte) -->
+      <div class="poster-cards-stack">
+
+        <!-- 1. OUVERTURE OFFICIELLE (Navy - Décalé Gauche) -->
+        <div class="prog-poster-card prog-poster-card--navy card-shift-left-1">
+          <div class="prog-poster-time">09H00</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r4_label">OUVERTURE OFFICIELLE</div>
+          </div>
+        </div>
+
+        <!-- 2. Données et perspectives (White - Décalé Droite, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--white card-shift-right-1">
+          <div class="prog-poster-time">09H20 › 11H10</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r5_label">Données et perspectives de la «&nbsp;plastification&nbsp;» de la Méditerranée à l'horizon 2030</div>
+          </div>
+        </div>
+
+        <!-- 3. Les hotspots de la production de plastique (Navy - Décalé Gauche, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--navy card-shift-left-2">
+          <div class="prog-poster-time">11H10 › 12H10</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r6_label">Les hotspots de la production de plastique en Méditerranée</div>
+            <div class="prog-sub-val" data-i18n="prog_r6_sub">Filières</div>
+          </div>
+        </div>
+
+        <!-- 4. Les positions des États méditerranéens et de l'UE (White - Décalé Droite, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--white card-shift-right-2">
+          <div class="prog-poster-time">12H10 › 13H10</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r7_label">Les positions des États méditerranéens et de l'Union européenne</div>
+          </div>
+        </div>
+
+        <!-- 5. DÉJEUNER (Sky Blue - Décalé Centre/Droite, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--sky card-shift-sky">
+          <div class="prog-poster-time">13H10 › 14H30</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r8_label">DÉJEUNER</div>
+          </div>
+        </div>
+
+        <!-- 6. Premières propositions (Navy - Décalé Gauche, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--navy card-shift-left-3">
+          <div class="prog-poster-time">14H30 › 17H00</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r9_label">Premières propositions</div>
+            <div class="prog-sub-val" data-i18n="prog_r9_sub">Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires</div>
+          </div>
+        </div>
+
+        <!-- 7. Synthèse & programme d'action (White - Décalé Droite, Superposé) -->
+        <div class="prog-poster-card prog-poster-card--white card-shift-right-3">
+          <div class="prog-poster-time">17H30 › 18H00</div>
+          <div class="prog-poster-divider"></div>
+          <div class="prog-poster-content">
+            <div class="prog-title-val" data-i18n="prog_r10_label">Synthèse & programme d'action</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Partners Strip (Comme sur l'affiche) -->
+      <div class="poster-partners-strip">
+        <a href="https://lasaisonbleue.com" target="_blank" rel="noopener noreferrer" class="poster-partner-item">La Saison Bleue</a>
+        <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" rel="noopener noreferrer" class="poster-partner-item">Interreg NEXT MED · SHARE4MED</a>
+        <a href="https://www.info.gouv.fr" target="_blank" rel="noopener noreferrer" class="poster-partner-item">République Française</a>
+        <a href="https://www.ademe.fr" target="_blank" rel="noopener noreferrer" class="poster-partner-item">ADEME</a>
+      </div>
+
     </div>
-
-    <!-- ===== JEUDI 24 SEPTEMBRE 2026 ===== -->
-    <div class="prog-day-label reveal" data-i18n="prog_day1_title">Jeudi 24 Septembre 2026</div>
-
-    <div class="prog-table">
-
-      <div class="prog-row prog-row--dark">
-        <div class="prog-time" data-i18n="prog_r1_time">Matinée &rsaquo; Après-midi</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r1_label">Présentation du projet SHARE4MED et Workshop</div>
-          <div class="prog-sub" data-i18n="prog_r1_sub">Avec les représentants des municipalités et communes tunisiennes</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time" data-i18n="prog_r2_time">Réunion restreinte</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r2_label">Assemblée Générale de Circe.med</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Séparateur -->
-    <div class="prog-day-sep reveal">
-      <div class="sep-line"></div>
-      <div class="sep-text" data-i18n="prog_sep_nextday">Jour suivant</div>
-      <div class="sep-line"></div>
-    </div>
-
-    <!-- ===== VENDREDI 25 SEPTEMBRE 2026 ===== -->
-    <div class="prog-day-label reveal" data-i18n="prog_day2_title">Vendredi 25 Septembre 2026</div>
-
-    <div class="prog-table">
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time">8H30 &rsaquo; 9H00</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r3_label">Accueil des participants</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--dark">
-        <div class="prog-time">9H00</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r4_label">Ouverture officielle</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time">9H20 &rsaquo; 11H10</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r5_label">Données et perspectives de la «&nbsp;plastification&nbsp;» de la Méditerranée à l'horizon 2030</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--dark">
-        <div class="prog-time">11H10 &rsaquo; 12H10</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r6_label">Les hotspots de la production de plastique en Méditerranée</div>
-          <div class="prog-sub" data-i18n="prog_r6_sub">Filières</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time">12H10 &rsaquo; 13H10</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r7_label">Les positions des États méditerranéens et de l'Union européenne</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time">13H10 &rsaquo; 14H30</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r8_label">Déjeuner</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--dark">
-        <div class="prog-time">14H30 &rsaquo; 17H00</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r9_label">Premières propositions</div>
-          <div class="prog-sub" data-i18n="prog_r9_sub">Projets SHARE4MED · Alliances · Coopérations multi-acteurs · Jumelages circulaires</div>
-        </div>
-      </div>
-
-      <div class="prog-row prog-row--light">
-        <div class="prog-time">17H30 &rsaquo; 18H00</div>
-        <div class="prog-content">
-          <div class="prog-label" data-i18n="prog_r10_label">Synthèse et programme d'action</div>
-        </div>
-      </div>
-
-    </div>
-
 
   </div>
 </section>
@@ -2706,6 +3203,41 @@
         ease: 'power2.out',
         scrollTrigger: progTrigger
       });
+
+      // ========================================================
+      // PROGRAMME POSTER CARDS: SEQUENTIAL CASCADE REVEAL ON SCROLL
+      // ========================================================
+      const posterFrame = document.querySelector('.programme-poster-frame');
+      if (posterFrame) {
+        // Jeudi 24 Septembre (Cards J1)
+        const stacks = posterFrame.querySelectorAll('.poster-cards-stack');
+        if (stacks.length >= 2) {
+          ScrollTrigger.create({
+            trigger: stacks[0],
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+              gsap.fromTo(stacks[0].querySelectorAll('.prog-poster-card'),
+                { opacity: 0, y: 35 },
+                { opacity: 1, y: 0, duration: 0.55, stagger: 0.22, ease: 'power2.out' }
+              );
+            }
+          });
+
+          // Vendredi 25 Septembre (Cards J2)
+          ScrollTrigger.create({
+            trigger: stacks[1],
+            start: 'top 78%',
+            once: true,
+            onEnter: () => {
+              gsap.fromTo(stacks[1].querySelectorAll('.prog-poster-card'),
+                { opacity: 0, y: 35 },
+                { opacity: 1, y: 0, duration: 0.55, stagger: 0.22, ease: 'power2.out' }
+              );
+            }
+          });
+        }
+      }
     }
 
     // Initial render
@@ -3067,17 +3599,65 @@
 
   let currentLang = localStorage.getItem('fmb_lang') || 'fr';
 
+  function toggleLangDropdown(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('langDropdownMenu');
+    const btn = document.getElementById('langGlobeBtn');
+    if (!menu || !btn) return;
+    const isOpen = menu.classList.contains('show');
+    if (isOpen) {
+      menu.classList.remove('show');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      menu.classList.add('show');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  function selectLang(lang) {
+    setLanguage(lang);
+    const menu = document.getElementById('langDropdownMenu');
+    const btn = document.getElementById('langGlobeBtn');
+    if (menu) menu.classList.remove('show');
+    if (btn) {
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // Close dropdown on click outside
+  document.addEventListener('click', (e) => {
+    const wrap = document.querySelector('.lang-dropdown-wrap');
+    if (wrap && !wrap.contains(e.target)) {
+      const menu = document.getElementById('langDropdownMenu');
+      const btn = document.getElementById('langGlobeBtn');
+      if (menu) menu.classList.remove('show');
+      if (btn) {
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+
   function setLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
     localStorage.setItem('fmb_lang', lang);
 
-    // Update active button state
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.getAttribute('data-lang') === lang) {
-        btn.classList.add('active');
+    // Update Globe Button Label
+    const codeEl = document.getElementById('langCurrentCode');
+    if (codeEl) {
+      codeEl.textContent = lang.toUpperCase();
+    }
+
+    // Update active dropdown items
+    document.querySelectorAll('.lang-menu-item').forEach(item => {
+      if (item.getAttribute('data-lang') === lang) {
+        item.classList.add('active');
       } else {
-        btn.classList.remove('active');
+        item.classList.remove('active');
       }
     });
 
