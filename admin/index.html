@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration · Forum Mondial de la Mer Bizerte</title>
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #071120;
+      --bg-card: #0b1a30;
+      --bg-card-hover: #102340;
+      --bg-input: #061120;
+      --border-color: rgba(255, 255, 255, 0.12);
+      --teal: #0cbfbf;
+      --teal-glow: rgba(12, 191, 191, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --green: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar */
+    header {
+      background: rgba(7, 17, 32, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-left img {
+      height: 42px;
+      object-fit: contain;
+    }
+    .admin-badge {
+      background: rgba(12, 191, 191, 0.15);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: #071120;
+      box-shadow: 0 4px 16px var(--teal-glow);
+    }
+    .btn-primary:hover {
+      background: #14d6d6;
+      transform: translateY(-1px);
+    }
+    .btn-success {
+      background: var(--green);
+      color: #042f1d;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+    }
+    .btn-success:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .admin-layout {
+      display: flex;
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 32px;
+      gap: 28px;
+    }
+
+    /* Sidebar Navigation */
+    .admin-sidebar {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-tab {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .nav-tab:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .nav-tab.active {
+      color: #071120;
+      background: var(--teal);
+      font-weight: 800;
+      box-shadow: 0 4px 16px var(--teal-glow);
+    }
+
+    /* Content Area */
+    .admin-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Day Switcher */
+    .day-switcher {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .day-btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .day-btn.active {
+      background: var(--accent-blue);
+      color: #071120;
+      border-color: var(--accent-blue);
+      font-weight: 800;
+    }
+
+    /* Session Editor Cards */
+    .sessions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .session-card {
+      background: rgba(6, 17, 32, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color 0.2s ease;
+    }
+    .session-card:hover {
+      border-color: rgba(12, 191, 191, 0.4);
+    }
+    .session-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .session-index {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+    }
+    .icon-btn.danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+
+    /* Form Fields */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    input[type="text"], input[type="password"], textarea, select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+      border-color: var(--teal);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    /* Panels list in session */
+    .panels-section {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .panel-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    /* Guide Box */
+    .guide-box {
+      background: rgba(12, 191, 191, 0.08);
+      border: 1px solid rgba(12, 191, 191, 0.25);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      font-size: 0.88rem;
+    }
+    .guide-box strong {
+      color: var(--teal);
+    }
+
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #0284c7;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header>
+    <div class="header-left">
+      <img src="../images/logo.png" alt="Forum Mondial de la Mer" />
+      <span class="admin-badge">Studio CMS & Gestionnaire</span>
+    </div>
+    <div class="header-actions">
+      <a href="../index.html" target="_blank" class="btn btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Voir le site
+      </a>
+      <button class="btn btn-success" onclick="publishDirectlyToGithub()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        🚀 Publier sur GitHub
+      </button>
+      <button class="btn btn-primary" onclick="saveAndExport()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        Télécharger JSON
+      </button>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <button class="nav-tab active" onclick="switchTab('programme', this)">
+        📅 Programme & Horaires
+      </button>
+      <button class="nav-tab" onclick="switchTab('content', this)">
+        ✍️ Thème & Citations
+      </button>
+      <button class="nav-tab" onclick="switchTab('gallery', this)">
+        🖼️ Galerie Photos
+      </button>
+      <button class="nav-tab" onclick="switchTab('github', this)">
+        🐙 Publication GitHub
+      </button>
+      <button class="nav-tab" onclick="switchTab('export', this)">
+        ⚙️ Code JSON Brut
+      </button>
+    </aside>
+
+    <!-- Main View -->
+    <main class="admin-content">
+      
+      <!-- TAB 1: PROGRAMME -->
+      <div id="tab-programme" class="tab-panel">
+        <div class="section-box">
+          <div class="section-title-wrap">
+            <h2 class="section-title">📅 Gestion du Programme Officiel</h2>
+            <button class="btn btn-secondary" onclick="addSession()">+ Ajouter une Session</button>
+          </div>
+
+          <div class="guide-box">
+            💡 <strong>Comment ça marche :</strong> Vous pouvez modifier les horaires, les titres et ajouter des sous-ateliers. Cliquez ensuite sur le bouton vert <strong>« 🚀 Publier sur GitHub »</strong> en haut à droite pour mettre à jour le site en direct !
+          </div>
+
+          <div class="day-switcher">
+            <button class="day-btn" id="btn-day1" onclick="selectDay('day1')">Jeudi 24 Septembre 2026</button>
+            <button class="day-btn active" id="btn-day2" onclick="selectDay('day2')">Vendredi 25 Septembre 2026</button>
+          </div>
+
+          <div class="sessions-list" id="sessionsListContainer">
+            <!-- Dynamic Sessions Rendered Here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CONTENT & THEME -->
+      <div id="tab-content" class="tab-panel" style="display:none;">
+        <div class="section-box">
+          <div class="section-title-wrap">
+            <h2 class="section-title">✍️ Textes du Thème & Contacts</h2>
+          </div>
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Citation Principale du Thème (Français)</label>
+              <input type="text" id="inp_theme_quote" value="« Agir pour une Méditerranée sans plastique »" />
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Paragraphe 1 : Mobilisation</label>
+              <textarea id="inp_theme_p1">Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse concrète et collective face à l'un des défis environnementaux les plus urgents de notre époque.</textarea>
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Paragraphe 2 : Déplastification</label>
+              <textarea id="inp_theme_p2">Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de « déplastification » du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.</textarea>
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Phrase d'invitation</label>
+              <input type="text" id="inp_theme_invitation" value="« Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »" />
+            </div>
+            <div class="form-group">
+              <label>Email Support Technique</label>
+              <input type="text" id="inp_tech_email" value="seifeddine.ayari@imageactions.com" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: GALLERY -->
+      <div id="tab-gallery" class="tab-panel" style="display:none;">
+        <div class="section-box">
+          <div class="section-title-wrap">
+            <h2 class="section-title">🖼️ Photos de la Galerie</h2>
+            <button class="btn btn-secondary" onclick="addPhoto()">+ Ajouter une Photo</button>
+          </div>
+          <div id="galleryListContainer" style="display:flex; flex-direction:column; gap:14px;">
+            <!-- Gallery Photos dynamic list -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: GITHUB SYNC -->
+      <div id="tab-github" class="tab-panel" style="display:none;">
+        <div class="section-box">
+          <div class="section-title-wrap">
+            <h2 class="section-title">🐙 Publication directe sur GitHub</h2>
+            <button class="btn btn-success" onclick="publishDirectlyToGithub()">🚀 Publier maintenant</button>
+          </div>
+          
+          <div class="guide-box">
+            🔑 <strong>Publication en 1 clic :</strong> Vos identifiants de dépôt sont pré-configurés pour <strong>ayarisafe7-code/programme</strong>.
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Dépôt GitHub (Repository)</label>
+              <input type="text" id="githubRepo" value="ayarisafe7-code/programme" />
+            </div>
+            <div class="form-group">
+              <label>Branche</label>
+              <input type="text" id="githubBranch" value="main" />
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>GitHub Personal Access Token (PAT)</label>
+              <input type="password" id="githubToken" value="" placeholder="Collez votre Personal Access Token GitHub (ex: ghp_...)" onchange="localStorage.setItem('fmb_gh_token', this.value.trim())" />
+              <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px;">Ce token reste confidentiel dans votre navigateur (localStorage) et n'est jamais stocké dans le code.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: EXPORT / CODE -->
+      <div id="tab-export" class="tab-panel" style="display:none;">
+        <div class="section-box">
+          <div class="section-title-wrap">
+            <h2 class="section-title">⚙️ Code JSON Brut</h2>
+            <button class="btn btn-primary" onclick="copyJsonToClipboard()">📋 Copier le JSON</button>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;">
+            Voici l'état actuel de vos données structurées pour le programme :
+          </p>
+          <textarea id="jsonOutputArea" style="width:100%; height:380px; font-family:monospace; font-size:0.82rem;" readonly></textarea>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast">Modifications enregistrées avec succès ! 🎉</div>
+
+  <script>
+    let currentData = {"day1": {"date": "Jeudi 24 Septembre 2026", "date_en": "Thursday, September 24, 2026", "date_it": "Giovedì 24 Settembre 2026", "sessions": [{"id": "j1_s1", "time": "14H30 - 18H30", "title_fr": "Ateliers de concertation & Rencontres pré-forum", "title_en": "Consultation Workshops & Pre-Forum Meetings", "title_it": "Workshop di consultazione e Incontri pre-forum", "desc_fr": "Sessions de travail collaboratives, échanges d'experts et préparation des synthèses stratégiques.", "desc_en": "Collaborative working sessions, expert exchanges and preparation of strategic summaries.", "desc_it": "Sessioni di lavoro collaborative, scambi tra esperti e preparazione delle sintesi strategiche.", "style": "navy", "shift": "card-shift-left-1"}, {"id": "j1_s2", "time": "20H00", "title_fr": "Dîner d'accueil officiel", "title_en": "Official Welcome Dinner", "title_it": "Cena ufficiale di benvenuto", "desc_fr": "Accueil des délégations internationales, des intervenants et des partenaires du Forum.", "desc_en": "Reception for international delegations, speakers and Forum partners.", "desc_it": "Accoglienza delle delegazioni internazionali, dei relatori e dei partner del Forum.", "style": "white", "shift": "card-shift-right-1"}]}, "day2": {"date": "Vendredi 25 Septembre 2026", "date_en": "Friday, September 25, 2026", "date_it": "Venerdì 25 Settembre 2026", "sessions": [{"id": "j2_s1", "time": "08H30 - 09H00", "title_fr": "ACCUEIL", "title_en": "WELCOME & REGISTRATION", "title_it": "ACCOGLIENZA", "desc_fr": "Accueil des participants, émargement et remise des badges.", "desc_en": "Reception of participants, check-in and delivery of badges.", "desc_it": "Accoglienza dei partecipanti, registrazione e consegna badge.", "style": "navy", "shift": "card-shift-left-1"}, {"id": "j2_s2", "time": "09H00 - 09H20", "title_fr": "OUVERTURE", "title_en": "OPENING CEREMONY", "title_it": "APERTURA", "desc_fr": "Allocutions officielles d'ouverture du Forum Mondial de la Mer – Bizerte 2026.", "desc_en": "Official opening remarks for the World Ocean Forum – Bizerta 2026.", "desc_it": "Discorsi ufficiali di apertura del Forum Mondiale del Mare – Biserta 2026.", "style": "white", "shift": "card-shift-right-1"}, {"id": "j2_s3", "time": "09H20 - 09H30", "title_fr": "Traité mondial contre la pollution plastique : vers la ratification ?", "title_en": "Global Treaty on Plastic Pollution: Towards Ratification?", "title_it": "Trattato globale sull'inquinamento da plastica: verso la ratifica?", "desc_fr": "Point d'étape sur les négociations internationales et perspectives d'application contraignante.", "desc_en": "Status update on international negotiations and perspectives for binding implementation.", "desc_it": "Punto di avanzamento sui negoziati internazionali e prospettive di attuazione vincolante.", "style": "navy", "shift": "card-shift-left-2"}, {"id": "j2_s4", "time": "09H30 - 10H40", "title_fr": "SESSION 1 : diagnostic et prospective « Horizon 2030 »", "title_en": "SESSION 1: Diagnosis & Prospects \"Horizon 2030\"", "title_it": "SESSIONE 1: Diagnosi e prospettive \"Horizon 2030\"", "desc_fr": "État des lieux scientifique et trajectoires prospectives pour le bassin méditerranéen.", "desc_en": "Scientific overview and prospective trajectories for the Mediterranean basin.", "desc_it": "Stato dell'arte scientifico e traiettorie di sviluppo per il bacino mediterraneo.", "panels": [{"title_fr": "Panel 1 : Quels sont les impacts économiques et sociaux de la pollution plastique en Méditerranée ?", "duration": "30 min"}, {"title_fr": "Panel 2 : La Méditerranée peut-elle devenir la première mer propre d'ici 2030 ?", "duration": "50 min"}], "style": "white", "shift": "card-shift-right-2"}, {"id": "j2_s5", "time": "10H40 - 11H55", "title_fr": "SESSION 2 : hotspots et réalités du terrain tunisien", "title_en": "SESSION 2: Hotspots & Realities of the Tunisian Field", "title_it": "SESSIONE 2: Hotspot e realtà del territorio tunisino", "desc_fr": "Focus sur les zones prioritaires du littoral tunisien, initiatives locales et valorisation des retours d'expérience.", "desc_en": "Focus on priority coastal zones in Tunisia, local initiatives and feedback from field operations.", "desc_it": "Focus sulle zone costiere prioritarie in Tunisia, iniziative locali e bilancio delle esperienze sul campo.", "panels": [{"title_fr": "Panel 1 : Îles et archipels, lagunes et zones côtières : quelles spécificités pour les territoires vulnérables ?", "duration": "30 min"}, {"title_fr": "Panel 2 : Vers une chaîne de valeur circulaire : initiatives et solutions en Tunisie", "duration": "30 min"}], "style": "sky", "shift": "card-shift-sky"}, {"id": "j2_s6", "time": "12H05 - 13H05", "title_fr": "SESSION 3 : les positions des États méditerranéens et de l'UE", "title_en": "SESSION 3: Positions of Mediterranean States & EU", "title_it": "SESSIONE 3: Le posizioni degli Stati del Mediterraneo e dell'UE", "desc_fr": "Table ronde des représentants étatiques, diplomatiques et institutionnels sur les engagements régionaux.", "desc_en": "Roundtable of state, diplomatic and institutional representatives on regional commitments.", "desc_it": "Tavola rotonda dei rappresentanti istituzionali e diplomatici sugli impegni regionali.", "style": "navy", "shift": "card-shift-left-3"}, {"id": "j2_s7", "time": "13H05 - 14H15", "title_fr": "PAUSE DÉJEUNER", "title_en": "LUNCH BREAK", "title_it": "PAUSA PRANZO", "desc_fr": "Déjeuner networking et échanges conviviaux entre les participants.", "desc_en": "Networking lunch and friendly exchanges between participants.", "desc_it": "Pranzo di networking e scambi tra i partecipanti.", "style": "white", "shift": "card-shift-right-3"}, {"id": "j2_s8", "time": "14H15 - 16H50", "title_fr": "SESSION 4 : Alliances, Projets et Actions Multi-acteurs", "title_en": "SESSION 4: Alliances, Projects & Multi-Stakeholder Actions", "title_it": "SESSIONE 4: Alleanze, Progetti e Azioni Multi-attore", "desc_fr": "Présentation des consortiums opérationnels, programmes régionaux et financements de transition.", "desc_en": "Presentation of operational consortia, regional programs and transition funding.", "desc_it": "Presentazione di consorzi operativi, programmi regionali e finanziamenti della transizione.", "panels": [{"title_fr": "Panel 1 : Coalition inter-villes méditerranéennes : vers un réseau zéro plastique", "duration": "14h15 - 14h45"}, {"title_fr": "Panel 2 : Pêche durable & matériel de pêche fantôme", "duration": "14h45 - 15h15"}, {"title_fr": "Panel 3 : Innovations & Bioplastiques : alternatives viables", "duration": "15h15 - 15h45"}, {"title_fr": "Panel 4 : Financements durables & Investissements bleus", "duration": "15h45 - 16h15"}, {"title_fr": "Panel 5 : Coopération transfrontalière & Programmes Interreg", "duration": "16h15 - 16h50"}], "style": "navy", "shift": "card-shift-left-2"}, {"id": "j2_s9", "time": "16H50 - 17H40", "title_fr": "SESSION 5 : Plaidoyer et Jeunesse (La Transmission)", "title_en": "SESSION 5: Advocacy & Youth (Transmission)", "title_it": "SESSIONE 5: Advocacy e Gioventù (La Trasmissione)", "desc_fr": "Voix de la nouvelle génération, engagement de la société civile et transmission intergénérationnelle.", "desc_en": "Voice of the new generation, civil society engagement and intergenerational transmission.", "desc_it": "Voce delle nuove generazioni, impegno della società civile e trasmissione intergenerazionale.", "panels": [{"title_fr": "Panel 1 : Le rôle crucial de la jeunesse méditerranéenne dans la préservation marine", "duration": "16h50 - 17h15"}, {"title_fr": "Panel 2 : Sensibilisation, éducation citoyenne et sciences participatives", "duration": "17h15 - 17h40"}], "style": "white", "shift": "card-shift-right-1"}, {"id": "j2_s10", "time": "17H40 - 17H55", "title_fr": "Présentation de la synthèse du Forum Mondial de la Mer – Bizerte", "title_en": "Presentation of the World Ocean Forum Summary", "title_it": "Presentazione della sintesi del Forum Mondiale del Mare", "desc_fr": "Restitution des recommandations majeures et feuille de route pour l'Alliance Zéro Plastique 2030.", "desc_en": "Restitution of key recommendations and roadmap for the Zero Plastic 2030 Alliance.", "desc_it": "Restituzione delle principali raccomandazioni e tabella di marcia per l'Alleanza Zero Plastica 2030.", "style": "sky", "shift": "card-shift-sky"}, {"id": "j2_s11", "time": "17H55 - 18H50", "title_fr": "Clôture du Forum Mondial de la Mer – Bizerte", "title_en": "Closing of the World Ocean Forum – Bizerta", "title_it": "Chiusura del Forum Mondiale del Mare – Biserta", "desc_fr": "Discours de clôture, remerciements aux partenaires et annonce des prochains rendez-vous méditerranéens.", "desc_en": "Closing remarks, acknowledgments to partners and announcement of next Mediterranean events.", "desc_it": "Discorsi di chiusura, ringraziamenti ai partner e annuncio dei prossimi appuntamenti mediterranei.", "style": "navy", "shift": "card-shift-left-1"}]}};
+    let galleryData = {"images": [{"src": "images/photo4.jpg", "alt": "Participants Forum Mondial de la Mer", "caption": "Participants et délégations"}, {"src": "images/photo1.jpg", "alt": "Session de travail", "caption": "Sessions de travail et plénières"}, {"src": "images/photo2.jpg", "alt": "Vue nocturne de Bizerte", "caption": "Le port et la ville de Bizerte"}, {"src": "images/photo3.jpg", "alt": "Photo de groupe", "caption": "Clôture et photo de groupe"}]};
+    let activeDay = "day2";
+
+    function selectDay(dayKey) {
+      activeDay = dayKey;
+      document.getElementById("btn-day1").classList.toggle("active", dayKey === "day1");
+      document.getElementById("btn-day2").classList.toggle("active", dayKey === "day2");
+      renderSessions();
+    }
+
+    function renderSessions() {
+      const container = document.getElementById("sessionsListContainer");
+      const sessions = currentData[activeDay].sessions || [];
+      container.innerHTML = "";
+
+      sessions.forEach((s, idx) => {
+        const card = document.createElement("div");
+        card.className = "session-card";
+        
+        let panelsHtml = "";
+        if (s.panels && s.panels.length > 0) {
+          panelsHtml = s.panels.map((p, pIdx) => `
+            <div class="panel-item">
+              <input type="text" style="flex:1;" placeholder="Titre du sous-panel" value="${p.title_fr || ""}" onchange="updatePanelTitle(${idx}, ${pIdx}, this.value)" />
+              <input type="text" style="width:140px;" placeholder="Durée" value="${p.duration || ""}" onchange="updatePanelDuration(${idx}, ${pIdx}, this.value)" />
+              <button class="icon-btn danger" onclick="removePanel(${idx}, ${pIdx})">✕</button>
+            </div>
+          `).join("");
+        }
+
+        card.innerHTML = `
+          <div class="session-header">
+            <span class="session-index">Slot #${idx + 1} · ${s.time || "Horaire non défini"}</span>
+            <div class="card-actions">
+              <button class="icon-btn" onclick="moveSession(${idx}, -1)" title="Monter">▲</button>
+              <button class="icon-btn" onclick="moveSession(${idx}, 1)" title="Descendre">▼</button>
+              <button class="icon-btn danger" onclick="deleteSession(${idx})" title="Supprimer">Supprimer</button>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Horaire (ex: 09H30 - 10H40)</label>
+              <input type="text" value="${s.time || ""}" onchange="currentData[activeDay].sessions[${idx}].time = this.value; renderSessions();" />
+            </div>
+            <div class="form-group">
+              <label>Style de carte</label>
+              <select onchange="currentData[activeDay].sessions[${idx}].style = this.value">
+                <option value="navy" ${s.style === "navy" ? "selected" : ""}>Bleu Marine Profond</option>
+                <option value="white" ${s.style === "white" ? "selected" : ""}>Blanc Épuré</option>
+                <option value="sky" ${s.style === "sky" ? "selected" : ""}>Bleu Ciel Lumineux</option>
+              </select>
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Titre (Français)</label>
+              <input type="text" value="${s.title_fr || ""}" onchange="currentData[activeDay].sessions[${idx}].title_fr = this.value" />
+            </div>
+            <div class="form-group">
+              <label>Titre (Anglais)</label>
+              <input type="text" value="${s.title_en || ""}" onchange="currentData[activeDay].sessions[${idx}].title_en = this.value" />
+            </div>
+            <div class="form-group">
+              <label>Titre (Italien)</label>
+              <input type="text" value="${s.title_it || ""}" onchange="currentData[activeDay].sessions[${idx}].title_it = this.value" />
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Description (FR)</label>
+              <textarea onchange="currentData[activeDay].sessions[${idx}].desc_fr = this.value">${s.desc_fr || ""}</textarea>
+            </div>
+          </div>
+
+          <div class="panels-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <label>Sous-Panels / Sous-Ateliers (${s.panels ? s.panels.length : 0})</label>
+              <button class="icon-btn" onclick="addPanel(${idx})">+ Ajouter un sous-panel</button>
+            </div>
+            <div id="panels-list-${idx}">
+              ${panelsHtml}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateJsonView();
+    }
+
+    function addSession() {
+      const newSession = {
+        id: activeDay + "_s" + (currentData[activeDay].sessions.length + 1),
+        time: "10H00 - 11H00",
+        title_fr: "Nouvelle Session",
+        title_en: "New Session",
+        title_it: "Nuova Sessione",
+        desc_fr: "Description de la session...",
+        style: "navy"
+      };
+      currentData[activeDay].sessions.push(newSession);
+      renderSessions();
+      showToast("Nouvelle session ajoutée !");
+    }
+
+    function deleteSession(idx) {
+      if (confirm("Voulez-vous vraiment supprimer cette session ?")) {
+        currentData[activeDay].sessions.splice(idx, 1);
+        renderSessions();
+        showToast("Session supprimée.");
+      }
+    }
+
+    function moveSession(idx, dir) {
+      const list = currentData[activeDay].sessions;
+      const targetIdx = idx + dir;
+      if (targetIdx < 0 || targetIdx >= list.length) return;
+      const temp = list[idx];
+      list[idx] = list[targetIdx];
+      list[targetIdx] = temp;
+      renderSessions();
+    }
+
+    function addPanel(sessionIdx) {
+      if (!currentData[activeDay].sessions[sessionIdx].panels) {
+        currentData[activeDay].sessions[sessionIdx].panels = [];
+      }
+      currentData[activeDay].sessions[sessionIdx].panels.push({
+        title_fr: "Nouveau Panel",
+        duration: "30 min"
+      });
+      renderSessions();
+    }
+
+    function removePanel(sessionIdx, panelIdx) {
+      currentData[activeDay].sessions[sessionIdx].panels.splice(panelIdx, 1);
+      renderSessions();
+    }
+
+    function updatePanelTitle(sIdx, pIdx, val) {
+      currentData[activeDay].sessions[sIdx].panels[pIdx].title_fr = val;
+      updateJsonView();
+    }
+
+    function updatePanelDuration(sIdx, pIdx, val) {
+      currentData[activeDay].sessions[sIdx].panels[pIdx].duration = val;
+      updateJsonView();
+    }
+
+    function renderGallery() {
+      const container = document.getElementById("galleryListContainer");
+      container.innerHTML = "";
+      galleryData.images.forEach((img, idx) => {
+        const el = document.createElement("div");
+        el.className = "session-card";
+        el.style.display = "flex";
+        el.style.gap = "16px";
+        el.style.alignItems = "center";
+        el.innerHTML = `
+          <img src="../${img.src}" style="width:100px; height:70px; object-fit:cover; border-radius:8px;" />
+          <div style="flex:1; display:flex; flex-direction:column; gap:6px;">
+            <input type="text" placeholder="Chemin image" value="${img.src}" onchange="galleryData.images[${idx}].src=this.value" />
+            <input type="text" placeholder="Légende" value="${img.caption || ""}" onchange="galleryData.images[${idx}].caption=this.value" />
+          </div>
+          <button class="icon-btn danger" onclick="galleryData.images.splice(${idx}, 1); renderGallery();">Supprimer</button>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    function addPhoto() {
+      galleryData.images.push({
+        src: "images/photo1.jpg",
+        caption: "Nouvelle photo",
+        alt: "Photo Forum Mondial de la Mer"
+      });
+      renderGallery();
+      showToast("Nouvelle photo ajoutée !");
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll(".tab-panel").forEach(p => p.style.display = "none");
+      document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+      document.getElementById("tab-" + tabId).style.display = "block";
+      btn.classList.add("active");
+      if (tabId === "gallery") renderGallery();
+      if (tabId === "export") updateJsonView();
+    }
+
+    function updateJsonView() {
+      const area = document.getElementById("jsonOutputArea");
+      if (area) {
+        area.value = JSON.stringify(currentData, null, 2);
+      }
+    }
+
+    function copyJsonToClipboard() {
+      const area = document.getElementById("jsonOutputArea");
+      area.select();
+      document.execCommand("copy");
+      showToast("JSON copié dans le presse-papier !");
+    }
+
+    function saveAndExport() {
+      const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "programme.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast("Fichier programme.json téléchargé !");
+    }
+
+    // Direct GitHub Commit API
+    async function publishDirectlyToGithub() {
+      const repo = document.getElementById("githubRepo").value.trim();
+      const branch = document.getElementById("githubBranch").value.trim() || "main";
+      let token = document.getElementById("githubToken").value.trim() || localStorage.getItem("fmb_gh_token");
+
+      if (!token) {
+        token = prompt("Veuillez entrer votre Personal Access Token GitHub (ex: ghp_...) :");
+        if (!token) return;
+        token = token.trim();
+        document.getElementById("githubToken").value = token;
+        localStorage.setItem("fmb_gh_token", token);
+      } else {
+        localStorage.setItem("fmb_gh_token", token);
+      }
+
+      showToast("Envoi des modifications sur GitHub... ⏳");
+
+      try {
+        const filePath = "data/programme.json";
+        const apiUrl = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+
+        // 1. Get current file SHA
+        let sha = "";
+        const getRes = await fetch(apiUrl + `?ref=${branch}`, {
+          headers: {
+            "Authorization": `token ${token}`,
+            "Accept": "application/vnd.github.v3+json"
+          }
+        });
+        if (getRes.ok) {
+          const getData = await getRes.json();
+          sha = getData.sha;
+        }
+
+        // 2. Put updated file
+        const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `token ${token}`,
+            "Accept": "application/vnd.github.v3+json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: "Mise à jour du programme via Studio CMS",
+            content: contentBase64,
+            sha: sha || undefined,
+            branch: branch
+          })
+        });
+
+        if (putRes.ok) {
+          showToast("🎉 Publié et synchronisé sur GitHub avec succès !");
+        } else {
+          const err = await putRes.json();
+          alert("Erreur GitHub : " + (err.message || "Échec de publication"));
+        }
+      } catch (e) {
+        console.error(e);
+        alert("Erreur de connexion : " + e.message);
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3500);
+    }
+
+    // Initialize
+    const savedToken = localStorage.getItem('fmb_gh_token');
+    if (savedToken) {
+      document.getElementById('githubToken').value = savedToken;
+    }
+    renderSessions();
+  </script>
+</body>
+</html>

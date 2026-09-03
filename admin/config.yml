@@ -1,0 +1,118 @@
+backend:
+  name: github
+  repo: ayarisafe7-code/programme
+  branch: main
+
+# Pour tester en local avec decap-server si nécessaire
+local_backend: true
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "programme"
+    label: "Programme du Forum"
+    description: "Édition du programme détaillé des 24 et 25 septembre 2026"
+    files:
+      - label: "Programme Officiel (24 & 25 Septembre)"
+        name: "programme_data"
+        file: "data/programme.json"
+        fields:
+          - label: "Jeudi 24 Septembre"
+            name: "day1"
+            widget: "object"
+            fields:
+              - { label: "Date affichée (FR)", name: "date", widget: "string" }
+              - { label: "Date affichée (EN)", name: "date_en", widget: "string", required: false }
+              - { label: "Date affichée (IT)", name: "date_it", widget: "string", required: false }
+              - label: "Sessions du 24 Septembre"
+                name: "sessions"
+                widget: "list"
+                fields:
+                  - { label: "Identifiant (ex: j1_s1)", name: "id", widget: "string" }
+                  - { label: "Horaire (ex: 14H30 - 18H30)", name: "time", widget: "string" }
+                  - { label: "Titre (Français)", name: "title_fr", widget: "string" }
+                  - { label: "Titre (Anglais)", name: "title_en", widget: "string", required: false }
+                  - { label: "Titre (Italien)", name: "title_it", widget: "string", required: false }
+                  - { label: "Description (FR)", name: "desc_fr", widget: "text", required: false }
+                  - { label: "Description (EN)", name: "desc_en", widget: "text", required: false }
+                  - { label: "Description (IT)", name: "desc_it", widget: "text", required: false }
+                  - label: "Couleur de la Carte"
+                    name: "style"
+                    widget: "select"
+                    options:
+                      - { label: "Bleu Marine Profond", value: "navy" }
+                      - { label: "Blanc Épuré", value: "white" }
+                      - { label: "Bleu Ciel Lumineux", value: "sky" }
+
+          - label: "Vendredi 25 Septembre"
+            name: "day2"
+            widget: "object"
+            fields:
+              - { label: "Date affichée (FR)", name: "date", widget: "string" }
+              - { label: "Date affichée (EN)", name: "date_en", widget: "string", required: false }
+              - { label: "Date affichée (IT)", name: "date_it", widget: "string", required: false }
+              - label: "Sessions du 25 Septembre"
+                name: "sessions"
+                widget: "list"
+                fields:
+                  - { label: "Identifiant (ex: j2_s1)", name: "id", widget: "string" }
+                  - { label: "Horaire (ex: 09H30 - 10H40)", name: "time", widget: "string" }
+                  - { label: "Titre (Français)", name: "title_fr", widget: "string" }
+                  - { label: "Titre (Anglais)", name: "title_en", widget: "string", required: false }
+                  - { label: "Titre (Italien)", name: "title_it", widget: "string", required: false }
+                  - { label: "Description (FR)", name: "desc_fr", widget: "text", required: false }
+                  - { label: "Description (EN)", name: "desc_en", widget: "text", required: false }
+                  - { label: "Description (IT)", name: "desc_it", widget: "text", required: false }
+                  - label: "Sous-Panels / Sous-Ateliers"
+                    name: "panels"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Titre du Panel (FR)", name: "title_fr", widget: "string" }
+                      - { label: "Durée ou Créneau", name: "duration", widget: "string" }
+                  - label: "Couleur de la Carte"
+                    name: "style"
+                    widget: "select"
+                    options:
+                      - { label: "Bleu Marine Profond", value: "navy" }
+                      - { label: "Blanc Épuré", value: "white" }
+                      - { label: "Bleu Ciel Lumineux", value: "sky" }
+
+  - name: "site_content"
+    label: "Contenus & Thème"
+    description: "Édition des citations, textes du thème et informations de support"
+    files:
+      - label: "Textes du Thème & Support"
+        name: "content_data"
+        file: "data/site_content.json"
+        fields:
+          - label: "Section Thème"
+            name: "theme"
+            widget: "object"
+            fields:
+              - { label: "Citation Principale", name: "quote_fr", widget: "string" }
+              - { label: "Paragraphe 1", name: "p1_fr", widget: "text" }
+              - { label: "Paragraphe 2", name: "p2_fr", widget: "text" }
+              - { label: "Phrase d'invitation", name: "invitation_fr", widget: "string" }
+          - label: "Assistance & Support"
+            name: "support"
+            widget: "object"
+            fields:
+              - { label: "Email Support Technique", name: "tech_email", widget: "string" }
+
+  - name: "galerie"
+    label: "Galerie Photos"
+    description: "Ajout et gestion des photos du forum"
+    files:
+      - label: "Photos du Forum"
+        name: "gallery_data"
+        file: "data/gallery.json"
+        fields:
+          - label: "Photos"
+            name: "images"
+            widget: "list"
+            fields:
+              - { label: "Photo", name: "src", widget: "image" }
+              - { label: "Légende", name: "caption", widget: "string" }
+              - { label: "Texte descriptif (Alt)", name: "alt", widget: "string" }

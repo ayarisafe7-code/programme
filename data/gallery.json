@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "src": "images/photo4.jpg",
+      "alt": "Participants Forum Mondial de la Mer",
+      "caption": "Participants et délégations"
+    },
+    {
+      "src": "images/photo1.jpg",
+      "alt": "Session de travail",
+      "caption": "Sessions de travail et plénières"
+    },
+    {
+      "src": "images/photo2.jpg",
+      "alt": "Vue nocturne de Bizerte",
+      "caption": "Le port et la ville de Bizerte"
+    },
+    {
+      "src": "images/photo3.jpg",
+      "alt": "Photo de groupe",
+      "caption": "Clôture et photo de groupe"
+    }
+  ]
+}

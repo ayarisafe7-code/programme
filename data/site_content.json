@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "title_fr": "Agir pour une Méditerranée sans Plastique",
+    "title_en": "Acting for a Mediterranean free of Plastic",
+    "title_it": "Agire per un Mediterraneo senza Plastica",
+    "subtitle_fr": "Forum Mondial de la Mer – Bizerte",
+    "edition_fr": "9ème Édition · Bizerte, Tunisie",
+    "date1": "24 Septembre 2026",
+    "date2": "25 Septembre 2026"
+  },
+  "theme": {
+    "quote_fr": "« Agir pour une Méditerranée sans plastique »",
+    "quote_en": "« Acting for a Mediterranean free of plastic »",
+    "quote_it": "« Agire per un Mediterraneo senza plastica »",
+    "p1_fr": "Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse concrète et collective face à l'un des défis environnementaux les plus urgents de notre époque.",
+    "p2_fr": "Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de « déplastification » du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.",
+    "invitation_fr": "« Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »"
+  },
+  "support": {
+    "contacts": [
+      {
+        "name": "Nedra Berriche",
+        "phone": "+216 29 190 882",
+        "whatsapp": "21629190882"
+      },
+      {
+        "name": "Roua Ben Slimen",
+        "phone": "+216 52 469 389",
+        "whatsapp": "21652469389"
+      }
+    ],
+    "tech_email": "seifeddine.ayari@imageactions.com"
+  }
+}

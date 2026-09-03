@@ -111,10 +111,15 @@
       color: #071120 !important;
     }
 
-    body.light-mode nav.scrolled .logo-nav img.logo-fmb,
-    body.light-mode footer img.footer-logo-fmb {
-      filter: brightness(0.08) drop-shadow(0 2px 6px rgba(0,0,0,0.06));
-    }
+    /* Logo FMB : bascule entre logo blanc et logo bleu officiel selon le mode */
+    .logo-fmb--white { display: block !important; }
+    .logo-fmb--blue { display: none !important; }
+
+    body.light-mode nav.scrolled .logo-fmb--white { display: none !important; }
+    body.light-mode nav.scrolled .logo-fmb--blue { display: block !important; }
+
+    body.light-mode footer .logo-fmb--white { display: none !important; }
+    body.light-mode footer .logo-fmb--blue { display: block !important; }
 
     body.light-mode nav.scrolled ul li a {
       color: #0f172a;
@@ -2420,7 +2425,8 @@
 <nav id="navbar">
   <div class="logo-nav">
     <a href="#hero" class="logo-link" title="Forum Mondial de la Mer - Bizerte">
-      <img src="images/logo.png" alt="Forum Mondial de la Mer Bizerte" class="logo-fmb"/>
+      <img src="images/logo.png" alt="Forum Mondial de la Mer Bizerte" class="logo-fmb logo-fmb--white"/>
+      <img src="images/logo-blue.png" alt="Forum Mondial de la Mer Bizerte" class="logo-fmb logo-fmb--blue"/>
     </a>
     <div class="logo-nav-divider"></div>
     <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" rel="noopener noreferrer" class="logo-share4med-link" title="Interreg NEXT MED - SHARE4MED">
@@ -3044,7 +3050,8 @@
 <footer>
   <div class="footer-logos">
     <a href="#hero" title="Forum Mondial de la Mer - Bizerte">
-      <img src="images/logo.png" alt="Forum Mondial de la Mer" class="footer-logo-fmb"/>
+      <img src="images/logo.png" alt="Forum Mondial de la Mer" class="footer-logo-fmb logo-fmb--white"/>
+      <img src="images/logo-blue.png" alt="Forum Mondial de la Mer" class="footer-logo-fmb logo-fmb--blue"/>
     </a>
     <div class="footer-logos-divider"></div>
     <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" rel="noopener noreferrer" class="footer-share4med-link" title="Interreg NEXT MED - SHARE4MED">
