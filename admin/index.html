@@ -718,6 +718,7 @@
     }
 
     function saveAndExport() {
+      localStorage.setItem("fmb_dynamic_programme", JSON.stringify(currentData));
       const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -726,7 +727,7 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast("Fichier programme.json téléchargé !");
+      showToast("Modifications enregistrées & synchronisées ! 🎉");
     }
 
     // Direct GitHub Commit API
@@ -745,6 +746,7 @@
         localStorage.setItem("fmb_gh_token", token);
       }
 
+      localStorage.setItem("fmb_dynamic_programme", JSON.stringify(currentData));
       showToast("Envoi des modifications sur GitHub... ⏳");
 
       try {

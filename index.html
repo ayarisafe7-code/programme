@@ -2759,7 +2759,7 @@
         <span class="poster-day-heading-title" data-i18n="prog_day1_title">Jeudi 24 Septembre 2026</span>
       </div>
 
-      <div class="poster-cards-stack">
+      <div class="poster-cards-stack" id="stack-day1">
 
         <!-- Card J1-1 (Navy - Décalé Gauche) -->
         <div class="prog-poster-card prog-poster-card--navy card-shift-left-1">
@@ -2794,7 +2794,7 @@
       </div>
 
       <!-- VENDREDI 25 SEPTEMBRE 2026 (Programme officiel actualisé) -->
-      <div class="poster-cards-stack">
+      <div class="poster-cards-stack" id="stack-day2">
 
         <!-- 1. ACCUEIL (Navy - Décalé Gauche) -->
         <div class="prog-poster-card prog-poster-card--navy card-shift-left-1">
@@ -4030,11 +4030,114 @@
     if (t.doc_title) {
       document.title = t.doc_title;
     }
+
+    // Dynamic Programme Re-render on language change
+    renderDynamicProgramme();
   }
 
-  // Initialize language on DOM ready
+  /* ========================================================
+     DYNAMIC DATA SYNCHRONIZATION WITH CMS & JSON
+     ======================================================== */
+  let dynamicProgData = null;
+
+  function renderDynamicProgramme() {
+    if (!dynamicProgData) return;
+    const lang = currentLang || 'fr';
+
+    const day1Container = document.getElementById('stack-day1');
+    const day2Container = document.getElementById('stack-day2');
+
+    // Render Day 1
+    if (day1Container && dynamicProgData.day1 && dynamicProgData.day1.sessions) {
+      const shiftClasses = ['card-shift-left-1', 'card-shift-right-1', 'card-shift-left-2', 'card-shift-right-2'];
+      day1Container.innerHTML = dynamicProgData.day1.sessions.map((s, idx) => {
+        const styleClass = s.style === 'white' ? 'prog-poster-card--white' : (s.style === 'sky' ? 'prog-poster-card--sky' : 'prog-poster-card--navy');
+        const shiftClass = s.shift || shiftClasses[idx % shiftClasses.length];
+        const title = (lang === 'en' && s.title_en) ? s.title_en : ((lang === 'it' && s.title_it) ? s.title_it : s.title_fr);
+        const desc = (lang === 'en' && s.desc_en) ? s.desc_en : ((lang === 'it' && s.desc_it) ? s.desc_it : (s.desc_fr || ''));
+
+        let panelsHtml = '';
+        if (s.panels && s.panels.length > 0) {
+          panelsHtml = '<div class="prog-panel-list">' + s.panels.map(p => {
+            const pTitle = (lang === 'en' && p.title_en) ? p.title_en : ((lang === 'it' && p.title_it) ? p.title_it : p.title_fr);
+            const pDur = p.duration ? ` · ${p.duration}` : '';
+            return `<div class="prog-panel-item">${pTitle}${pDur}</div>`;
+          }).join('') + '</div>';
+        }
+
+        return `
+          <div class="prog-poster-card ${styleClass} ${shiftClass}">
+            <div class="prog-poster-time">${s.time || ''}</div>
+            <div class="prog-poster-divider"></div>
+            <div class="prog-poster-content">
+              <div class="prog-title-val">${title || ''}</div>
+              ${desc ? `<div class="prog-sub-val">${desc}</div>` : ''}
+              ${panelsHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Day 2
+    if (day2Container && dynamicProgData.day2 && dynamicProgData.day2.sessions) {
+      const shiftClasses = ['card-shift-left-1', 'card-shift-right-1', 'card-shift-left-2', 'card-shift-right-2', 'card-shift-sky', 'card-shift-left-3', 'card-shift-right-3'];
+      day2Container.innerHTML = dynamicProgData.day2.sessions.map((s, idx) => {
+        const styleClass = s.style === 'white' ? 'prog-poster-card--white' : (s.style === 'sky' ? 'prog-poster-card--sky' : 'prog-poster-card--navy');
+        const shiftClass = s.shift || shiftClasses[idx % shiftClasses.length];
+        const title = (lang === 'en' && s.title_en) ? s.title_en : ((lang === 'it' && s.title_it) ? s.title_it : s.title_fr);
+        const desc = (lang === 'en' && s.desc_en) ? s.desc_en : ((lang === 'it' && s.desc_it) ? s.desc_it : (s.desc_fr || ''));
+
+        let panelsHtml = '';
+        if (s.panels && s.panels.length > 0) {
+          panelsHtml = '<div class="prog-panel-list">' + s.panels.map(p => {
+            const pTitle = (lang === 'en' && p.title_en) ? p.title_en : ((lang === 'it' && p.title_it) ? p.title_it : p.title_fr);
+            const pDur = p.duration ? ` · ${p.duration}` : '';
+            return `<div class="prog-panel-item">${pTitle}${pDur}</div>`;
+          }).join('') + '</div>';
+        }
+
+        return `
+          <div class="prog-poster-card ${styleClass} ${shiftClass}">
+            <div class="prog-poster-time">${s.time || ''}</div>
+            <div class="prog-poster-divider"></div>
+            <div class="prog-poster-content">
+              <div class="prog-title-val">${title || ''}</div>
+              ${desc ? `<div class="prog-sub-val">${desc}</div>` : ''}
+              ${panelsHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  async function loadDynamicData() {
+    // 1. Check local storage for real-time live preview
+    const localProg = localStorage.getItem('fmb_dynamic_programme');
+    if (localProg) {
+      try {
+        dynamicProgData = JSON.parse(localProg);
+        renderDynamicProgramme();
+      } catch (e) {}
+    }
+
+    // 2. Fetch latest data from data/programme.json
+    try {
+      const res = await fetch('data/programme.json?v=' + Date.now());
+      if (res.ok) {
+        dynamicProgData = await res.json();
+        renderDynamicProgramme();
+      }
+    } catch (e) {
+      // Offline / file:// fallback is already rendered in static HTML
+    }
+  }
+
+  // Initialize language & dynamic data on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     setLanguage(currentLang);
+    loadDynamicData();
   });
 </script>
 
