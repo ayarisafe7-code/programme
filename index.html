@@ -1959,6 +1959,35 @@
       border-color: var(--teal);
     }
 
+    .stage-source {
+      margin-top: 12px;
+      font-size: 0.74rem;
+      color: rgba(220, 235, 252, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-style: italic;
+      letter-spacing: 0.01em;
+      text-align: left;
+    }
+
+    .stage-source-icon {
+      width: 13px;
+      height: 13px;
+      color: var(--teal);
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+
+    .counter-source {
+      margin-top: 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+      font-style: italic;
+      text-align: center;
+    }
+
     .stage-metric-pill .m-val {
       font-size: 1.55rem;
       font-weight: 800;
@@ -2490,14 +2519,14 @@
     <h1 class="hero-title" data-i18n="hero_title">
       Agir pour une<br/>
       <em>Méditerranée</em><br/>
-      sans Plastique
+      sans plastique
     </h1>
-    <p class="hero-subtitle" data-i18n="hero_subtitle">Forum Mondial de la Mer – Bizerte</p>
-    <div class="hero-edition" data-i18n="hero_edition">9ème Édition · Bizerte, Tunisie</div>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Forum mondial de la mer – Bizerte</p>
+    <div class="hero-edition" data-i18n="hero_edition">9ème édition · Bizerte, Tunisie</div>
     <div class="hero-dates">
-      <span data-i18n="hero_date1">24 Septembre 2026</span>
+      <span data-i18n="hero_date1">24 septembre 2026</span>
       <span class="sep">›</span>
-      <span data-i18n="hero_date2">25 Septembre 2026</span>
+      <span data-i18n="hero_date2">25 septembre 2026</span>
     </div>
   </div>
 
@@ -2522,7 +2551,7 @@
     <!-- Discrete Top Left Breadcrumb Indicator -->
     <div class="dive-top-indicator">
       <span class="dive-top-tag" data-i18n="dive_tag">Immersion · Bizerte 2026</span>
-      <span class="dive-top-title" data-i18n="dive_title">Du Littoral aux Grands Fonds</span>
+      <span class="dive-top-title" data-i18n="dive_title">Du littoral aux grands fonds</span>
     </div>
 
     <!-- Tall Graduated Bathymetric Depth Gauge (HUD Scale in Meters) -->
@@ -2553,8 +2582,8 @@
       
       <!-- NIVEAU 1 : 0 MÈTRE (SURFACE ET CHOC DES ÉCHELLES) -->
       <div class="dive-stage-panel panel-stage-1">
-        <div class="stage-badge" data-i18n="stage1_badge">Niveau 01 · 0 Mètre · Surface et Choc des Échelles</div>
-        <h2 class="stage-title" data-i18n="stage1_title">1% des Eaux du Globe :<br/><span class="hl-teal">7% des Microplastiques Mondiaux</span></h2>
+        <div class="stage-badge" data-i18n="stage1_badge">Niveau 01 · 0 mètre · Surface et choc des échelles</div>
+        <h2 class="stage-title" data-i18n="stage1_title">1% des eaux du globe :<br/><span class="hl-teal">7% des microplastiques mondiaux</span></h2>
         <p class="stage-desc" data-i18n="stage1_desc">
           La Méditerranée est une mer semi-fermée hyper-dense : elle est <strong>4 fois plus polluée que le Pacifique Nord</strong>. Chaque année, entre 229 000 et 600 000 tonnes de plastique y sont déversées, soit l'équivalent de <strong>+500 conteneurs maritimes jetés à la mer chaque jour</strong>.
         </p>
@@ -2572,19 +2601,23 @@
             <div class="m-label" data-i18n="stage1_m3">Conteneurs déversés par jour</div>
           </div>
         </div>
+        <div class="stage-source" data-i18n="stage1_source">
+          <svg class="stage-source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Source : WWF (2019) « Stop the Plastic Flood », PNUE/PAM, Plan Bleu</span>
+        </div>
       </div>
 
       <!-- NIVEAU 2 : -35 MÈTRES (CASCADE DE FRAGMENTATION ET PIC ESTIVAL) -->
       <div class="dive-stage-panel panel-stage-2">
-        <div class="stage-badge" data-i18n="stage2_badge">Niveau 02 · -35 Mètres · Fragmentation et Saisonnalité</div>
-        <h2 class="stage-title" data-i18n="stage2_title">La Cascade Invisible :<br/><span class="hl-teal">94% de Microplastiques</span></h2>
+        <div class="stage-badge" data-i18n="stage2_badge">Niveau 02 · -35 mètres · Fragmentation et saisonnalité</div>
+        <h2 class="stage-title" data-i18n="stage2_title">La cascade invisible :<br/><span class="hl-teal">94% de microplastiques</span></h2>
         <p class="stage-desc" data-i18n="stage2_desc">
           En s'enfonçant sous la surface, les déchets marins ne disparaissent pas : ils se fragmentent. <strong>94 % des macro-déchets</strong> se transforment ainsi en micro-particules invisibles à l'œil nu, contaminant durablement les fonds marins. Cette pollution est amplifiée par une pression démographique considérable : aux <strong>150 millions d'habitants</strong> du littoral s'ajoutent, chaque été, plus de <strong>150 millions de touristes</strong> supplémentaires. Résultat, la pollution marine bondit de <strong>40 %</strong> durant la saison estivale.
         </p>
         <div class="stage-metrics-grid">
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="94" data-suffix="%">94%</div>
-            <div class="m-label" data-i18n="stage2_m1">Des plastiques fragmentés en micro-particules</div>
+            <div class="m-label" data-i18n="stage2_m1">Des plastiques fragmentés en microparticules</div>
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="150" data-prefix="+" data-suffix=" M">+150 M</div>
@@ -2595,12 +2628,16 @@
             <div class="m-label" data-i18n="stage2_m3">De pollution marine supplémentaire en été</div>
           </div>
         </div>
+        <div class="stage-source" data-i18n="stage2_source">
+          <svg class="stage-source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Source : UICN (2020) « The Mediterranean: Mare plasticum », WWF Méditerranée</span>
+        </div>
       </div>
 
       <!-- NIVEAU 3 : -75 MÈTRES (HÉMORRAGIE ÉCONOMIQUE) -->
       <div class="dive-stage-panel panel-stage-3">
-        <div class="stage-badge" data-i18n="stage3_badge">Niveau 03 · -75 Mètres · L'Impact Économique</div>
-        <h2 class="stage-title" data-i18n="stage3_title">L'Hémorragie Économique :<br/><span class="hl-teal">641 Millions € / an</span></h2>
+        <div class="stage-badge" data-i18n="stage3_badge">Niveau 03 · -75 mètres · L'impact économique</div>
+        <h2 class="stage-title" data-i18n="stage3_title">L'hémorragie économique :<br/><span class="hl-teal">641 millions d'€ / an</span></h2>
         <p class="stage-desc" data-i18n="stage3_desc">
           La pollution plastique frappe directement la pêche, le tourisme et la navigation. Nettoyer une seule tonne de déchets coûte jusqu'à <strong>18 000 €</strong> (la ville de Nice dépense par exemple 2 millions €/an uniquement pour ses plages).
         </p>
@@ -2615,20 +2652,28 @@
           </div>
           <div class="stage-metric-pill">
             <div class="m-val" data-counter="2" data-suffix=" M€ / an">2 M€ / an</div>
-            <div class="m-label" data-i18n="stage3_m3">Dépensés par ville côtière (ex: Nice)</div>
+            <div class="m-label" data-i18n="stage3_m3">Dépensés par ville côtière (ex : Nice)</div>
           </div>
+        </div>
+        <div class="stage-source" data-i18n="stage3_source">
+          <svg class="stage-source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Source : PNUE/PAM (2020), WWF Rapport Économique Méditerranée, Données Ville de Nice</span>
         </div>
       </div>
 
       <!-- NIVEAU 4 : -120 MÈTRES (LE SOCLE DES SOLUTIONS ET BIZERTE 2026) -->
       <div class="dive-stage-panel panel-stage-4">
-        <div class="stage-badge" data-i18n="stage4_badge">Niveau 04 · -120 Mètres · Le Socle des Solutions</div>
-        <h2 class="stage-title" data-i18n="stage4_title">L'Alliance du Forum :<br/><span class="hl-teal">Objectif Zéro Plastique 2030</span></h2>
+        <div class="stage-badge" data-i18n="stage4_badge">Niveau 04 · -120 mètres · Le socle des solutions</div>
+        <h2 class="stage-title" data-i18n="stage4_title">L'alliance du Forum :<br/><span class="hl-teal">Objectif zéro plastique 2030</span></h2>
         <p class="stage-desc" data-i18n="stage4_desc">
-          Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong>, l'<strong>UpM</strong>, etc., <strong>Bizerte 2026</strong> réunit des décideurs politiques, des porteurs de projets, des scientifiques et la société civile pour sanctuariser notre mer commune.
+          Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong>, l'<strong>UpM</strong>, l'<strong>ADEME</strong>, <strong>Circe.med</strong>, <strong>SHARE4MED</strong>, etc., <strong>Bizerte 2026</strong> réunit des décideurs politiques, des porteurs de projets, des scientifiques et la société civile pour sanctuariser notre mer commune.
         </p>
-        <a href="#programme" class="stage-cta-btn" style="margin-top:20px;">
-          <span data-i18n="stage4_cta">Découvrir le Programme du Sommet</span>
+        <div class="stage-source" data-i18n="stage4_source" style="margin-bottom:14px;">
+          <svg class="stage-source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Source : Convention de Barcelone (PNUE/PAM), Union pour la Méditerranée (UpM), ADEME, Circe.med, SHARE4MED</span>
+        </div>
+        <a href="#programme" class="stage-cta-btn" style="margin-top:14px;">
+          <span data-i18n="stage4_cta">Découvrir le programme du Sommet</span>
           <span>→</span>
         </a>
       </div>
@@ -2644,11 +2689,11 @@
   <div class="about-grid">
     <div class="about-text reveal-left">
       <div class="section-label" data-i18n="about_label">Le Forum</div>
-      <h2 class="section-title" data-i18n="about_title">Forum Mondial de la <span>Mer</span></h2>
+      <h2 class="section-title" data-i18n="about_title">Forum mondial de la <span>mer</span></h2>
       <div class="divider"></div>
-      <p data-i18n="about_p1">Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.</p>
+      <p data-i18n="about_p1">Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum mondial de la mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.</p>
       <p data-i18n="about_p2">Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.</p>
-      <p data-i18n="about_p3">La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.</p>
+      <p data-i18n="about_p3">La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum mondial de la mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.</p>
       <p data-i18n="about_p4">Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.</p>
       <div class="about-stats">
         <div class="stat-card reveal" style="transition-delay:0.1s">
@@ -2657,7 +2702,7 @@
         </div>
         <div class="stat-card reveal" style="transition-delay:0.2s">
           <div class="num">2018</div>
-          <div class="lbl" data-i18n="about_stat2_lbl">Fondé par Pascal Lamy</div>
+          <div class="lbl" data-i18n="about_stat2_lbl">Fondé en 2018</div>
         </div>
         <div class="stat-card reveal" style="transition-delay:0.3s">
           <div class="num">24-25</div>
@@ -2678,6 +2723,7 @@
         <div class="counter-num" id="plasticCount">0</div>
         <div class="counter-label" data-i18n="counter_label">Tonnes de plastique / an en Méditerranée</div>
         <div class="counter-desc" data-i18n="counter_desc">Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.</div>
+        <div class="counter-source" data-i18n="counter_source">Source : WWF (2019) « Stop the Plastic Flood », Plan Bleu</div>
       </div>
     </div>
   </div>
@@ -2935,7 +2981,7 @@
   <canvas class="section-wave-canvas"></canvas>
   <div class="theme-inner">
     <div class="reveal">
-      <div class="section-label" data-i18n="theme_label">Enjeu Central</div>
+      <div class="section-label" data-i18n="theme_label">Enjeu central</div>
       <div class="theme-quote" data-i18n="theme_quote">
         « Agir pour une <strong>Méditerranée</strong> sans plastique »
       </div>
@@ -2960,7 +3006,7 @@
     <div class="reveal support-box-wrapper">
       <div class="support-box">
         <div class="support-header">
-          <div class="section-label" style="text-align:center; margin-bottom:8px;" data-i18n="support_label">Assistance & Support sur place</div>
+          <div class="section-label" style="text-align:center; margin-bottom:8px;" data-i18n="support_label">Assistance & support sur place</div>
           <h3 class="support-title" data-i18n="support_title">Des questions sur place ou besoin d'assistance ?</h3>
           <p class="support-subtitle" data-i18n="support_subtitle">En cas d'incompréhension ou pour vos questions sur place, contactez notre équipe sur WhatsApp :</p>
         </div>
@@ -2993,8 +3039,8 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div class="tech-support-text">
-            <div class="tech-support-title" data-i18n="tech_support_title">Support Technique & Présentations PPT</div>
-            <div class="tech-support-desc" data-i18n="tech_support_desc">Si vous avez besoin d'un support technique ou pour envoyer vos présentations PowerPoint, merci de les transmettre par email à :</div>
+            <div class="tech-support-title" data-i18n="tech_support_title">Support technique & présentations PPT</div>
+            <div class="tech-support-desc" data-i18n="tech_support_desc">Si vous avez besoin d'une assistance technique ou pour envoyer vos présentations PowerPoint, merci de les transmettre par email à :</div>
             <a href="mailto:seifeddine.ayari@imageactions.com" class="tech-support-email">seifeddine.ayari@imageactions.com</a>
           </div>
         </div>
@@ -3008,16 +3054,16 @@
   <canvas class="section-wave-canvas"></canvas>
   <div class="gallery-header reveal">
     <div class="section-label" data-i18n="gallery_label">Moments du Forum</div>
-    <h2 class="section-title" data-i18n="gallery_title">Galerie <span>Photos</span></h2>
+    <h2 class="section-title" data-i18n="gallery_title">Galerie <span>photos</span></h2>
     <div class="divider" style="margin:0 auto 16px;"></div>
     <p style="color:var(--text-muted); font-size:0.95rem;" data-i18n="gallery_desc">
-      Retour sur les éditions précédentes du Forum Mondial de la Mer – Bizerte
+      Retour sur les éditions précédentes du Forum mondial de la mer – Bizerte
     </p>
   </div>
 
   <div class="gallery-grid">
     <div class="gallery-item reveal-left">
-      <img src="images/photo4.jpg" alt="Participants Forum Mondial de la Mer" loading="lazy"/>
+      <img src="images/photo4.jpg" alt="Participants Forum mondial de la mer" loading="lazy"/>
     </div>
     <div class="gallery-item reveal-right">
       <img src="images/photo1.jpg" alt="Session de travail" loading="lazy"/>
@@ -3034,22 +3080,21 @@
 <!-- ======= PARTNERS ======= -->
 <section id="partners">
   <div class="partners-inner">
-    <a href="https://lasaisonbleue.com" target="_blank" class="partner-badge reveal">La Saison Bleue</a>
-    <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" class="partner-badge reveal" style="transition-delay:0.05s">SHARE4MED</a>
-    <a href="https://www.interregnextmed.eu" target="_blank" class="partner-badge reveal" style="transition-delay:0.1s">Interreg NEXT MED</a>
-    <a href="https://www.circemed.org" target="_blank" class="partner-badge reveal" style="transition-delay:0.15s">CirceMed</a>
-    <a href="https://www.info.gouv.fr" target="_blank" class="partner-badge reveal" style="transition-delay:0.2s">République Française</a>
-    <a href="https://www.ademe.fr" target="_blank" class="partner-badge reveal" style="transition-delay:0.22s">ADEME</a>
-    <a href="https://www.agriculture.tn" target="_blank" class="partner-badge reveal" style="transition-delay:0.24s">Ministre de l'Agriculture</a>
-    <span class="partner-badge reveal" style="transition-delay:0.26s">AVEM</span>
-    <span class="partner-badge reveal" style="transition-delay:0.28s">Gouvernorat de Bizerte</span>
+    <a href="https://lasaisonbleue.com" target="_blank" rel="noopener noreferrer" class="partner-badge reveal">La Saison Bleue</a>
+    <a href="https://www.univ-usto.dz/labo/lsim/projet-share4med/" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.05s">SHARE4MED</a>
+    <a href="https://www.interregnextmed.eu" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.1s">Interreg NEXT MED</a>
+    <a href="https://www.circemed.org" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.15s">CirceMed</a>
+    <a href="https://www.info.gouv.fr" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.2s">République Française</a>
+    <a href="https://www.ademe.fr" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.22s">ADEME</a>
+    <a href="https://www.agriculture.tn" target="_blank" rel="noopener noreferrer" class="partner-badge reveal" style="transition-delay:0.24s">Ministère de l'Agriculture</a>
+    <span class="partner-badge reveal" style="transition-delay:0.26s">Gouvernorat de Bizerte</span>
   </div>
 </section>
 
 <!-- ======= FOOTER ======= -->
 <footer>
   <div class="footer-logos">
-    <a href="#hero" title="Forum Mondial de la Mer - Bizerte">
+    <a href="#hero" title="Forum mondial de la mer - Bizerte">
       <img src="images/logo.png" alt="Forum Mondial de la Mer" class="footer-logo-fmb logo-fmb--white"/>
       <img src="images/logo-blue.png" alt="Forum Mondial de la Mer" class="footer-logo-fmb logo-fmb--blue"/>
     </a>
@@ -3060,19 +3105,19 @@
     </a>
   </div>
   <br/>
-  <a href="https://forummondialdelamerbizerte.com" class="footer-link" target="_blank">
-    forummondialdelamerbizerte.com
+  <a href="https://forumdelamerbizerte.com" class="footer-link" target="_blank" rel="noopener noreferrer">
+    forumdelamerbizerte.com
   </a>
   <br/><br/>
   <p>
-    <span data-i18n="footer_dates">9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie</span><br/>
+    <span data-i18n="footer_dates">9ème édition · 24–25 septembre 2026 · Bizerte, Tunisie</span><br/>
     <strong style="color:var(--text-color); opacity:0.85;" data-i18n="footer_theme">«&nbsp;Agir pour une Méditerranée sans plastique&nbsp;»</strong><br/><br/>
     <span data-i18n="footer_produced">Produit par</span> <strong>La Saison Bleue</strong><br/>
     <span data-i18n="footer_leadership">Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ</span>
   </p>
   <br/>
   <p style="margin-top:24px; font-size:0.7rem; color:var(--text-muted); opacity:0.65;" data-i18n="footer_rights">
-    © 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés.
+    © 2026 Forum mondial de la mer – Bizerte. Tous droits réservés.
   </p>
 </footer>
 
@@ -3532,7 +3577,7 @@
   const translations = {
     fr: {
       // Nav
-      doc_title: "Forum Mondial de la Mer – Bizerte 2026",
+      doc_title: "Forum mondial de la mer – Bizerte 2026",
       nav_immersion: "Immersion",
       nav_about: "À propos",
       nav_programme: "Programme",
@@ -3540,79 +3585,84 @@
       nav_gallery: "Galerie",
 
       // Hero
-      hero_title: "Agir pour une<br/><em>Méditerranée</em><br/>sans Plastique",
-      hero_subtitle: "Forum Mondial de la Mer – Bizerte",
-      hero_edition: "9ème Édition · Bizerte, Tunisie",
-      hero_date1: "24 Septembre 2026",
-      hero_date2: "25 Septembre 2026",
+      hero_title: "Agir pour une<br/><em>Méditerranée</em><br/>sans plastique",
+      hero_subtitle: "Forum mondial de la mer – Bizerte",
+      hero_edition: "9ème édition · Bizerte, Tunisie",
+      hero_date1: "24 septembre 2026",
+      hero_date2: "25 septembre 2026",
       hero_scroll: "Défiler",
 
       // Immersion HUD
       dive_tag: "Immersion · Bizerte 2026",
-      dive_title: "Du Littoral aux Grands Fonds",
+      dive_title: "Du littoral aux grands fonds",
       hud_sounder: "Sondeur",
 
       // Stage 1
-      stage1_badge: "Niveau 01 · 0 Mètre · Surface et Choc des Échelles",
-      stage1_title: "1% des Eaux du Globe :<br/><span class=\"hl-teal\">7% des Microplastiques Mondiaux</span>",
+      stage1_badge: "Niveau 01 · 0 mètre · Surface et choc des échelles",
+      stage1_title: "1% des eaux du globe :<br/><span class=\"hl-teal\">7% des microplastiques mondiaux</span>",
       stage1_desc: "La Méditerranée est une mer semi-fermée hyper-dense : elle est <strong>4 fois plus polluée que le Pacifique Nord</strong>. Chaque année, entre 229 000 et 600 000 tonnes de plastique y sont déversées, soit l'équivalent de <strong>+500 conteneurs maritimes jetés à la mer chaque jour</strong>.",
       stage1_m1: "Fragments / km² en surface",
       stage1_m2: "Plus polluée que le Pacifique Nord",
       stage1_m3: "Conteneurs déversés par jour",
+      stage1_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source : WWF (2019) « Stop the Plastic Flood », PNUE/PAM, Plan Bleu</span>",
 
       // Stage 2
-      stage2_badge: "Niveau 02 · -35 Mètres · Fragmentation et Saisonnalité",
-      stage2_title: "La Cascade Invisible :<br/><span class=\"hl-teal\">94% de Microplastiques</span>",
+      stage2_badge: "Niveau 02 · -35 mètres · Fragmentation et saisonnalité",
+      stage2_title: "La cascade invisible :<br/><span class=\"hl-teal\">94% de microplastiques</span>",
       stage2_desc: "En s'enfonçant sous la surface, les déchets marins ne disparaissent pas : ils se fragmentent. <strong>94 % des macro-déchets</strong> se transforment ainsi en micro-particules invisibles à l'œil nu, contaminant durablement les fonds marins. Cette pollution est amplifiée par une pression démographique considérable : aux <strong>150 millions d'habitants</strong> du littoral s'ajoutent, chaque été, plus de <strong>150 millions de touristes</strong> supplémentaires. Résultat, la pollution marine bondit de <strong>40 %</strong> durant la saison estivale.",
-      stage2_m1: "Des plastiques fragmentés en micro-particules",
+      stage2_m1: "Des plastiques fragmentés en microparticules",
       stage2_m2: "Touristes estivaux sur les 22 pays côtiers",
       stage2_m3: "De pollution marine supplémentaire en été",
+      stage2_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source : UICN (2020) « The Mediterranean: Mare plasticum », WWF Méditerranée</span>",
 
       // Stage 3
-      stage3_badge: "Niveau 03 · -75 Mètres · L'Impact Économique",
-      stage3_title: "L'Hémorragie Économique :<br/><span class=\"hl-teal\">641 Millions € / an</span>",
+      stage3_badge: "Niveau 03 · -75 mètres · L'impact économique",
+      stage3_title: "L'hémorragie économique :<br/><span class=\"hl-teal\">641 millions d'€ / an</span>",
       stage3_desc: "La pollution plastique frappe directement la pêche, le tourisme et la navigation. Nettoyer une seule tonne de déchets coûte jusqu'à <strong>18 000 €</strong> (la ville de Nice dépense par exemple 2 millions €/an uniquement pour ses plages).",
       stage3_m1: "Perdus chaque année par les économies côtières",
       stage3_m2: "Coût de nettoyage par tonne de déchets",
-      stage3_m3: "Dépensés par ville côtière (ex: Nice)",
+      stage3_m3: "Dépensés par ville côtière (ex : Nice)",
+      stage3_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source : PNUE/PAM (2020), WWF Rapport Économique Méditerranée, Données Ville de Nice</span>",
 
       // Stage 4
-      stage4_badge: "Niveau 04 · -120 Mètres · Le Socle des Solutions",
-      stage4_title: "L'Alliance du Forum :<br/><span class=\"hl-teal\">Objectif Zéro Plastique 2030</span>",
-      stage4_desc: "Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong>, l'<strong>UpM</strong>, etc., <strong>Bizerte 2026</strong> réunit des décideurs politiques, des porteurs de projets, des scientifiques et la société civile pour sanctuariser notre mer commune.",
+      stage4_badge: "Niveau 04 · -120 mètres · Le socle des solutions",
+      stage4_title: "L'alliance du Forum :<br/><span class=\"hl-teal\">Objectif zéro plastique 2030</span>",
+      stage4_desc: "Sur ce socle sous-marin, la riposte s'organise : de la <strong>Convention de Barcelone (1976)</strong>, l'<strong>UpM</strong>, l'<strong>ADEME</strong>, <strong>Circe.med</strong>, <strong>SHARE4MED</strong>, etc., <strong>Bizerte 2026</strong> réunit des décideurs politiques, des porteurs de projets, des scientifiques et la société civile pour sanctuariser notre mer commune.",
       stage4_m1: "Nations méditerranéennes signataires",
       stage4_m2_val: "PAMEx et BeMed",
       stage4_m2: "Plans d'action régionaux exemplaires (PNUE)",
       stage4_m3_val: "Cap 2030",
       stage4_m3: "Zéro plastique en mer et 9ème Sommet Bizerte",
-      stage4_cta: "Découvrir le Programme du Sommet",
+      stage4_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source : Convention de Barcelone (PNUE/PAM), Union pour la Méditerranée (UpM), ADEME, Circe.med, SHARE4MED</span>",
+      stage4_cta: "Découvrir le programme du Sommet",
 
       // About
       about_label: "Le Forum",
-      about_title: "Forum Mondial de la <span>Mer</span>",
-      about_p1: "Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum Mondial de la Mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.",
+      about_title: "Forum mondial de la <span>mer</span>",
+      about_p1: "Depuis sa création en <strong>2018</strong> sous la présidence de <strong>Pascal Lamy</strong>, le Forum mondial de la mer – Bizerte s'est imposé comme l'un des événements internationaux incontournables sur la rive sud de la Méditerranée, dédié aux enjeux maritimes.",
       about_p2: "Ce forum a joué un rôle clé en Tunisie en favorisant la création du <strong>Secrétariat des affaires maritimes</strong>, du Cluster maritime et en lançant le projet du port en eaux profondes d'Enfidha. En 2021, il a initié la formation d'une <strong>Coalition d'élus de la Méditerranée</strong>.",
-      about_p3: "La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum Mondial de la Mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.",
+      about_p3: "La <strong>Saison Bleue</strong>, en collaboration avec <strong>SHARE4MED</strong>, a le plaisir de vous accueillir à la <strong>9ᵉ édition</strong> du Forum mondial de la mer – Bizerte, qui se tiendra les <strong>24 et 25 septembre 2026</strong> à Bizerte, en Tunisie.",
       about_p4: "Le Forum réunira des décideurs publics, des représentants d'organisations internationales, des chercheurs, des entrepreneurs, ainsi que des acteurs de la société civile, afin de définir des <strong>priorités communes</strong> et proposer des actions concrètes.",
       about_stat1_num: "9ème",
       about_stat1_lbl: "Édition 2026",
-      about_stat2_lbl: "Fondé par Pascal Lamy",
+      about_stat2_lbl: "Fondé en 2018",
       about_stat3_lbl: "Septembre 2026",
       about_stat4_lbl: "Bassin méditerranéen",
       counter_label: "Tonnes de plastique / an en Méditerranée",
       counter_desc: "Chaque année, plus de 570 000 tonnes de plastique finissent dans nos mers. Le Forum agit pour inverser cette tendance.",
+      counter_source: "Source : WWF (2019) « Stop the Plastic Flood », Plan Bleu",
 
       // Programme
-      prog_header_label: "9ème Édition · Bizerte, Tunisie",
+      prog_header_label: "9ème édition · Bizerte, Tunisie",
       prog_header_title: "Programme",
-      prog_day1_title: "Jeudi 24 Septembre 2026",
+      prog_day1_title: "Jeudi 24 septembre 2026",
       prog_r1_time: "Matinée › Après-midi",
       prog_r1_label: "Présentation du projet SHARE4MED et Workshop",
       prog_r1_sub: "Avec les représentants des municipalités et communes tunisiennes",
       prog_r2_time: "Réunion restreinte",
       prog_r2_label: "Assemblée Générale de Circe.med",
       prog_sep_nextday: "Jour suivant",
-      prog_day2_title: "Vendredi 25 Septembre 2026",
+      prog_day2_title: "Vendredi 25 septembre 2026",
       prog_r3_time: "08H30 › 09H00",
       prog_r3_label: "ACCUEIL",
       prog_r4_time: "09H00 › 09H20",
@@ -3643,31 +3693,31 @@
       prog_r_s5_p1: "<strong>17h00-17h20</strong> · Panel 1 : présentation de l'initiative « Aire marine éducative-Tunisie »",
       prog_r_s5_p2: "<strong>17h20-17h40</strong> · Panel 2 : clubs Jeunes Océans Maroc-Tunisie (IRD)",
       prog_r10_time: "17H40 › 17H55",
-      prog_r10_label: "Présentation de la synthèse du Forum Mondial de la Mer - Bizerte",
+      prog_r10_label: "Présentation de la synthèse du Forum mondial de la mer - Bizerte",
       prog_r_cloture_time: "17H55 › 18H50",
-      prog_r_cloture_label: "Clôture du Forum Mondial de la Mer - Bizerte",
+      prog_r_cloture_label: "Clôture du Forum mondial de la mer - Bizerte",
 
       // Theme & Contacts
-      theme_label: "Enjeu Central",
+      theme_label: "Enjeu central",
       theme_quote: "« Agir pour une <strong>Méditerranée</strong> sans plastique »",
       theme_p1: "Cette édition ambitionne de mobiliser l'ensemble des acteurs du bassin méditerranéen autour d'une réponse <strong style=\"color:var(--text-color)\">concrète et collective</strong> face à l'un des défis environnementaux les plus urgents de notre époque.",
       theme_p2: "Le Forum de Bizerte se propose d'être cet espace de construction d'une collaboration et de soumettre un agenda réaliste de <strong style=\"color:var(--text-color)\">« déplastification »</strong> du bassin méditerranéen — montrant que les États, les élus, les entrepreneurs et la société civile peuvent, ensemble, être le laboratoire d'un océan débarrassé d'un poison mortifère.",
       theme_invitation: "« Rendez-vous donc à Bizerte les 24 et 25 septembre 2026 pour écrire cette page d'une odyssée toujours recommencée ! »",
-      support_label: "Assistance & Support sur place",
+      support_label: "Assistance & support sur place",
       support_title: "Des questions sur place ou besoin d'assistance ?",
       support_subtitle: "En cas d'incompréhension ou pour vos questions sur place, contactez notre équipe sur WhatsApp :",
-      tech_support_title: "Support Technique & Présentations PPT",
+      tech_support_title: "Support technique & présentations PPT",
       tech_support_desc: "Si vous avez besoin d'un support technique ou pour envoyer vos présentations PowerPoint, merci de les transmettre par email à :",
 
       // Gallery & Footer
       gallery_label: "Moments du Forum",
-      gallery_title: "Galerie <span>Photos</span>",
-      gallery_desc: "Retour sur les éditions précédentes du Forum Mondial de la Mer – Bizerte",
-      footer_dates: "9ème édition · 24–25 Septembre 2026 · Bizerte, Tunisie",
+      gallery_title: "Galerie <span>photos</span>",
+      gallery_desc: "Retour sur les éditions précédentes du Forum mondial de la mer – Bizerte",
+      footer_dates: "9ème édition · 24–25 septembre 2026 · Bizerte, Tunisie",
       footer_theme: "« Agir pour une Méditerranée sans plastique »",
       footer_produced: "Produit par",
       footer_leadership: "Président : Pascal LAMY · Directrice : Rym BENZINA · Commissaire général : Mehdi BEN HAJ",
-      footer_rights: "© 2026 Forum Mondial de la Mer – Bizerte. Tous droits réservés."
+      footer_rights: "© 2026 Forum mondial de la mer – Bizerte. Tous droits réservés."
     },
 
     en: {
@@ -3680,70 +3730,75 @@
       nav_gallery: "Gallery",
 
       // Hero
-      hero_title: "Acting for a<br/><em>Mediterranean</em><br/>free of Plastic",
+      hero_title: "Acting for a<br/><em>Mediterranean</em><br/>free of plastic",
       hero_subtitle: "World Ocean Forum – Bizerta",
-      hero_edition: "9th Edition · Bizerta, Tunisia",
+      hero_edition: "9th edition · Bizerta, Tunisia",
       hero_date1: "24 September 2026",
       hero_date2: "25 September 2026",
       hero_scroll: "Scroll",
 
       // Immersion HUD
       dive_tag: "Immersion · Bizerta 2026",
-      dive_title: "From Coastlines to the Deep Sea",
-      hud_sounder: "Echo Sounder",
+      dive_title: "From coastlines to the deep sea",
+      hud_sounder: "Echo sounder",
 
       // Stage 1
-      stage1_badge: "Level 01 · 0 Meter · Surface & Scale Contrast",
-      stage1_title: "1% of the World's Waters:<br/><span class=\"hl-teal\">7% of Global Microplastics</span>",
+      stage1_badge: "Level 01 · 0 meter · Surface & scale contrast",
+      stage1_title: "1% of the world's waters:<br/><span class=\"hl-teal\">7% of global microplastics</span>",
       stage1_desc: "The Mediterranean is a semi-enclosed hyper-dense sea: it is <strong>4 times more polluted than the North Pacific</strong>. Between 229,000 and 600,000 tons of plastic enter it every year, the equivalent of <strong>+500 shipping containers dumped into the sea every day</strong>.",
       stage1_m1: "Fragments / km² at surface",
       stage1_m2: "More polluted than North Pacific",
       stage1_m3: "Containers dumped per day",
+      stage1_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source: WWF (2019) 'Stop the Plastic Flood', UNEP/MAP, Plan Bleu</span>",
 
       // Stage 2
-      stage2_badge: "Level 02 · -35 Meters · Fragmentation & Seasonality",
-      stage2_title: "The Invisible Cascade:<br/><span class=\"hl-teal\">94% Microplastics</span>",
+      stage2_badge: "Level 02 · -35 meters · Fragmentation & seasonality",
+      stage2_title: "The invisible cascade:<br/><span class=\"hl-teal\">94% microplastics</span>",
       stage2_desc: "Sinking beneath the surface, marine litter does not disappear: it fragments. <strong>94% of macro-waste</strong> transforms into micro-particles invisible to the naked eye, persistently contaminating the seabed. This pollution is amplified by substantial demographic pressure: in addition to the <strong>150 million coastal residents</strong>, more than <strong>150 million summer tourists</strong> arrive each year. As a result, marine pollution surges by <strong>40%</strong> during the summer season.",
       stage2_m1: "Of plastics fragmented into micro-particles",
       stage2_m2: "Summer tourists across 22 coastal nations",
       stage2_m3: "Additional marine pollution in summer",
+      stage2_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source: IUCN (2020) 'The Mediterranean: Mare plasticum', WWF Mediterranean</span>",
 
       // Stage 3
-      stage3_badge: "Level 03 · -75 Meters · Economic Impact",
-      stage3_title: "The Economic Bleed:<br/><span class=\"hl-teal\">€641 Million / year</span>",
+      stage3_badge: "Level 03 · -75 meters · Economic impact",
+      stage3_title: "The economic bleed:<br/><span class=\"hl-teal\">€641 million / year</span>",
       stage3_desc: "Plastic pollution directly strikes fisheries, tourism, and maritime navigation. Cleaning up a single ton of debris costs up to <strong>€18,000</strong> (the city of Nice spends €2 million/year solely for its beaches).",
       stage3_m1: "Lost annually by coastal economies",
       stage3_m2: "Cleanup cost per ton of waste",
       stage3_m3: "Spent per coastal city (e.g. Nice)",
+      stage3_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source: UNEP/MAP (2020), WWF Mediterranean Economic Report, City of Nice data</span>",
 
       // Stage 4
-      stage4_badge: "Level 04 · -120 Meters · The Foundation of Solutions",
-      stage4_title: "The Forum Alliance:<br/><span class=\"hl-teal\">Target Zero Plastic 2030</span>",
-      stage4_desc: "On this submarine foundation, the response is organized: from the <strong>Barcelona Convention (1976)</strong>, <strong>UfM</strong>, etc., <strong>Bizerta 2026</strong> brings together policymakers, project leaders, scientists, and civil society to safeguard our shared sea.",
+      stage4_badge: "Level 04 · -120 meters · The foundation of solutions",
+      stage4_title: "The Forum alliance:<br/><span class=\"hl-teal\">Target zero plastic 2030</span>",
+      stage4_desc: "On this submarine foundation, the response is organized: from the <strong>Barcelona Convention (1976)</strong>, <strong>UfM</strong>, <strong>ADEME</strong>, <strong>Circe.med</strong>, <strong>SHARE4MED</strong>, etc., <strong>Bizerta 2026</strong> brings together policymakers, project leaders, scientists, and civil society to safeguard our shared sea.",
       stage4_m1: "Mediterranean signatory nations",
       stage4_m2_val: "PAMEx & BeMed",
       stage4_m2: "Exemplary regional action plans (UNEP)",
       stage4_m3_val: "Target 2030",
       stage4_m3: "Zero plastic at sea & 9th Bizerta Summit",
-      stage4_cta: "Discover the Summit Program",
+      stage4_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Source: Barcelona Convention (UNEP/MAP), Union for the Mediterranean (UfM), ADEME, Circe.med, SHARE4MED</span>",
+      stage4_cta: "Discover the Summit program",
 
       // About
       about_label: "The Forum",
-      about_title: "World Ocean <span>Forum</span>",
+      about_title: "World ocean <span>forum</span>",
       about_p1: "Since its creation in <strong>2018</strong> under the presidency of <strong>Pascal Lamy</strong>, the World Ocean Forum – Bizerta has established itself as one of the essential international events on the southern shore of the Mediterranean, dedicated to maritime challenges.",
       about_p2: "This forum has played a key role in Tunisia by fostering the creation of the <strong>Secretariat for Maritime Affairs</strong>, the Maritime Cluster, and launching the deep-water port project in Enfidha. In 2021, it initiated the <strong>Coalition of Mediterranean Elected Officials</strong>.",
       about_p3: "<strong>La Saison Bleue</strong>, in collaboration with <strong>SHARE4MED</strong>, is pleased to welcome you to the <strong>9th edition</strong> of the World Ocean Forum – Bizerta, held on <strong>24 and 25 September 2026</strong> in Bizerta, Tunisia.",
       about_p4: "The Forum brings together public decision-makers, representatives of international organizations, researchers, entrepreneurs, and civil society actors to define <strong>shared priorities</strong> and propose concrete actions.",
       about_stat1_num: "9th",
       about_stat1_lbl: "Edition 2026",
-      about_stat2_lbl: "Founded by Pascal Lamy",
+      about_stat2_lbl: "Founded in 2018",
       about_stat3_lbl: "September 2026",
       about_stat4_lbl: "Mediterranean Basin",
       counter_label: "Tons of plastic / year in the Mediterranean",
       counter_desc: "Every year, more than 570,000 tons of plastic end up in our seas. The Forum acts to reverse this trend.",
+      counter_source: "Source: WWF (2019) 'Stop the Plastic Flood', Plan Bleu",
 
       // Programme
-      prog_header_label: "9th Edition · Bizerta, Tunisia",
+      prog_header_label: "9th edition · Bizerta, Tunisia",
       prog_header_title: "Program",
       prog_day1_title: "Thursday 24 September 2026",
       prog_r1_time: "Morning › Afternoon",
@@ -3758,7 +3813,7 @@
       prog_r4_time: "09:00 AM › 09:20 AM",
       prog_r4_label: "OFFICIAL OPENING",
       prog_r_traite_time: "09:20 AM › 09:30 AM",
-      prog_r_traite_label: "Global Treaty Against Plastic Pollution",
+      prog_r_traite_label: "Global treaty against plastic pollution",
       prog_r5_time: "09:30 AM › 10:40 AM",
       prog_r5_label: "SESSION 1: Diagnosis & Outlook \"Horizon 2030\"",
       prog_r5_p1: "<strong>Panel 1:</strong> State of science (The data) · 30 min",
@@ -3783,25 +3838,25 @@
       prog_r_s5_p1: "<strong>5:00 PM - 5:20 PM</strong> · Panel 1: Presentation of 'Educational Marine Area - Tunisia'",
       prog_r_s5_p2: "<strong>5:20 PM - 5:40 PM</strong> · Panel 2: Youth Ocean Clubs Morocco-Tunisia (IRD)",
       prog_r10_time: "05:40 PM › 05:55 PM",
-      prog_r10_label: "Synthesis Presentation of the World Ocean Forum - Bizerta",
+      prog_r10_label: "Synthesis presentation of the World Ocean Forum - Bizerta",
       prog_r_cloture_time: "05:55 PM › 06:50 PM",
       prog_r_cloture_label: "Closing of the World Ocean Forum - Bizerta",
 
       // Theme & Contacts
-      theme_label: "Central Challenge",
+      theme_label: "Central challenge",
       theme_quote: "« Acting for a <strong>Mediterranean</strong> free of plastic »",
       theme_p1: "This edition aims to mobilize all actors across the Mediterranean basin around a <strong style=\"color:var(--text-color)\">concrete and collective</strong> response to one of the most pressing environmental challenges of our era.",
       theme_p2: "The Bizerta Forum aims to serve as a space for building cooperation and submitting a realistic agenda for the <strong style=\"color:var(--text-color)\">« de-plasticization »</strong> of the Mediterranean basin — demonstrating that States, elected officials, entrepreneurs, and civil society can unite as a laboratory for an ocean free of lethal waste.",
       theme_invitation: "« Join us in Bizerta on September 24 & 25, 2026, to write the next chapter of an ever-renewed odyssey! »",
-      support_label: "Support & Direct Contact",
+      support_label: "Support & direct contact",
       support_title: "Questions on-site or need assistance?",
       support_subtitle: "For any inquiries or assistance during the event, contact our on-site team on WhatsApp:",
-      tech_support_title: "Technical Support & PPT Presentations",
+      tech_support_title: "Technical support & PPT presentations",
       tech_support_desc: "If you need technical assistance or wish to send your PowerPoint presentations, please email:",
 
       // Gallery & Footer
       gallery_label: "Forum Moments",
-      gallery_title: "Photo <span>Gallery</span>",
+      gallery_title: "Photo <span>gallery</span>",
       gallery_desc: "Highlights from previous editions of the World Ocean Forum – Bizerta",
       footer_dates: "9th edition · 24–25 September 2026 · Bizerta, Tunisia",
       footer_theme: "« Acting for a Mediterranean free of plastic »",
@@ -3812,7 +3867,7 @@
 
     it: {
       // Nav
-      doc_title: "Forum Mondiale del Mare – Biserta 2026",
+      doc_title: "Forum mondiale del mare – Biserta 2026",
       nav_immersion: "Immersione",
       nav_about: "Chi siamo",
       nav_programme: "Programma",
@@ -3820,80 +3875,84 @@
       nav_gallery: "Galleria",
 
       // Hero
-      hero_title: "Agire per un<br/><em>Mediterraneo</em><br/>senza Plastica",
-      hero_subtitle: "Forum Mondiale del Mare – Biserta",
-      hero_edition: "9ª Edizione · Biserta, Tunisia",
-      hero_date1: "24 Settembre 2026",
-      hero_date2: "25 Settembre 2026",
+      hero_title: "Agire per un<br/><em>Mediterraneo</em><br/>senza plastica",
+      hero_subtitle: "Forum mondiale del mare – Biserta",
+      hero_edition: "9ª edizione · Biserta, Tunisia",
+      hero_date1: "24 settembre 2026",
+      hero_date2: "25 settembre 2026",
       hero_scroll: "Scorri",
 
       // Immersion HUD
       dive_tag: "Immersione · Biserta 2026",
-      dive_title: "Dal Litorale agli Abissi",
+      dive_title: "Dal litorale agli abissi",
       hud_sounder: "Ecoscandaglio",
 
       // Stage 1
-      stage1_badge: "Livello 01 · 0 Metri · Superficie e Contrasto delle Scale",
-      stage1_title: "1% delle Acque Mondiali:<br/><span class=\"hl-teal\">7% delle Microplastiche Globali</span>",
+      stage1_badge: "Livello 01 · 0 metri · Superficie e contrasto delle scale",
+      stage1_title: "1% delle acque mondiali:<br/><span class=\"hl-teal\">7% delle microplastiche globali</span>",
       stage1_desc: "Il Mediterraneo è un mare semichiuso iper-denso: è <strong>4 volte più inquinato del Pacifico Settentrionale</strong>. Ogni anno vi finiscono tra 229.000 e 600.000 tonnellate di plastica, l'equivalente di <strong>+500 container marittimi gettati in mare al giorno</strong>.",
       stage1_m1: "Frammenti / km² in superficie",
       stage1_m2: "Più inquinato del Pacifico Nord",
       stage1_m3: "Container sversati al giorno",
+      stage1_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Fonte: WWF (2019) « Stop the Plastic Flood », UNEP/MAP, Plan Bleu</span>",
 
       // Stage 2
-      stage2_badge: "Livello 02 · -35 Metri · Frammentazione e Stagionalità",
-      stage2_title: "La Cascata Invisibile:<br/><span class=\"hl-teal\">94% di Microplastiche</span>",
+      stage2_badge: "Livello 02 · -35 metri · Frammentazione e stagionalità",
+      stage2_title: "La cascata invisibile:<br/><span class=\"hl-teal\">94% di microplastiche</span>",
       stage2_desc: "Scendendo sotto la superficie, i rifiuti marini non scompaiono: si frammentano. Il <strong>94% dei macro-rifiuti</strong> si trasforma in micro-particelle invisibili a occhio nudo, contaminando durevolmente i fondali. Questo inquinamento è amplificato da una forte pressione demografica: ai <strong>150 milioni di residenti costieri</strong> si aggiungono, ogni estate, oltre <strong>150 milioni di turisti</strong>. Di conseguenza, l'inquinamento marino aumenta del <strong>40%</strong> durante la stagione estiva.",
       stage2_m1: "Delle plastiche frammentate in micro-particelle",
       stage2_m2: "Turisti estivi nei 22 paesi costieri",
       stage2_m3: "Di inquinamento marino in più in estate",
+      stage2_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Fonte: IUCN (2020) « The Mediterranean: Mare plasticum », WWF Mediterraneo</span>",
 
       // Stage 3
-      stage3_badge: "Livello 03 · -75 Metri · L'Impatto Economico",
-      stage3_title: "L'Emorragia Economica:<br/><span class=\"hl-teal\">641 Milioni di € / anno</span>",
+      stage3_badge: "Livello 03 · -75 metri · L'impatto economico",
+      stage3_title: "L'emorragia economica:<br/><span class=\"hl-teal\">641 milioni di € / anno</span>",
       stage3_desc: "L'inquinamento da plastica colpisce direttamente la pesca, il turismo e la navigazione marittima. Pulire una singola tonnellata di rifiuti costa fino a <strong>18.000 €</strong> (la città di Nizza spende 2 milioni di €/anno solo per le sue spiagge).",
       stage3_m1: "Persi ogni anno dalle economie costiere",
       stage3_m2: "Costo di pulizia per tonnellata di rifiuti",
       stage3_m3: "Spesi per città costiera (es: Nizza)",
+      stage3_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Fonte: UNEP/MAP (2020), Rapporto Economico WWF Mediterraneo, Dati Città di Nizza</span>",
 
       // Stage 4
-      stage4_badge: "Livello 04 · -120 Metri · La Base delle Soluzioni",
-      stage4_title: "L'Alleanza del Forum:<br/><span class=\"hl-teal\">Obiettivo Zero Plastica 2030</span>",
-      stage4_desc: "Su questa base sottomarina si organizza la risposta: dalla <strong>Convenzione di Barcellona (1976)</strong>, l'<strong>UpM</strong>, ecc., <strong>Biserta 2026</strong> riunisce politici, promotori di progetti, scienziati e società civile per tutelare il nostro mare comune.",
+      stage4_badge: "Livello 04 · -120 metri · La base delle soluzioni",
+      stage4_title: "L'alleanza del Forum:<br/><span class=\"hl-teal\">Obiettivo zero plastica 2030</span>",
+      stage4_desc: "Su questa base sottomarina si organizza la risposta: dalla <strong>Convenzione di Barcellona (1976)</strong>, l'<strong>UpM</strong>, l'<strong>ADEME</strong>, <strong>Circe.med</strong>, <strong>SHARE4MED</strong>, ecc., <strong>Biserta 2026</strong> riunisce politici, promotori di progetti, scienziati e società civile per tutelare il nostro mare comune.",
       stage4_m1: "Nazioni mediterranee firmatarie",
       stage4_m2_val: "PAMEx e BeMed",
       stage4_m2: "Piani d'azione regionali esemplari (UNEP)",
       stage4_m3_val: "Verso il 2030",
       stage4_m3: "Zero plastica in mare e 9° Vertice Biserta",
-      stage4_cta: "Scopri il Programma del Vertice",
-
+      stage4_source: "<svg class=\"stage-source-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><span>Fonte: Convenzione di Barcellona (UNEP/MAP), Unione per il Mediterraneo (UpM), ADEME, Circe.med, SHARE4MED</span>",
+      stage4_cta: "Scopri il programma del Vertice",
 
       // About
       about_label: "Il Forum",
-      about_title: "Forum Mondiale del <span>Mare</span>",
-      about_p1: "Dalla sua creazione nel <strong>2018</strong> sotto la presidenza di <strong>Pascal Lamy</strong>, il Forum Mondiale del Mare – Biserta si è affermato come uno degli appuntamenti internazionali imprescindibili sulla sponda sud del Mediterraneo, dedicato alle sfide marittime.",
+      about_title: "Forum mondiale del <span>mare</span>",
+      about_p1: "Dalla sua creazione nel <strong>2018</strong> sotto la presidenza di <strong>Pascal Lamy</strong>, il Forum mondiale del mare – Biserta si è affermato come uno degli appuntamenti internazionali imprescindibili sulla sponda sud del Mediterraneo, dedicato alle sfide marittime.",
       about_p2: "Questo forum ha svolto un ruolo chiave in Tunisia promuovendo la creazione del <strong>Segretariato per gli Affari Marittimi</strong>, del Cluster Marittimo e avviando il progetto del porto in acque profonde di Enfidha. Nel 2021, ha avviato la <strong>Coalizione degli Eletti del Mediterraneo</strong>.",
-      about_p3: "<strong>La Saison Bleue</strong>, in collaborazione con <strong>SHARE4MED</strong>, ha il piacere di accogliervi alla <strong>9ª edizione</strong> del Forum Mondiale del Mare – Biserta, che si terrà il <strong>24 e 25 settembre 2026</strong> a Biserta, Tunisia.",
+      about_p3: "<strong>La Saison Bleue</strong>, in collaborazione con <strong>SHARE4MED</strong>, ha il piacere di accogliervi alla <strong>9ª edizione</strong> del Forum mondiale del mare – Biserta, che si terrà il <strong>24 e 25 settembre 2026</strong> a Biserta, Tunisia.",
       about_p4: "Il Forum riunirà decisori pubblici, rappresentanti di organizzazioni internazionali, ricercatori, imprenditori e società civile per definire <strong>priorità comuni</strong> e proporre azioni concrete.",
       about_stat1_num: "9ª",
       about_stat1_lbl: "Edizione 2026",
-      about_stat2_lbl: "Fondato da Pascal Lamy",
+      about_stat2_lbl: "Fondato nel 2018",
       about_stat3_lbl: "Settembre 2026",
       about_stat4_lbl: "Bacino Mediterraneo",
       counter_label: "Tonnellate di plastica / anno nel Mediterraneo",
       counter_desc: "Ogni anno, oltre 570.000 tonnellate di plastica finiscono nei nostri mari. Il Forum agisce per invertire questa rotta.",
+      counter_source: "Fonte: WWF (2019) « Stop the Plastic Flood », Plan Bleu",
 
       // Programme
-      prog_header_label: "9ª Edizione · Biserta, Tunisia",
+      prog_header_label: "9ª edizione · Biserta, Tunisia",
       prog_header_title: "Programma",
-      prog_day1_title: "Giovedì 24 Settembre 2026",
+      prog_day1_title: "Giovedì 24 settembre 2026",
       prog_r1_time: "Mattina › Pomeriggio",
       prog_r1_label: "Presentazione del progetto SHARE4MED e Workshop",
       prog_r1_sub: "Con i rappresentanti delle municipalità e dei comuni tunisini",
       prog_r2_time: "Riunione ristretta",
       prog_r2_label: "Assemblea Generale di Circe.med",
       prog_sep_nextday: "Giorno successivo",
-      prog_day2_title: "Venerdì 25 Settembre 2026",
+      prog_day2_title: "Venerdì 25 settembre 2026",
       prog_r3_time: "08:30 › 09:00",
       prog_r3_label: "ACCOGLIENZA",
       prog_r4_time: "09:00 › 09:20",
@@ -3924,31 +3983,31 @@
       prog_r_s5_p1: "<strong>17:00 - 17:20</strong> · Panel 1: Presentazione dell'iniziativa « Area marina educativa-Tunisia »",
       prog_r_s5_p2: "<strong>17:20 - 17:40</strong> · Panel 2: Club Giovani Oceani Marocco-Tunisia (IRD)",
       prog_r10_time: "17:40 › 17:55",
-      prog_r10_label: "Presentazione della sintesi del Forum Mondiale del Mare - Biserta",
+      prog_r10_label: "Presentazione della sintesi del Forum mondiale del mare - Biserta",
       prog_r_cloture_time: "17:55 › 18:50",
-      prog_r_cloture_label: "Chiusura del Forum Mondiale del Mare - Biserta",
+      prog_r_cloture_label: "Chiusura del Forum mondiale del mare - Biserta",
 
       // Theme & Contacts
-      theme_label: "Sfida Centrale",
+      theme_label: "Sfida centrale",
       theme_quote: "« Agire per un <strong>Mediterraneo</strong> senza plastica »",
       theme_p1: "Questa edizione ambisce a mobilitare tutti gli attori del bacino mediterraneo attorno a una risposta <strong style=\"color:var(--text-color)\">concreta e collettiva</strong> di fronte a una delle sfide ambientali più urgenti della nostra epoca.",
       theme_p2: "Il Forum di Biserta si propone di essere lo spazio di costruzione di una collaborazione e di presentare un'agenda realistica di <strong style=\"color:var(--text-color)\">« de-plastificazione »</strong> del bacino mediterraneo — dimostrando che Stati, eletti, imprenditori e società civile possono essere il laboratorio di un oceano liberato da un veleno mortale.",
       theme_invitation: "« Ci vediamo a Biserta il 24 e 25 settembre 2026 per scrivere questa pagina di un'odissea sempre rinnovata! »",
-      support_label: "Assistenza & Supporto sul posto",
+      support_label: "Assistenza & supporto sul posto",
       support_title: "Domande sul posto o bisogno di assistenza?",
       support_subtitle: "In caso di dubbi o per qualsiasi richiesta durante l'evento, contattate il nostro team su WhatsApp:",
-      tech_support_title: "Supporto Tecnico & Presentazioni PPT",
+      tech_support_title: "Supporto tecnico & presentazioni PPT",
       tech_support_desc: "Se avete bisogno di supporto tecnico o per inviare le vostre presentazioni PowerPoint, vi preghiamo di scrivere a:",
 
       // Gallery & Footer
-      gallery_label: "Momenti del Forum",
-      gallery_title: "Galleria <span>Fotografica</span>",
-      gallery_desc: "I momenti salienti delle edizioni precedenti del Forum Mondiale del Mare – Biserta",
-      footer_dates: "9ª edizione · 24–25 Settembre 2026 · Biserta, Tunisia",
+      gallery_label: "Moments du Forum",
+      gallery_title: "Galleria <span>fotografica</span>",
+      gallery_desc: "I momenti salienti delle edizioni precedenti del Forum mondiale del mare – Biserta",
+      footer_dates: "9ª edizione · 24–25 settembre 2026 · Biserta, Tunisia",
       footer_theme: "« Agire per un Mediterraneo senza plastica »",
       footer_produced: "Prodotto da",
       footer_leadership: "Presidente: Pascal LAMY · Direttrice: Rym BENZINA · Commissario generale: Mehdi BEN HAJ",
-      footer_rights: "© 2026 Forum Mondiale del Mare – Biserta. Tutti i diritti riservati."
+      footer_rights: "© 2026 Forum mondiale del mare – Biserta. Tutti i diritti riservati."
     }
   };
 
